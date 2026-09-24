@@ -1,8 +1,8 @@
 # Yentrans Maritime Logistics — Website
 
 Corporate website for Yentrans Maritime Logistics (YML), a registered NVOCC and
-Multimodal Transport Operator moving cargo from any Indian port to door delivery in
-the United States.
+Multimodal Transport Operator moving cargo from India and the Middle East to major
+ports worldwide.
 
 ## Stack
 
@@ -15,7 +15,7 @@ free, and means anyone can edit a page without installing a toolchain.
 ```
 index.html              Home
 services.html           Services in detail
-india-to-usa.html       The India to USA door-delivery route
+network.html            Global network, routing and bills of lading
 about.html              Company, mission, vision, registrations
 contact.html            Offices and enquiry routes
 assets/css/style.css    Design system. All brand tokens live in :root

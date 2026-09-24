@@ -1,13 +1,21 @@
 {
   "name": "Yentrans Maritime Logistics",
   "short_name": "Yentrans",
-  "description": "Registered NVOCC moving cargo from any port in India to your customer's facility in the United States.",
+  "description": "Connecting cargo and people around the world. Ocean freight from India and the Middle East to major ports worldwide.",
   "start_url": "/",
   "display": "standalone",
   "background_color": "#ffffff",
   "theme_color": "#38AAE1",
   "icons": [
-    { "src": "assets/img/icon-192.png", "sizes": "192x192", "type": "image/png" },
-    { "src": "assets/img/icon-512.png", "sizes": "512x512", "type": "image/png" }
+    {
+      "src": "assets/img/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "assets/img/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
   ]
 }
