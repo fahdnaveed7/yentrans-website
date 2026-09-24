@@ -1,8 +1,8 @@
 # Yentrans Maritime Logistics — Website
 
-Corporate website for Yentrans Maritime Logistics Pvt Ltd (YML), an FMC-registered
-NVOCC and MTO specialising in temperature-controlled ocean freight out of India and
-the Middle East.
+Corporate website for Yentrans Maritime Logistics (YML), a registered NVOCC and
+Multimodal Transport Operator moving cargo from any Indian port to door delivery in
+the United States.
 
 ## Stack
 
@@ -15,8 +15,8 @@ free, and means anyone can edit a page without installing a toolchain.
 ```
 index.html              Home
 services.html           Services in detail
-temperature-control.html  The reefer / cold chain specialism
-about.html              Company, mission, vision, credentials
+india-to-usa.html       The India to USA door-delivery route
+about.html              Company, mission, vision, registrations
 contact.html            Offices and enquiry routes
 assets/css/style.css    Design system. All brand tokens live in :root
 assets/js/main.js       Mobile nav and scroll reveal
@@ -25,6 +25,8 @@ assets/video/           Hero and cold chain footage
 ```
 
 ## Brand
+
+Typography is Source Serif 4 for headings and Source Sans 3 for body text.
 
 Colours are sampled from the registered logo artwork, not approximated:
 
@@ -37,6 +39,10 @@ Colours are sampled from the registered logo artwork, not approximated:
 | `--ink` | `#1D1D1B` | Body text, dark sections |
 
 White carries the page. Blue is used sparingly so that it still reads as emphasis.
+
+The logo in `assets/img/logo.png` is the genuine artwork with the "PVT LTD" strapline
+cropped off. The icons are generated from the sail-and-wave device alone, with no
+wordmark, so they stay legible at favicon size.
 
 ## Local preview
 
