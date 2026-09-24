@@ -1,0 +1,32 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" fill="none">
+  <!--
+    YML square mark — just the boat + waves, no wordmark. Used for
+    favicon, PWA install icon, sidebar logo chip, and any compact slot
+    where the full horizontal logo would be too wide.
+
+    Rounded white background so it works on any nav colour without an
+    extra container in CSS.
+  -->
+  <rect width="128" height="128" rx="22" fill="#FFFFFF"/>
+
+  <!-- Yacht / sail -->
+  <g transform="translate(0 4)">
+    <path d="M 14 64 L 110 64 L 88 26 L 42 26 Z"
+          fill="#7FBEDF"/>
+    <path d="M 42 64 L 110 64 L 88 26 Z"
+          fill="#9ECFE3" opacity="0.95"/>
+    <path d="M 56 28 L 56 8 L 78 20 Z" fill="#3EA8D6"/>
+
+    <!-- Waves -->
+    <path d="M 4 82
+             C 24 76, 46 90, 70 82
+             S 110 74, 124 84
+             L 124 92 L 4 92 Z"
+          fill="#A9D5E8"/>
+    <path d="M 2 100
+             C 26 94, 56 108, 80 100
+             S 116 92, 126 100
+             L 126 108 L 2 108 Z"
+          fill="#6BB7DB"/>
+  </g>
+</svg>
