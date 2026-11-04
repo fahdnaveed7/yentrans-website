@@ -195,7 +195,14 @@ section{padding:clamp(4rem,7.5vw,6.5rem) 0}
 /* ---- footer -------------------------------------------------------------- */
 .site-foot{background:var(--ink);color:rgba(255,255,255,.62);padding:clamp(3.5rem,6vw,5rem) 0 2rem;font-size:.9rem}
 .foot-top{display:grid;grid-template-columns:1.6fr 1fr 1fr 1fr;gap:2.5rem;padding-bottom:3rem;border-bottom:1px solid rgba(255,255,255,.1)}
-.foot-brand img{height:30px;filter:brightness(0) invert(1);opacity:.92;margin-bottom:1.1rem}
+.foot-logo{display:inline-flex;align-items:center;gap:.7rem;margin-bottom:1.1rem;text-decoration:none}
+.foot-logo img{height:34px;width:auto;margin:0;filter:none}
+.foot-logo span{display:flex;flex-direction:column;line-height:1.12;color:#fff;
+  font-family:"Source Serif 4",Georgia,"Times New Roman",serif;font-size:1.12rem;
+  font-weight:600;letter-spacing:.005em}
+.foot-logo em{font-style:normal;font-family:"Source Sans 3","Segoe UI",Helvetica,Arial,sans-serif;
+  font-size:.63rem;font-weight:500;letter-spacing:.17em;text-transform:uppercase;
+  color:rgba(255,255,255,.62);margin-top:.2rem}
 .foot-brand p{max-width:34ch;font-size:.9rem;line-height:1.6;margin:0}
 .site-foot h4{color:#fff;font-size:.75rem;letter-spacing:.14em;text-transform:uppercase;margin-bottom:1.1rem;font-weight:600}
 .site-foot ul{list-style:none;margin:0;padding:0;display:grid;gap:.6rem}
