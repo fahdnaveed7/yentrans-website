@@ -101,6 +101,13 @@ p{margin:0 0 1.1em}
 .nav a[aria-current="page"]::after{
   content:"";position:absolute;left:0;right:0;bottom:-2px;height:2px;background:var(--blue);
 }
+/* The header CTA is an <a> inside .nav, so `.nav a` (0,1,1) was beating
+   `.btn-primary` (0,1,0) and painting the label --ink-70 grey on the teal
+   button: 1.50:1, far below AA, on the site's main conversion control.
+   These selectors restore the button's own colours at matching specificity. */
+.nav a.head-cta{color:#fff}
+.nav a.head-cta:hover{color:#fff}
+.nav a.head-cta[aria-current="page"]::after{display:none}
 .head-cta{margin-left:.6rem}
 .burger{display:none;margin-left:auto;background:none;border:0;padding:.5rem;cursor:pointer}
 .burger span{display:block;width:22px;height:2px;background:var(--ink);margin:4px 0;transition:.25s}
@@ -410,3 +417,17 @@ section{padding:clamp(4rem,7.5vw,6.5rem) 0}
    cells meet in the gap — while empty track space stays white. */
 .grid{background:var(--white)}
 .grid > *{outline:1px solid var(--line)}
+
+/* Cards inside the dark section. .cell is white by default, and .sec-ink sets
+   colour:#fff on the section, so dropping .cell cards into it rendered white
+   text on white cards — invisible. The dark section gets its own card
+   treatment: a faint light wash, light hairlines, and explicit text colours. */
+.sec-ink .grid{background:transparent}
+.sec-ink .grid > *{outline-color:rgba(255,255,255,.16)}
+.sec-ink .cell{background:rgba(255,255,255,.04)}
+.sec-ink .cell:hover{background:rgba(255,255,255,.09)}
+.sec-ink .cell h3{color:#fff}
+.sec-ink .cell p{color:rgba(255,255,255,.76)}
+.sec-ink .cell .num{color:var(--blue-light)}
+.sec-ink .cell h3 a{color:#fff}
+.sec-ink .cell h3 a:hover{color:var(--blue-light)}
