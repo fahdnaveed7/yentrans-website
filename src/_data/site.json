@@ -11,5 +11,6 @@
   "tagline": null,
   "_taglineNote": "TAG-01/TAG-02 are PROPOSED, not approved. The mood board line 'Trade Without Borders.' is explicitly forbidden (LICENSES_AND_USAGE.md). Ship no tagline.",
   "isPreview": true,
-  "_isPreviewNote": "true adds noindex site-wide. Set false only at approved production cutover."
+  "_isPreviewNote": "true adds noindex site-wide. Set false only at approved production cutover.",
+  "_comment_approvals": "Approval gates live in src/_data/approvals.json (single source of truth). Templates read approvals.*, never hardcode a gated claim."
 }

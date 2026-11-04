@@ -1,55 +1,213 @@
 {
-  "_README": "Contact fields render only when `approved` or `selfPublished` is true. `selfPublished` means the company already publishes this exact detail on its own live website (yentransmaritime.com, captured 2026-11-04) — republishing it invents nothing, but it still needs formal sign-off, so it is tracked in APPROVALS_NEEDED.md. Every other location renders as presence only: name and coverage, never a fabricated address, phone or mailbox. Per the build brief, an unverified field is OMITTED, never shown as placeholder text.",
-
+  "_README": "Transcribed from the company's own 'Our Reach' locations card supplied by management on 2026-11-04. That card is the authority for every field here. Note Ernakulam (Panampilly Nagar, corporate HO) and Cochin (Willingdon Island, island office) are two distinct offices, not duplicate records. Branch contact names, direct numbers and work emails are published as the card publishes them; see APPROVALS_NEEDED.md for the one open question about direct mobile numbers.",
   "locations": [
     {
-      "id": "cochin", "city": "Kochi", "region": "Kerala", "country": "India",
-      "role": "Head office", "claim": "YML-002",
-      "approved": false, "selfPublished": true,
-      "source": "https://yentransmaritime.com/contact/ — captured 2026-11-04",
-      "address": ["Old Rubber Board Building", "Indira Gandhi Road, Willingdon Island", "Cochin 682003, Kerala, India"],
-      "phone": "+91 484 403 8844", "phoneDial": "+914844038844",
-      "email": "cs@yentransmaritime.com",
-      "coverage": "Freight forwarding, documentation and customs coordination for Cochin and the wider Indian network."
+      "id": "ernakulam",
+      "city": "Ernakulam",
+      "region": "Kerala",
+      "country": "India",
+      "role": "Corporate Office",
+      "isHeadOffice": true,
+      "claim": "YML-002",
+      "approved": true,
+      "source": "Our Reach locations card, 2026-11-04",
+      "legalName": null,
+      "address": [
+        "YML Building",
+        "Door No. 53/518 A",
+        "South Bridge Avenue Road",
+        "Panampilly Nagar, 682036",
+        "Ernakulam, Kerala, India"
+      ],
+      "contactName": "Mr. Niyas K A",
+      "phone": "+91 484 4038844",
+      "phoneDial": "+914844038844",
+      "email": "niyas@yentransmaritime.com"
     },
     {
-      "id": "chennai", "city": "Chennai", "region": "Tamil Nadu", "country": "India",
-      "role": "Branch", "claim": "YML-003",
-      "approved": false, "selfPublished": false,
-      "address": null, "phone": null, "email": null,
-      "coverage": "Listed in the working branch directory. Operating status, entity and address are pending verification."
+      "id": "cochin",
+      "city": "Cochin",
+      "region": "Kerala",
+      "country": "India",
+      "role": "Island Office",
+      "isHeadOffice": false,
+      "claim": "YML-002",
+      "approved": true,
+      "source": "Our Reach locations card, 2026-11-04",
+      "legalName": "Yentrans Maritime Logistics",
+      "address": [
+        "Island Shipping Agencies Building, 1st Floor",
+        "Willingdon Island",
+        "Ernakulam, Kerala, India"
+      ],
+      "contactName": "Mr Faizal M A",
+      "phone": "+91 95399 94177",
+      "phoneDial": "+919539994177",
+      "email": "faizal@yentransmaritime.com"
     },
     {
-      "id": "vizag", "city": "Visakhapatnam", "region": "Andhra Pradesh", "country": "India",
-      "role": "Branch", "claim": "YML-004",
-      "approved": false, "selfPublished": false,
-      "address": null, "phone": null, "email": null,
-      "coverage": "Listed in the working branch directory. Operating status, entity and address are pending verification."
+      "id": "chennai",
+      "city": "Chennai",
+      "region": "Tamil Nadu",
+      "country": "India",
+      "role": "Branch Office",
+      "isHeadOffice": false,
+      "claim": "YML-003",
+      "approved": true,
+      "source": "Our Reach locations card, 2026-11-04",
+      "legalName": null,
+      "address": [
+        "No. 51/117, Nelson Tower",
+        "4th Wing, 4th Floor",
+        "Nelson Manickam Road",
+        "Aminjikarai, Chennai 600029",
+        "Tamil Nadu, India"
+      ],
+      "contactName": "Mr Yogaraj K",
+      "phone": "+91 99401 01848",
+      "phoneDial": "+919940101848",
+      "email": "yogaraj@yentransmaritime.com"
     },
     {
-      "id": "dubai", "city": "Dubai", "region": null, "country": "United Arab Emirates",
-      "role": "Branch", "claim": "YML-007",
-      "approved": false, "selfPublished": false,
-      "address": null, "phone": null, "email": null,
-      "coverage": "Supports cargo moving through Gulf regional and international trade routes. Entity and trade licence pending verification."
+      "id": "vizag",
+      "city": "Vizag",
+      "cityFull": "Visakhapatnam",
+      "region": "Andhra Pradesh",
+      "country": "India",
+      "role": "Branch Office",
+      "isHeadOffice": false,
+      "claim": "YML-004",
+      "approved": true,
+      "source": "Our Reach locations card, 2026-11-04",
+      "legalName": null,
+      "address": [
+        "D.No. 14-1-19, 1st Floor",
+        "Apollo Pharmacy",
+        "Daspalla Hills, Nowroji Road",
+        "Maharajapeta, Visakhapatnam",
+        "Andhra Pradesh 530002, India"
+      ],
+      "contactName": "Mr Anaz",
+      "phone": "+91 99463 72763",
+      "phoneDial": "+919946372763",
+      "email": "opsvtz@yentransmaritime.com"
     },
     {
-      "id": "muscat", "city": "Muscat", "region": null, "country": "Oman",
-      "role": "Branch", "claim": "YML-005",
-      "approved": false, "selfPublished": false,
-      "address": null, "phone": null, "email": null,
-      "coverage": "Supports logistics activity in the Omani market. Entity and CR pending verification."
+      "id": "dubai",
+      "city": "Dubai",
+      "region": null,
+      "country": "United Arab Emirates",
+      "role": "Branch Office",
+      "isHeadOffice": false,
+      "claim": "YML-007",
+      "approved": true,
+      "source": "Our Reach locations card, 2026-11-04",
+      "legalName": "Yentrans Maritime Logistics L.L.C — Trade Name No. 3181387",
+      "address": [
+        "Clave Bay, 4th Floor",
+        "Unit 407–412, Business Bay",
+        "Dubai, United Arab Emirates"
+      ],
+      "contactName": "Mr Omar Naveed",
+      "phone": "+971 58 537 9877",
+      "phoneDial": "+971585379877",
+      "email": "omar@yentransmaritime.com"
     },
     {
-      "id": "salalah", "city": "Salalah", "region": null, "country": "Oman",
-      "role": "Branch", "claim": "YML-006",
-      "approved": false, "selfPublished": false,
-      "address": null, "phone": null, "email": null,
-      "coverage": "Listed in the working branch directory. Operating status pending verification."
+      "id": "muscat",
+      "city": "Muscat",
+      "region": null,
+      "country": "Oman",
+      "role": "Branch Office",
+      "isHeadOffice": false,
+      "claim": "YML-005",
+      "approved": true,
+      "source": "Our Reach locations card, 2026-11-04",
+      "legalName": "Yentrans Maritime Logistics LLC",
+      "address": [
+        "Office O510, 5th Floor",
+        "Business Tower 1, Airport Heights",
+        "Muscat, Sultanate of Oman"
+      ],
+      "contactName": "Ms Lakshmi Kiran",
+      "phone": "+968 9604 2345",
+      "phoneDial": "+96896042345",
+      "email": "lakshmi@yentransmaritime.com"
+    },
+    {
+      "id": "salalah",
+      "city": "Salalah",
+      "region": null,
+      "country": "Oman",
+      "role": "Branch Office",
+      "isHeadOffice": false,
+      "claim": "YML-006",
+      "approved": true,
+      "source": "Our Reach locations card, 2026-11-04",
+      "legalName": "Yentrans Maritime Logistics",
+      "address": [
+        "Sahnoot, Near Sahnoot Mosque",
+        "Salalah",
+        "Sultanate of Oman"
+      ],
+      "contactName": "Mr Shameer R M",
+      "phone": "+968 9901 4500",
+      "phoneDial": "+96899014500",
+      "email": "shameer@yentransmaritime.com"
+    },
+    {
+      "id": "houston",
+      "city": "Houston",
+      "region": "Texas",
+      "country": "United States",
+      "role": "North America contact",
+      "isHeadOffice": false,
+      "claim": "YML-008",
+      "approved": false,
+      "source": "Our Reach locations card, 2026-11-04",
+      "legalName": "Yentrans Maritime Logistics",
+      "_heldAddress": [
+        "1201 Fannin St., Suite 262",
+        "PMB #6295",
+        "Houston, TX 77002",
+        "United States"
+      ],
+      "_heldContact": {
+        "contactName": "Mr Fahd Naveed",
+        "phone": "+1 (631) 721-3190",
+        "phoneDial": "+16317213190",
+        "email": "fahd@yentransmaritime.com"
+      },
+      "coverage": "North America contact point for US destination coordination. Operating status and entity pending confirmation.",
+      "_holdReason": "YML-008. The supplied address is a PMB (private mailbox) in a mail-forwarding suite, not a staffed office, and the number is a +1 631 (New York) line rather than a Houston one. Brand Standards forbid the India/Oman/UAE/United States short form until operating status is confirmed, and presenting a mailbox as a Branch Office on a public site risks misrepresentation. Confirm the active US entity and the accurate wording, then set approved:true and promote _heldAddress back to address."
     }
   ],
-
-  "_excluded": [
-    { "id": "houston", "claim": "YML-008", "reason": "Operating status unverified. Brand Standards forbid the 'India / Oman / UAE / United States' short form until confirmed, so Houston is omitted from the network entirely rather than described vaguely." }
+  "groups": [
+    {
+      "id": "india",
+      "title": "India",
+      "ids": [
+        "ernakulam",
+        "cochin",
+        "chennai",
+        "vizag"
+      ]
+    },
+    {
+      "id": "gulf",
+      "title": "Middle East",
+      "ids": [
+        "dubai",
+        "muscat",
+        "salalah"
+      ]
+    },
+    {
+      "id": "americas",
+      "title": "North America",
+      "ids": [
+        "houston"
+      ]
+    }
   ]
 }

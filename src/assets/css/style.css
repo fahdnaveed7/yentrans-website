@@ -431,3 +431,8 @@ section{padding:clamp(4rem,7.5vw,6.5rem) 0}
 .sec-ink .cell .num{color:var(--blue-light)}
 .sec-ink .cell h3 a{color:#fff}
 .sec-ink .cell h3 a:hover{color:var(--blue-light)}
+
+/* ---- office card additions ---------------------------------------------- */
+.office-person{font-weight:600;color:var(--ink)}
+.office-entity{margin-top:.6rem;font-size:.82rem;color:var(--ink-55,#6F8190);line-height:1.5}
+.office-coverage{margin-top:.2rem;font-size:.94rem;line-height:1.7;color:var(--ink-70)}

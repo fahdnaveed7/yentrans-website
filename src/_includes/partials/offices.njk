@@ -1,21 +1,39 @@
-{# Contact fields render only for an approved or already self-published location.
-   Everything else shows coverage only — the brief requires omitting an unverified
-   field rather than printing placeholder text. #}
-<div class="offices">
-  {%- for o in offices.locations %}
-  <div class="office reveal">
-    <span class="tag">{{ o.role }}</span>
-    <h3>{{ o.city }}{% if o.country != o.city %}, {{ o.country }}{% endif %}</h3>
-    {% if o.approved or o.selfPublished %}
-      {% if o.address %}<address>{% for line in o.address %}{{ line }}{% if not loop.last %}<br>{% endif %}{% endfor %}</address>{% endif %}
-      <p class="ph">
-        {% if o.phone %}Telephone: <a href="tel:{{ o.phoneDial }}">{{ o.phone }}</a><br>{% endif %}
-        {% if o.email %}Email: <a href="mailto:{{ o.email }}">{{ o.email }}</a>{% endif %}
-      </p>
-    {% else %}
-      <p class="office-coverage">{{ o.coverage }}</p>
-      <p class="ph">Enquiries: <a href="mailto:{{ site.enquiryEmail }}">{{ site.enquiryEmail }}</a></p>
-    {% endif %}
+{# Office cards, grouped by region.
+
+   An APPROVED location renders its full address and contacts. An unapproved
+   one renders coverage only and routes to the central desk — the build brief
+   requires omitting an unverified field rather than printing placeholder
+   text, so there is no [ADDRESS] path here by design.
+
+   Named branch managers and their direct mobiles sit behind
+   approvals.staffContactDetails, because the brand package requires explicit
+   sign-off before staff mobiles are published as office numbers. Set that
+   flag false and the cards fall back to address plus branch email. #}
+{%- for group in offices.groups %}
+<div class="office-group">
+  <h3 class="office-region">{{ group.title }}</h3>
+  <div class="offices">
+    {%- for id in group.ids %}{% for o in offices.locations %}{% if o.id == id %}
+    <div class="office reveal" id="office-{{ o.id }}">
+      <span class="tag">{{ o.role }}</span>
+      <h4>{{ o.city }}{% if o.cityFull %} <span class="city-full">({{ o.cityFull }})</span>{% endif %}</h4>
+
+      {%- if o.approved %}
+        {% if o.legalName %}<p class="office-entity">{{ o.legalName }}</p>{% endif %}
+        {% if o.address %}<address>{% for line in o.address %}{{ line }}{% if not loop.last %}<br>{% endif %}{% endfor %}</address>{% endif %}
+        <p class="ph">
+          {%- if approvals.staffContactDetails.value %}
+            {% if o.contactName %}<span class="office-contact">{{ o.contactName }}</span><br>{% endif %}
+            {% if o.phone %}<a href="tel:{{ o.phoneDial }}">{{ o.phone }}</a><br>{% endif %}
+          {%- endif %}
+          {% if o.email %}<a href="mailto:{{ o.email }}">{{ o.email }}</a>{% endif %}
+        </p>
+      {%- else %}
+        <p class="office-coverage">{{ o.coverage }}</p>
+        <p class="ph">Enquiries: <a href="mailto:{{ site.enquiryEmail }}">{{ site.enquiryEmail }}</a></p>
+      {%- endif %}
+    </div>
+    {% endif %}{% endfor %}{%- endfor %}
   </div>
-  {%- endfor %}
 </div>
+{%- endfor %}
