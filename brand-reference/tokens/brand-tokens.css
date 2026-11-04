@@ -1,0 +1,46 @@
+/*
+ * Yentrans Maritime Logistics — brand tokens (web)
+ * Extracted from Global Brand Standards v1.1 (Working Master, Oct 2026).
+ * STATUS: PROPOSED values. Cyan and Wave Blue are approximations sampled from a raster logo;
+ * confirm against the vector master before treating as final.
+ * Contrast notes: never use --yml-cyan as text on white/mist (2.67:1). Use --yml-link on light surfaces.
+ */
+:root {
+  /* Palette */
+  --yml-navy:  #0D283B; /* Deep Maritime Navy — PROPOSED */
+  --yml-cyan:  #31A9DE; /* YML Ocean Cyan — APPROX. from logo */
+  --yml-wave:  #97D9F3; /* YML Wave Blue — APPROX. from logo */
+  --yml-teal:  #167B94; /* Harbor Teal — PROPOSED */
+  --yml-mist:  #F3F7F8; /* Coastal Mist — PROPOSED */
+  --yml-ink:   #18252D; /* Ink Charcoal — PROPOSED */
+  --yml-steel: #6F8190; /* Steel Gray — PROPOSED (large text / borders only) */
+  --yml-white: #FFFFFF;
+
+  /* Semantic roles — light surfaces */
+  --yml-bg: var(--yml-white);
+  --yml-surface: var(--yml-mist);
+  --yml-text: var(--yml-ink);
+  --yml-heading: var(--yml-navy);
+  --yml-link: var(--yml-teal);          /* 4.89:1 on white */
+  --yml-rule: var(--yml-cyan);          /* decorative rules, not text */
+  --yml-muted: var(--yml-steel);
+
+  /* Semantic roles — dark (navy) surfaces */
+  --yml-dark-bg: var(--yml-navy);
+  --yml-dark-text: var(--yml-white);
+  --yml-dark-link: var(--yml-cyan);     /* 5.68:1 on navy */
+  --yml-dark-muted: var(--yml-wave);    /* 9.78:1 on navy */
+
+  /* Typography — PROPOSED families (SIL OFL 1.1) */
+  --yml-font-heading: "Manrope", "Inter", Arial, "Helvetica Neue", sans-serif;
+  --yml-font-body: "Inter", Arial, "Helvetica Neue", sans-serif;
+  --yml-font-mono: "IBM Plex Mono", ui-monospace, "SFMono-Regular", Menlo, Consolas, monospace;
+  --yml-weight-heading: 700;
+  --yml-weight-heading-alt: 600;
+  --yml-weight-body: 400;
+  --yml-weight-body-strong: 500;
+  --yml-weight-label: 500;
+
+  /* Logo — interim web values pending designer confirmation */
+  --yml-logo-min-width: 160px;
+}

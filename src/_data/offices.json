@@ -1,0 +1,55 @@
+{
+  "_README": "Contact fields render only when `approved` or `selfPublished` is true. `selfPublished` means the company already publishes this exact detail on its own live website (yentransmaritime.com, captured 2026-11-04) — republishing it invents nothing, but it still needs formal sign-off, so it is tracked in APPROVALS_NEEDED.md. Every other location renders as presence only: name and coverage, never a fabricated address, phone or mailbox. Per the build brief, an unverified field is OMITTED, never shown as placeholder text.",
+
+  "locations": [
+    {
+      "id": "cochin", "city": "Kochi", "region": "Kerala", "country": "India",
+      "role": "Head office", "claim": "YML-002",
+      "approved": false, "selfPublished": true,
+      "source": "https://yentransmaritime.com/contact/ — captured 2026-11-04",
+      "address": ["Old Rubber Board Building", "Indira Gandhi Road, Willingdon Island", "Cochin 682003, Kerala, India"],
+      "phone": "+91 484 403 8844", "phoneDial": "+914844038844",
+      "email": "cs@yentransmaritime.com",
+      "coverage": "Freight forwarding, documentation and customs coordination for Cochin and the wider Indian network."
+    },
+    {
+      "id": "chennai", "city": "Chennai", "region": "Tamil Nadu", "country": "India",
+      "role": "Branch", "claim": "YML-003",
+      "approved": false, "selfPublished": false,
+      "address": null, "phone": null, "email": null,
+      "coverage": "Listed in the working branch directory. Operating status, entity and address are pending verification."
+    },
+    {
+      "id": "vizag", "city": "Visakhapatnam", "region": "Andhra Pradesh", "country": "India",
+      "role": "Branch", "claim": "YML-004",
+      "approved": false, "selfPublished": false,
+      "address": null, "phone": null, "email": null,
+      "coverage": "Listed in the working branch directory. Operating status, entity and address are pending verification."
+    },
+    {
+      "id": "dubai", "city": "Dubai", "region": null, "country": "United Arab Emirates",
+      "role": "Branch", "claim": "YML-007",
+      "approved": false, "selfPublished": false,
+      "address": null, "phone": null, "email": null,
+      "coverage": "Supports cargo moving through Gulf regional and international trade routes. Entity and trade licence pending verification."
+    },
+    {
+      "id": "muscat", "city": "Muscat", "region": null, "country": "Oman",
+      "role": "Branch", "claim": "YML-005",
+      "approved": false, "selfPublished": false,
+      "address": null, "phone": null, "email": null,
+      "coverage": "Supports logistics activity in the Omani market. Entity and CR pending verification."
+    },
+    {
+      "id": "salalah", "city": "Salalah", "region": null, "country": "Oman",
+      "role": "Branch", "claim": "YML-006",
+      "approved": false, "selfPublished": false,
+      "address": null, "phone": null, "email": null,
+      "coverage": "Listed in the working branch directory. Operating status pending verification."
+    }
+  ],
+
+  "_excluded": [
+    { "id": "houston", "claim": "YML-008", "reason": "Operating status unverified. Brand Standards forbid the 'India / Oman / UAE / United States' short form until confirmed, so Houston is omitted from the network entirely rather than described vaguely." }
+  ]
+}

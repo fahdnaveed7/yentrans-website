@@ -4,3 +4,10 @@ node_modules/
 *.log
 .vscode/
 .idea/
+
+# Brand package private sources — never commit (LICENSES_AND_USAGE.md)
+brand-reference/source/
+node_modules/
+_site/
+.env
+.env.*

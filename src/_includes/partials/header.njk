@@ -1,0 +1,17 @@
+<header class="site-head">
+  <div class="wrap head-in">
+    <a class="brand" href="{{ '/' | url }}" aria-label="{{ site.name }}, home">
+      {# Brand package has no cleared logo: YML_Registered_Logo_PROVISIONAL.png carries an
+         uncleared registered symbol (YML-009) and is marked approved_for_public_website=false.
+         The existing artwork stays until a vector master without the symbol is supplied. #}
+      <img src="{{ '/assets/img/logo.png' | url }}" alt="{{ site.name }}" width="406" height="105">
+    </a>
+    <button class="burger" aria-label="Menu" aria-expanded="false" aria-controls="primary-nav"><span></span><span></span><span></span></button>
+    <nav class="nav" id="primary-nav" aria-label="Primary">
+      {%- for item in nav.primary %}
+      <a href="{{ item.url | url }}"{% if page.url == item.url or (item.url != '/' and page.url.startsWith(item.url)) %} aria-current="page"{% endif %}>{{ item.label }}</a>
+      {%- endfor %}
+      <a class="btn btn-primary head-cta" href="{{ nav.cta.url | url }}">{{ nav.cta.label }}</a>
+    </nav>
+  </div>
+</header>

@@ -1,0 +1,10 @@
+<section class="cta">
+  <div class="wrap">
+    <h2 class="reveal">{{ ctaHeading or "Tell us what needs to move." }}</h2>
+    <p class="reveal">{{ ctaBody or "Share your cargo, origin, destination and target schedule. Our team can discuss the practical options and the information needed for a quotation." }}</p>
+    <div class="cta-actions reveal">
+      <a class="btn btn-onDark" href="{{ '/request-a-quote/' | url }}">{{ ctaAction or "Request a Freight Quote" }} <span class="arrow">&rarr;</span></a>
+      <a class="btn btn-onDark" href="{{ ctaSecondaryUrl | default('/services/') | url }}">{{ ctaSecondary or "Explore Our Services" }}</a>
+    </div>
+  </div>
+</section>

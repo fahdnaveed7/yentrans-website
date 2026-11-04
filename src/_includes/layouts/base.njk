@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en-GB" class="no-js">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>{{ seoTitle or title }}{% if not (seoTitle or title) %}{{ site.name }}{% endif %}</title>
+<meta name="description" content="{{ seoDescription or description or site.defaultDescription }}">
+{#
+  Preview builds and every draft page are noindex. site.isPreview flips to false
+  only at approved production cutover (see DEPLOYMENT_CHECKLIST.md).
+#}
+{% if site.isPreview or status == "draft" %}<meta name="robots" content="noindex, nofollow">{% endif %}
+<link rel="canonical" href="{{ site.productionUrl }}{{ page.url }}">
+<meta property="og:type" content="{{ ogType or 'website' }}">
+<meta property="og:site_name" content="{{ site.name }}">
+<meta property="og:title" content="{{ seoTitle or title }}">
+<meta property="og:description" content="{{ seoDescription or description or site.defaultDescription }}">
+<meta property="og:url" content="{{ site.productionUrl }}{{ page.url }}">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="theme-color" content="#0D283B">
+<link rel="icon" href="{{ '/assets/img/favicon.png' | url }}" type="image/png">
+<link rel="apple-touch-icon" href="{{ '/assets/img/apple-touch-icon.png' | url }}">
+<link rel="manifest" href="{{ '/site.webmanifest' | url }}">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:opsz,wght@8..60,400;8..60,600;8..60,700&family=Source+Sans+3:wght@400;500;600&display=swap" rel="stylesheet">
+<script>document.documentElement.className=document.documentElement.className.replace("no-js","js");</script>
+<link rel="stylesheet" href="{{ '/assets/css/style.css' | url }}">
+{% block head %}{% endblock %}
+</head>
+<body>
+<a class="skip-link" href="#main">Skip to content</a>
+{% include "partials/header.njk" %}
+{% if status == "draft" %}
+<div class="draft-banner" role="status">
+  <div class="wrap">
+    <strong>Internal draft — not approved for publication.</strong>
+    This page is visible for review only. It is excluded from the sitemap, carries
+    <code>noindex</code>, and must not be linked from public listings until sign-off.
+  </div>
+</div>
+{% endif %}
+<main id="main">
+{{ content | safe }}
+</main>
+{% include "partials/footer.njk" %}
+<script src="{{ '/assets/js/main.js' | url }}"></script>
+</body>
+</html>

@@ -1,0 +1,47 @@
+{# Credential strip renders ONLY if a flag in approvals.credentials is true.
+   Every flag ships false (CONTENT_FACTS_TO_VERIFY.md: WEB-08/09/10/11, TP-02, WEB-12),
+   so the FMC seal, MTO badge and Millennium Logistics Network logo are absent from
+   the build until evidence is attached and a reviewer signs off. #}
+{% set creds = approvals.credentials %}
+{% if creds.fmcNvocc.value or creds.mto.value or creds.millenniumNetwork.value %}
+<div class="creds">
+  <div class="wrap creds-in">
+    <span class="creds-label">Registered</span>
+    {% if creds.fmcNvocc.value %}<img src="{{ '/assets/img/fmc-seal.svg' | url }}" alt="Registered NVOCC" height="38">{% endif %}
+    {% if creds.mto.value %}<img src="{{ '/assets/img/mto-badge.svg' | url }}" alt="Multimodal Transport Operator" height="38">{% endif %}
+    {% if creds.millenniumNetwork.value and creds.associationLogos.value %}<img src="{{ '/assets/img/mln-logo.png' | url }}" alt="Millennium Logistics Network" height="38">{% endif %}
+  </div>
+</div>
+{% endif %}
+
+<footer class="site-foot">
+  <div class="wrap">
+    <div class="foot-top">
+      <div class="foot-brand">
+        <a class="foot-logo" href="{{ '/' | url }}" aria-label="{{ site.name }}, home">
+          <img src="{{ '/assets/img/mark-onDark.svg' | url }}" alt="" width="128" height="112" aria-hidden="true">
+          <span>Yentrans<em>Maritime Logistics</em></span>
+        </a>
+        <p>{{ site.footerSummary }}</p>
+      </div>
+      {%- for col in nav.footer %}
+      <div>
+        <h4>{{ col.heading }}</h4>
+        <ul>
+          {%- for link in col.links %}
+          <li><a href="{{ link.url | url }}">{{ link.label }}</a></li>
+          {%- endfor %}
+        </ul>
+      </div>
+      {%- endfor %}
+    </div>
+    <div class="foot-bot">
+      {# Legal name stays out until WEB-01 is approved; a bare trading name is always safe. #}
+      <span>&copy; {% year %} {% if approvals.corporate.legalEntityName.value %}{{ approvals.corporate.legalEntityName.text }}{% else %}{{ site.name }}{% endif %}. All rights reserved.</span>
+      <span>
+        <a href="{{ '/privacy/' | url }}">Privacy</a> &nbsp;·&nbsp;
+        <a href="{{ '/applicant-privacy/' | url }}">Applicant privacy</a>
+      </span>
+    </div>
+  </div>
+</footer>

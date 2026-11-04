@@ -1,0 +1,16 @@
+{
+  "name": "yentrans-website",
+  "version": "2.0.0",
+  "private": "true",
+  "description": "Yentrans Maritime Logistics corporate website",
+  "scripts": {
+    "start": "eleventy --serve --port=8080",
+    "build": "eleventy",
+    "build:ghpages": "PATH_PREFIX=/yentrans-website/ eleventy",
+    "check": "node tools/check-site.mjs"
+  },
+  "devDependencies": {
+    "@11ty/eleventy": "^3.0.0"
+  },
+  "type": "module"
+}

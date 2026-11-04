@@ -1,3 +1,4 @@
+@import "brand-tokens.css";
 /* ============================================================================
    Yentrans Maritime Logistics — design system
    Palette sampled directly from the registered logo artwork:
@@ -5,21 +6,36 @@
    White carries the page; blue is used sparingly so it still means something.
    ========================================================================= */
 :root{
-  --blue:#38AAE1;
-  --blue-deep:#1B7FB0;
-  --blue-ink:#0E4A68;
-  --blue-light:#A2D9F7;
+  /* --- Brand tokens (Standards v1.1, PROPOSED) are the source of truth. ---
+     Existing site colours are mapped ONTO them rather than replaced, so the
+     established design identity is preserved while palette approval becomes a
+     one-file change in brand-tokens.css, exactly as README_HANDOFF.md asks.
+     Note how close the two already were: existing #38AAE1 vs brand #31A9DE. */
+  --blue:var(--yml-cyan);          /* was #38AAE1 — brand cyan #31A9DE */
+  --blue-deep:var(--yml-teal);     /* was #1B7FB0 — Harbor Teal, 4.89:1 on white */
+  --blue-ink:var(--yml-navy);      /* was #0E4A68 — Deep Maritime Navy */
+  --blue-light:var(--yml-wave);    /* was #A2D9F7 — YML Wave Blue */
   --blue-mid:#7EC5EB;
-  --blue-wash:#F2F9FE;
-  --ink:#1D1D1B;
+  --blue-wash:var(--yml-mist);     /* was #F2F9FE — Coastal Mist */
+  --ink:var(--yml-ink);            /* was #1D1D1B — Ink Charcoal */
   --ink-70:#54565B;
-  --ink-45:#8A8D93;
+  --ink-45:#6B747C;                /* 4.76:1 on white. NOT --yml-steel: that is
+                                      4.02:1 and the manifest marks it
+                                      normal_text_on_light_allowed:false. */
+  --rule-steel:var(--yml-steel);   /* borders and large text only */
   --line:#E3E8EC;
-  --white:#FFFFFF;
+  --white:var(--yml-white);
+
+  /* Brand rule: cyan must never be text on a light surface (2.67:1, fails AA).
+     Teal is the link colour on light; cyan is reserved for dark surfaces and
+     non-text decoration. See BRAND_GUIDELINES.md §5 and the contrast table. */
+  --link-on-light:var(--yml-teal);
+  --link-on-dark:var(--yml-cyan);
+
   --max:1200px;
   --gut:clamp(20px,5vw,64px);
   --r:4px;
-  --shadow:0 1px 2px rgba(14,74,104,.05), 0 12px 32px -12px rgba(14,74,104,.14);
+  --shadow:0 1px 2px rgba(13,40,59,.05), 0 12px 32px -12px rgba(13,40,59,.14);
   --ease:cubic-bezier(.22,.61,.36,1);
 }
 *,*::before,*::after{box-sizing:border-box}
@@ -60,10 +76,10 @@ p{margin:0 0 1.1em}
   border:1px solid transparent;cursor:pointer;transition:all .22s var(--ease);
   white-space:nowrap;
 }
-.btn-primary{background:var(--blue);color:#fff;border-color:var(--blue)}
+.btn-primary{background:var(--link-on-light);color:#fff;border-color:var(--link-on-light)} /* white on teal 4.89:1; white on cyan would be 2.67:1 and fail AA */
 .btn-primary:hover{background:var(--blue-deep);border-color:var(--blue-deep);transform:translateY(-1px)}
 .btn-ghost{background:transparent;color:var(--ink);border-color:var(--line)}
-.btn-ghost:hover{border-color:var(--blue);color:var(--blue-deep)}
+.btn-ghost:hover{border-color:var(--link-on-light);color:var(--link-on-light)}
 .btn-onDark{background:rgba(255,255,255,.1);color:#fff;border-color:rgba(255,255,255,.35);backdrop-filter:blur(6px)}
 .btn-onDark:hover{background:#fff;color:var(--blue-ink);border-color:#fff}
 .arrow{transition:transform .22s var(--ease)}
@@ -130,10 +146,10 @@ section{padding:clamp(4rem,7.5vw,6.5rem) 0}
 .grid-2{grid-template-columns:repeat(2,1fr)}
 .cell{background:var(--white);padding:clamp(1.7rem,3vw,2.4rem);transition:background .25s}
 .cell:hover{background:var(--blue-wash)}
-.cell .num{font-size:.72rem;font-weight:600;letter-spacing:.14em;color:var(--blue);display:block;margin-bottom:.9rem}
+.cell .num{font-size:.72rem;font-weight:600;letter-spacing:.14em;color:var(--link-on-light);display:block;margin-bottom:.9rem}
 .cell h3{margin-bottom:.6rem}
 .cell p{color:var(--ink-70);font-size:.95rem;margin:0}
-.cell-icon{width:34px;height:34px;margin-bottom:1.1rem;color:var(--blue)}
+.cell-icon{width:34px;height:34px;margin-bottom:1.1rem;color:var(--link-on-light)} /* icons need 3:1 non-text contrast */
 .cell-icon svg{width:100%;height:100%;stroke:currentColor;fill:none;stroke-width:1.5}
 
 /* ---- split ---------------------------------------------------------------- */
@@ -170,7 +186,7 @@ section{padding:clamp(4rem,7.5vw,6.5rem) 0}
 .step{position:relative;padding-top:2.6rem}
 .step::before{
   counter-increment:s;content:counter(s,decimal-leading-zero);
-  position:absolute;top:0;left:0;font-size:.8rem;font-weight:600;color:var(--blue);letter-spacing:.1em;
+  position:absolute;top:0;left:0;font-size:.8rem;font-weight:600;color:var(--link-on-light);letter-spacing:.1em;
 }
 .step::after{content:"";position:absolute;top:.55rem;left:2.4rem;right:-1.2rem;height:1px;background:var(--line)}
 .step:last-child::after{display:none}
@@ -245,4 +261,21 @@ section{padding:clamp(4rem,7.5vw,6.5rem) 0}
   .hero::after{
     background:linear-gradient(180deg,rgba(7,34,49,.86) 0%,rgba(9,45,64,.80) 55%,rgba(7,34,49,.88) 100%);
   }
+}
+
+
+/* ---- accessibility + editorial state ------------------------------------- */
+.skip-link{position:absolute;left:-9999px;top:0;z-index:999;background:var(--yml-navy);
+  color:#fff;padding:.75rem 1.1rem;border-radius:0 0 var(--r) 0;font-size:.9rem;font-weight:600}
+.skip-link:focus{left:0}
+:focus-visible{outline:3px solid var(--yml-teal);outline-offset:2px}
+
+.draft-banner{background:#8A5A00;color:#fff;font-size:.86rem;line-height:1.5;padding:.7rem 0}
+.draft-banner strong{color:#fff;display:block}
+.draft-banner code{background:rgba(255,255,255,.18);padding:.05em .35em;border-radius:3px}
+
+@media (prefers-reduced-motion: reduce){
+  *,*::before,*::after{animation-duration:.01ms !important;animation-iteration-count:1 !important;
+    transition-duration:.01ms !important;scroll-behavior:auto !important}
+  .reveal{opacity:1 !important;transform:none !important}
 }
