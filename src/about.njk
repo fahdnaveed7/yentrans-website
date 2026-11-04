@@ -1,0 +1,44 @@
+---
+layout: layouts/page.njk
+permalink: /about/
+title: "About Yentrans Maritime Logistics"
+heading: "Built around the work behind a shipment."
+eyebrow: "Company"
+seoDescription: "Yentrans Maritime Logistics is an international freight-forwarding business headquartered in Kochi, with operations in India, the UAE and Oman."
+intro: "Yentrans Maritime Logistics was established in Kochi. What began with a close understanding of India's port and export environment has developed into an international freight-forwarding business supporting customers across cargo types, trade routes and logistics requirements."
+---
+<section class="pt-0">
+  <div class="wrap wrap-narrow article-body">
+    <h2>Experience is operational memory.</h2>
+    <p>Freight forwarding is shaped by countless decisions that rarely appear on a quotation: whether the cargo is ready, whether the documentation matches, how equipment will reach the loading point, and who handles the unexpected when a schedule changes. We believe those decisions deserve the same attention as the freight rate itself.</p>
+
+    <h2 id="where-we-operate">Where we operate</h2>
+    <p>Yentrans is headquartered in Kochi, India, and operates across an Indian logistics network with regional activity in the UAE and Oman. Our teams coordinate freight bookings, documentation, customs-related processes and inland movement in markets where we have the appropriate operational arrangements. International destination movements are supported through shipping lines and logistics partners.</p>
+
+    <h2>Our approach</h2>
+    <ul class="check-list">
+      <li><strong>Practical before promotional.</strong> We explain the workable options rather than promise a result we cannot control.</li>
+      <li><strong>Documentation is part of operations.</strong> Accuracy matters at every handover, not just at final clearance.</li>
+      <li><strong>Cargo comes first.</strong> Equipment, transit time and handling are selected with the product's requirements in mind.</li>
+      <li><strong>People take ownership.</strong> A shipment needs a responsible team, not a sequence of unanswered emails.</li>
+    </ul>
+
+    <h2>What we're building next</h2>
+    <p>As global trade changes, Yentrans continues to strengthen its operating systems, develop its people, and broaden the industries and markets it can serve. We intend to combine the values of an experienced logistics business with clearer processes, better communication and new capabilities.</p>
+
+    {# Proof block renders only when metrics are approved. CONTENT_PACK §3 lists
+       branches, TEU, fleet, staff and credentials as values that must not be
+       published unverified, and every corresponding flag ships false. #}
+    {% set m = approvals.metrics %}
+    {% if m.employeeCount.value or m.fleetCount.value or m.teuVolume.value or m.portCount.value %}
+    <div class="stat-row">
+      {% if m.employeeCount.value %}<div class="stat"><span class="n">{{ m.employeeCount.text }}</span><span>People</span></div>{% endif %}
+      {% if m.teuVolume.value %}<div class="stat"><span class="n">{{ m.teuVolume.text }}</span><span>TEU handled</span></div>{% endif %}
+      {% if m.fleetCount.value %}<div class="stat"><span class="n">{{ m.fleetCount.text }}</span><span>Vehicles</span></div>{% endif %}
+      {% if m.portCount.value %}<div class="stat"><span class="n">{{ m.portCount.text }}</span><span>Ports served</span></div>{% endif %}
+    </div>
+    {% endif %}
+  </div>
+</section>
+{% set ctaHeading = "Meet the team behind the movement." %}
+{% set ctaAction = "Explore Careers" %}

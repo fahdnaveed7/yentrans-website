@@ -279,3 +279,134 @@ section{padding:clamp(4rem,7.5vw,6.5rem) 0}
     transition-duration:.01ms !important;scroll-behavior:auto !important}
   .reveal{opacity:1 !important;transform:none !important}
 }
+
+/* ===========================================================================
+   Corporate expansion — components added for industries, services, insights,
+   careers, forms and long-form pages. Conventions follow the existing system:
+   hairline grids on --line, 4px radius, serif headings, generous vertical
+   rhythm, blue used sparingly.
+   ======================================================================== */
+
+/* ---- layout helpers ----------------------------------------------------- */
+.wrap-narrow{max-width:760px}
+.pt-0{padding-top:0}
+.mt-xl{margin-top:clamp(2.75rem,5vw,4rem)}
+.page-head{padding-bottom:clamp(1.75rem,3vw,2.5rem)}
+.grid-4{grid-template-columns:repeat(4,1fr)}
+.group-h{font-size:clamp(1.25rem,2vw,1.6rem);margin:0 0 1.4rem}
+.related-h{font-size:1.15rem;margin:0 0 1.2rem}
+.sec-more{margin-top:2rem}
+.lede-block{max-width:68ch;margin:0 0 2.5rem}
+.ind-group{margin-bottom:clamp(2.5rem,5vw,4rem)}
+.ind-group:last-child{margin-bottom:0}
+
+/* ---- cards -------------------------------------------------------------- */
+.cell-more{margin:1rem 0 0;font-size:.88rem;font-weight:600}
+.cell-more a{color:var(--link-on-light);border-bottom:1px solid var(--blue-light)}
+.cell h3 a{color:inherit;text-decoration:none}
+.cell h3 a:hover{color:var(--link-on-light)}
+.cell-quiet{background:var(--white);padding:clamp(1.3rem,2.4vw,1.7rem)}
+.cat-grid .cell-quiet h3{font-size:1rem;margin:0 0 .5rem}
+.cat-grid .cell-quiet p{font-size:.88rem;color:var(--ink-70);margin:0}
+.route-grid .cell p{margin-bottom:0}
+
+/* ---- long-form prose ---------------------------------------------------- */
+.prose-page{padding:clamp(3rem,6vw,5rem) 0 0}
+.article-body{font-size:1.02rem;line-height:1.72}
+.article-body h2{font-size:clamp(1.3rem,2.2vw,1.7rem);margin:2.4rem 0 .9rem}
+.article-body h3{font-size:1.12rem;margin:2rem 0 .7rem}
+.article-body p{margin:0 0 1.15rem}
+.article-body strong{font-weight:600;color:var(--ink)}
+.crumbs{font-size:.8rem;color:var(--ink-45);margin-bottom:1.6rem}
+.crumbs a{color:var(--link-on-light)}
+.crumbs span[aria-hidden]{margin:0 .4rem;opacity:.5}
+.meta{font-size:.84rem;color:var(--ink-45);margin:.9rem 0 0}
+.disclaimer{font-size:.84rem;line-height:1.6;color:var(--ink-45);border-top:1px solid var(--line);
+  padding-top:1.1rem;margin-top:2.5rem}
+
+.check-list{list-style:none;padding:0;margin:0 0 1.5rem;display:grid;gap:.6rem}
+.check-list li{position:relative;padding-left:1.6rem;line-height:1.6}
+.check-list li::before{content:"";position:absolute;left:0;top:.62em;width:8px;height:8px;
+  border-radius:50%;background:var(--blue-light);border:2px solid var(--link-on-light)}
+
+.pill-list{list-style:none;padding:0;margin:0;display:flex;flex-wrap:wrap;gap:.5rem}
+.pill-list li{font-size:.86rem;padding:.45rem .85rem;border:1px solid var(--line);
+  border-radius:999px;background:var(--white);color:var(--ink-70)}
+
+.faq{margin:0}
+.faq dt{font-weight:600;font-family:"Source Serif 4",Georgia,serif;font-size:1.05rem;
+  margin-top:1.8rem;padding-top:1.8rem;border-top:1px solid var(--line)}
+.faq dt:first-child{margin-top:0;padding-top:0;border-top:0}
+.faq dd{margin:.6rem 0 0;color:var(--ink-70);line-height:1.68}
+
+/* ---- editorial / governance states -------------------------------------- */
+.notice{border:1px solid var(--line);border-left:3px solid var(--link-on-light);
+  background:var(--blue-wash);padding:1rem 1.2rem;border-radius:var(--r);
+  font-size:.92rem;line-height:1.6;color:var(--ink-70);margin:0 0 1.5rem}
+.notice strong{color:var(--ink);display:block;margin-bottom:.2rem}
+.notice code{background:rgba(13,40,59,.08);padding:.05em .35em;border-radius:3px;font-size:.92em}
+.notice-quiet{border-left-color:var(--ink-45);background:#FAFBFC}
+.pending{color:var(--ink-45);font-weight:400;font-size:.9em}
+.office-coverage{font-size:.94rem;line-height:1.7;color:var(--ink-70);margin:0 0 .9rem}
+
+/* ---- jobs --------------------------------------------------------------- */
+.job-facts{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:1.2rem;
+  margin:1.8rem 0 0;padding:1.3rem 0;border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+.job-facts dt{font-size:.7rem;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-45);font-weight:600}
+.job-facts dd{margin:.35rem 0 0;font-size:.95rem;font-weight:500}
+.job-list{border:1px solid var(--line);border-radius:var(--r);overflow:hidden}
+.job-row{display:flex;align-items:center;justify-content:space-between;gap:1.5rem;flex-wrap:wrap;
+  padding:1.3rem 1.5rem;background:var(--white);border-bottom:1px solid var(--line)}
+.job-row:last-child{border-bottom:0}
+.job-row h3{margin:0;font-size:1.08rem}
+.job-row .meta{margin:.3rem 0 0}
+
+/* ---- stats (render only when approved) ---------------------------------- */
+.stat-row{display:grid;grid-template-columns:repeat(auto-fit,minmax(130px,1fr));gap:1.5rem;
+  margin:2.5rem 0;padding:1.8rem 0;border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+.stat .n{display:block;font-family:"Source Serif 4",Georgia,serif;font-size:2rem;
+  font-weight:600;color:var(--blue-ink);line-height:1}
+.stat span:last-child{font-size:.8rem;color:var(--ink-45);letter-spacing:.06em;text-transform:uppercase}
+
+/* ---- forms -------------------------------------------------------------- */
+.form{margin-top:.5rem}
+.field{margin:0 0 1.15rem}
+.field label{display:block;font-size:.84rem;font-weight:600;margin-bottom:.4rem;color:var(--ink)}
+.field .opt{font-weight:400;color:var(--ink-45)}
+.field input,.field select,.field textarea{
+  width:100%;font:inherit;font-size:.95rem;color:var(--ink);background:var(--white);
+  border:1px solid var(--line);border-radius:var(--r);padding:.65rem .8rem;transition:border-color .15s var(--ease)}
+.field input:focus,.field select:focus,.field textarea:focus{
+  border-color:var(--link-on-light);outline:2px solid transparent;outline-offset:2px}
+.field [aria-invalid="true"]{border-color:#B3261E;background:#FFF8F8}
+.field textarea{resize:vertical;min-height:110px}
+.field-row{display:grid;grid-template-columns:1fr 1fr;gap:0 1.2rem}
+.field-check{display:flex;align-items:flex-start;gap:.65rem;margin-top:1.6rem}
+.field-check input{width:auto;margin-top:.2rem;flex:none}
+.field-check label{font-weight:400;font-size:.9rem;line-height:1.55;color:var(--ink-70)}
+.field-check label a{color:var(--link-on-light);border-bottom:1px solid var(--blue-light)}
+.form-status{margin:1.2rem 0;font-size:.92rem;line-height:1.6}
+.form-status:empty{margin:0}
+.form-status.is-error{color:#8C1D18}
+.form-status.is-ok{color:#0F5132}
+.form-status.is-info{color:var(--ink-70)}
+
+/* ---- responsive --------------------------------------------------------- */
+@media (max-width:1000px){
+  .grid-4{grid-template-columns:repeat(2,1fr)}
+}
+@media (max-width:760px){
+  .grid-4{grid-template-columns:1fr}
+  .field-row{grid-template-columns:1fr;gap:0}
+  .job-row{flex-direction:column;align-items:flex-start;gap:.9rem}
+  .job-facts{grid-template-columns:1fr 1fr}
+}
+
+/* The hairline grid draws its rules from the container background showing
+   through 1px gaps. That works when a row is full, but a trailing incomplete
+   row (4 industries in a 3-up, 7 services in a 3-up) exposed the line colour
+   as grey blocks. Painting the container white and drawing each cell's rule
+   with an outline keeps the hairlines — outlines occupy no space, so adjacent
+   cells meet in the gap — while empty track space stays white. */
+.grid{background:var(--white)}
+.grid > *{outline:1px solid var(--line)}

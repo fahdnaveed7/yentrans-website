@@ -1,0 +1,21 @@
+{# Contact fields render only for an approved or already self-published location.
+   Everything else shows coverage only — the brief requires omitting an unverified
+   field rather than printing placeholder text. #}
+<div class="offices">
+  {%- for o in offices.locations %}
+  <div class="office reveal">
+    <span class="tag">{{ o.role }}</span>
+    <h3>{{ o.city }}{% if o.country != o.city %}, {{ o.country }}{% endif %}</h3>
+    {% if o.approved or o.selfPublished %}
+      {% if o.address %}<address>{% for line in o.address %}{{ line }}{% if not loop.last %}<br>{% endif %}{% endfor %}</address>{% endif %}
+      <p class="ph">
+        {% if o.phone %}Telephone: <a href="tel:{{ o.phoneDial }}">{{ o.phone }}</a><br>{% endif %}
+        {% if o.email %}Email: <a href="mailto:{{ o.email }}">{{ o.email }}</a>{% endif %}
+      </p>
+    {% else %}
+      <p class="office-coverage">{{ o.coverage }}</p>
+      <p class="ph">Enquiries: <a href="mailto:{{ site.enquiryEmail }}">{{ site.enquiryEmail }}</a></p>
+    {% endif %}
+  </div>
+  {%- endfor %}
+</div>

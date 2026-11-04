@@ -1,0 +1,13 @@
+---
+permalink: /sitemap.xml
+eleventyExcludeFromCollections: true
+---
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+{%- for p in collections.all %}
+{#- Drafts and the 404 never enter the sitemap. -#}
+{%- if p.data.status != "draft" and "/404" not in p.url and p.url %}
+  <url><loc>{{ site.productionUrl }}{{ p.url }}</loc></url>
+{%- endif %}
+{%- endfor %}
+</urlset>

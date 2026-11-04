@@ -1,0 +1,20 @@
+---
+pagination:
+  data: legacyUrls
+  size: 1
+  alias: r
+permalink: "{{ r.from }}"
+eleventyExcludeFromCollections: true
+---
+{#- Bookmarks and search results for the old flat .html URLs must keep working. -#}
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<title>Moved</title>
+<link rel="canonical" href="{{ site.productionUrl }}{{ r.to }}">
+<meta name="robots" content="noindex">
+<meta http-equiv="refresh" content="0; url={{ r.to | url }}">
+</head>
+<body><p>This page has moved to <a href="{{ r.to | url }}">{{ r.to }}</a>.</p></body>
+</html>

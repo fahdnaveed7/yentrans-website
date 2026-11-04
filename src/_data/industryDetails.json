@@ -1,0 +1,43 @@
+{
+  "_README": "Flagship industry detail copy, verbatim from CONTENT_PACK §5 'Detailed flagship industry page templates'. The pack is explicit that these must distinguish established expertise from capabilities subject to confirmation — do not strengthen this language without evidence.",
+
+  "seafood-fisheries": {
+    "heading": "Cold-chain decisions begin before the container arrives.",
+    "body": [
+      "Seafood exporters deal with temperature-sensitive products, strict delivery expectations and limited room for handling errors. From equipment planning and inland genset requirements to documents and carrier routing, each decision influences cargo condition and commercial outcomes.",
+      "Yentrans's history in reefer and seafood logistics informs an operational approach built around clear cargo instructions and early coordination. Shippers can discuss required equipment, origins, destinations, product conditions and planned sailing windows with our team."
+    ],
+    "questionsTitle": "Questions we ask",
+    "questions": ["Frozen or chilled?", "Required set-point?", "Packaging and stuffing location?", "Reefer power during inland transit?", "Expected stuffing and cutoffs?", "Destination inspection requirements?"]
+  },
+
+  "pharma-healthcare": {
+    "heading": "Precision in documentation and handling.",
+    "body": [
+      "Healthcare products require clear instructions and a careful understanding of what a logistics provider is authorised and equipped to handle. Cargo conditions, transport documents, routing, packaging qualifications and regulatory responsibilities should be agreed before commitment.",
+      "For qualifying shipments, Yentrans can discuss freight and partner coordination based on the shipper's validated transport requirements. Specialist certifications, packaging or monitored lanes must be independently confirmed for each service; they are not implied by this page."
+    ],
+    "questionsTitle": "Questions we ask",
+    "questions": ["Product classification?", "Required temperature range?", "GDP or other mandatory controls?", "Validated packaging?", "Monitoring requirements?", "Import permits and consignee readiness?"],
+    "disclaimer": "This page describes coordination capability only. It does not claim GDP certification, validated temperature lanes or any regulatory qualification."
+  },
+
+  "automotive-components": {
+    "heading": "Freight planned around the production calendar.",
+    "body": [
+      "Parts supply chains depend on predictability. A delayed component can create consequences beyond the shipping cost, which is why realistic booking and inland schedules matter. Yentrans helps customers discuss container options, consolidated movements, packaging and documentation for automotive supply chains."
+    ],
+    "questionsTitle": "Questions we ask",
+    "questions": ["Vehicle or parts?", "Packed dimensions and weights?", "Delivery deadline?", "Consolidation required?", "Any batteries, fluids or dangerous goods classification?"]
+  },
+
+  "project-cargo": {
+    "heading": "Start with the drawing, not the rate.",
+    "body": [
+      "Large or unusual cargo should be assessed against actual dimensions, gross weights, lifting points, packaging and securing methods. Those facts shape available routes, permits, equipment, surveys and port operations.",
+      "Yentrans can support early logistics coordination and introduce suitable specialist partners for feasible movements. Execution depends on the cargo, route and approvals; no project capability should be represented as unconditional."
+    ],
+    "questionsTitle": "Questions we ask",
+    "questions": ["Technical drawings?", "Piece count and weight?", "Lifting points?", "Centre of gravity?", "Origin and destination access?", "Survey and special permits?"]
+  }
+}

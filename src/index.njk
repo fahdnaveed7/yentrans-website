@@ -1,10 +1,148 @@
 ---
 layout: layouts/base.njk
+permalink: /
 title: "Yentrans Maritime Logistics | Freight Forwarding, Customs & Transport"
-seoDescription: "Explore Yentrans Maritime Logistics, an international freight forwarder based in Kochi with operations in India, the UAE and Oman."
+seoDescription: "Yentrans Maritime Logistics coordinates ocean freight, customs documentation, inland transportation and specialised cargo movements from India and the Middle East."
 ---
-<section><div class="wrap"><div class="sec-head">
-  <p class="eyebrow">Pipeline test</p>
-  <h2>Freight is a people business with steel around it.</h2>
-</div></div></section>
+<section class="hero">
+  <video autoplay muted loop playsinline preload="none" poster="{{ '/assets/video/hero-port-poster.jpg' | url }}"
+         aria-hidden="true"><source src="{{ '/assets/video/hero-port.mp4' | url }}" type="video/mp4"></video>
+  <div class="wrap hero-in">
+    {# "Registered NVOCC" is gated (WEB-08 PENDING) and the founding year is gated
+       (YML-001 PENDING). Both reappear automatically once approved. #}
+    <p class="eyebrow">Kochi{% if approvals.corporate.established2009.value %} &nbsp;·&nbsp; Established 2009{% endif %} &nbsp;·&nbsp; India, UAE &amp; Oman</p>
+    <h1>Freight is a people business with steel around it.</h1>
+    <p class="lede">Yentrans Maritime Logistics coordinates ocean freight, customs documentation,
+      inland transportation and specialised cargo movements. From Indian ports to the Middle East
+      and international destinations, our teams focus on the details that keep cargo moving.</p>
+    <div class="hero-actions">
+      <a class="btn btn-primary" href="{{ '/request-a-quote/' | url }}">Request a Rate <span class="arrow">&rarr;</span></a>
+      <a class="btn btn-onDark" href="{{ '/services/' | url }}">Explore Our Services</a>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <div class="sec-head">
+      <p class="eyebrow">Who we are</p>
+      <h2>Freight doesn't move on a promise alone.</h2>
+      <p class="lede">It moves when equipment is available, paperwork is right, the routing makes sense,
+        and the right people stay accountable. Yentrans has built its business around the practical
+        work behind every shipment — connecting cargo, carriers and customers across markets.</p>
+    </div>
+
+    <div class="grid grid-3">
+      {%- for s in services.items %}{% if s.featured %}
+      <article class="cell reveal">
+        <h3><a href="{{ ('/services/' + s.slug + '/') | url }}">{{ s.title }}</a></h3>
+        <p>{{ s.summary | truncate(185) }}</p>
+      </article>
+      {% endif %}{%- endfor %}
+      <article class="cell reveal">
+        <h3><a href="{{ '/industries/' | url }}">Industry Solutions</a></h3>
+        <p>Logistics designed around the realities of different products and supply chains.</p>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section class="sec-ink">
+  <div class="wrap">
+    <div class="sec-head">
+      <p class="eyebrow">Operational principles</p>
+      <h2>The useful detail is usually in the next question.</h2>
+      <p class="lede">What happens if the first sailing fills? Who checks the temperature instruction?
+        Which document needs to agree with the invoice? When does inland transport need to be ready?
+        We ask these questions early, because the smallest overlooked detail can become the largest delay.</p>
+    </div>
+    <div class="grid grid-4">
+      <article class="cell reveal"><span class="num">01</span><h3>Experienced Coordination</h3>
+        <p>The people managing the shipment understand its documentation, handling and timing requirements.</p></article>
+      <article class="cell reveal"><span class="num">02</span><h3>Options, Not Just Rates</h3>
+        <p>Routing decisions consider realistic space, transit considerations and operational dependencies.</p></article>
+      <article class="cell reveal"><span class="num">03</span><h3>Reefer Discipline</h3>
+        <p>Temperature-sensitive cargo has taught us the value of checking instructions, equipment and handovers carefully.</p></article>
+      <article class="cell reveal"><span class="num">04</span><h3>Regional Execution</h3>
+        <p>Teams in India and the Middle East connect local cargo operations with international shipping networks.</p></article>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <div class="sec-head">
+      <p class="eyebrow">Industries</p>
+      <h2>Every cargo has its own operating logic.</h2>
+      <p class="lede">Fresh produce, healthcare goods, automotive components, construction materials and
+        industrial equipment do not move under the same constraints. Explore how we approach the cargo
+        requirements of different industries.</p>
+    </div>
+    <div class="grid grid-3">
+      {%- for slug in ["seafood-fisheries","agriculture-fresh-produce","pharma-healthcare","automotive-components","project-cargo","retail-consumer-goods"] %}
+      {%- for i in industries.items %}{% if i.slug == slug %}
+      <article class="cell reveal">
+        <h3>{% if i.flagship %}<a href="{{ ('/industries/' + i.slug + '/') | url }}">{{ i.title }}</a>{% else %}<a href="{{ '/industries/#' + i.slug | url }}">{{ i.title }}</a>{% endif %}</h3>
+        <p>{{ i.summary | truncate(170) }}</p>
+      </article>
+      {% endif %}{%- endfor %}{%- endfor %}
+    </div>
+    <p class="sec-more"><a class="btn btn-ghost" href="{{ '/industries/' | url }}">View All Industries</a></p>
+  </div>
+</section>
+
+<section class="sec-wash">
+  <div class="wrap">
+    <div class="sec-head">
+      <p class="eyebrow">Network</p>
+      <h2>Strong at origin. Connected at destination.</h2>
+      <p class="lede">Kochi is where our story began. Today, Yentrans supports cargo movements through its
+        network in India and operations in Dubai and Oman, working with international carriers and
+        destination partners when a movement reaches beyond our own offices.</p>
+    </div>
+    <p class="sec-more"><a class="btn btn-ghost" href="{{ '/network/' | url }}">See Our Network</a></p>
+  </div>
+</section>
+
+{% set latest = collections.articlesPublished | limit(3) %}
+{% if latest.length %}
+<section>
+  <div class="wrap">
+    <div class="sec-head">
+      <p class="eyebrow">Latest Insights</p>
+      <h2>Notes from the freight desk.</h2>
+      <p class="lede">Practical explanations of shipping terms, cargo planning and the developments
+        shaping international trade. Articles are reviewed before publication.</p>
+    </div>
+    <div class="grid grid-3">
+      {%- for a in latest %}
+      <article class="cell reveal">
+        <p class="eyebrow">{{ a.data.category }}</p>
+        <h3><a href="{{ a.url | url }}">{{ a.data.title }}</a></h3>
+        <p>{{ a.data.excerpt }}</p>
+      </article>
+      {%- endfor %}
+    </div>
+    <p class="sec-more"><a class="btn btn-ghost" href="{{ '/insights/' | url }}">Explore Insights</a></p>
+  </div>
+</section>
+{% endif %}
+
+{% set ctaHeading = "Tell us the lane. We'll discuss the options." %}
+{% set ctaBody = "Share your origin, destination, cargo and approximate shipment date. We'll help identify the information and routing options needed to move forward." %}
+{% set ctaAction = "Request a Freight Quote" %}
 {% include "partials/cta.njk" %}
+
+<script type="application/ld+json">{{ {
+  "@context": "https://schema.org",
+  "@type": ["Organization","LocalBusiness"],
+  "name": site.name, "alternateName": "YML",
+  "url": site.productionUrl,
+  "description": site.defaultDescription,
+  "address": { "@type": "PostalAddress",
+    "streetAddress": "Old Rubber Board Building, Indira Gandhi Road, Willingdon Island",
+    "addressLocality": "Kochi", "addressRegion": "Kerala",
+    "postalCode": "682003", "addressCountry": "IN" },
+  "telephone": site.enquiryPhone, "email": site.enquiryEmail,
+  "areaServed": { "@type": "Place", "name": "Worldwide" }
+} | jsonld | safe }}</script>

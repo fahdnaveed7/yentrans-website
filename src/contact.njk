@@ -1,0 +1,24 @@
+---
+layout: layouts/page.njk
+permalink: /contact/
+title: "Contact Yentrans | Freight Quotations and Office Inquiries"
+heading: "Start with the shipment."
+eyebrow: "Contact"
+seoDescription: "Contact Yentrans Maritime Logistics for freight quotations, shipment questions, partnerships or careers."
+intro: "Tell us where the cargo is, where it needs to go, and what it involves. We'll help identify the information needed for the next step — whether that's a freight quote, documentation question or a conversation with the right regional team."
+---
+<section class="pt-0">
+  <div class="wrap">
+    <div class="grid grid-3 route-grid">
+      <article class="cell reveal"><h3>Freight quote</h3><p>Origin, destination, cargo and target date.</p>
+        <p class="cell-more"><a href="{{ '/request-a-quote/' | url }}">Request a rate <span class="arrow">&rarr;</span></a></p></article>
+      <article class="cell reveal"><h3>Existing shipment</h3><p>Questions on a booking already with us.</p>
+        <p class="cell-more"><a href="mailto:{{ site.enquiryEmail }}?subject=Existing%20shipment">Email the desk <span class="arrow">&rarr;</span></a></p></article>
+      <article class="cell reveal"><h3>Careers</h3><p>Opportunities and application questions.</p>
+        <p class="cell-more"><a href="{{ '/careers/' | url }}">View careers <span class="arrow">&rarr;</span></a></p></article>
+    </div>
+
+    <h2 class="group-h mt-xl">Our offices</h2>
+    {% include "partials/offices.njk" %}
+  </div>
+</section>

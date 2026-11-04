@@ -1,0 +1,35 @@
+---
+layout: layouts/base.njk
+pagination:
+  data: services.items
+  size: 1
+  alias: service
+permalink: "/services/{{ service.slug }}/"
+eleventyComputed:
+  title: "{{ service.title }} | Yentrans Maritime Logistics"
+  seoDescription: "{{ service.summary | truncate(150) }}"
+---
+<section class="page-head">
+  <div class="wrap">
+    <nav class="crumbs" aria-label="Breadcrumb">
+      <a href="{{ '/services/' | url }}">Services</a> <span aria-hidden="true">/</span> <span>{{ service.title }}</span>
+    </nav>
+    <div class="sec-head">
+      <p class="eyebrow">Services</p>
+      <h1>{{ service.title }}</h1>
+      <p class="lede">{{ service.summary }}</p>
+    </div>
+  </div>
+</section>
+
+<section class="pt-0">
+  <div class="wrap wrap-narrow article-body">
+    {% if service.coordinate %}
+      <h2>{{ service.coordinateTitle }}</h2>
+      <ul class="check-list">{%- for c in service.coordinate %}<li>{{ c }}</li>{%- endfor %}</ul>
+    {% endif %}
+    {% if service.note %}<div class="notice notice-quiet">{{ service.note }}</div>{% endif %}
+  </div>
+</section>
+{% set ctaAction = service.cta %}
+{% include "partials/cta.njk" %}

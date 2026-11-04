@@ -1,3 +1,6 @@
+import { readFileSync } from "node:fs";
+import { createHash } from "node:crypto";
+
 /**
  * Yentrans Maritime Logistics — Eleventy build.
  *
@@ -32,6 +35,29 @@ export default function (eleventyConfig) {
     JSON.stringify(obj).replace(/</g, "\\u003c"));
 
   eleventyConfig.addShortcode("year", () => String(new Date().getUTCFullYear()));
+
+  /**
+   * Content-hashed asset URLs.
+   *
+   * Pages and Cloudflare both serve /assets/* with long cache lifetimes, so a
+   * returning visitor keeps the previous stylesheet or script after a deploy.
+   * That is not hypothetical: a stale main.js silently disabled the quote
+   * form's submit handler during development, and the form fell back to a
+   * native GET. Appending a hash of the file contents makes every change a new
+   * URL, so an updated asset is always fetched.
+   */
+  const assetHashes = new Map();
+  eleventyConfig.addFilter("assetUrl", function (p) {
+    const url = this.ctx ? p : p;
+    if (!assetHashes.has(p)) {
+      try {
+        const buf = readFileSync(new URL("./src" + p, import.meta.url));
+        assetHashes.set(p, createHash("sha256").update(buf).digest("hex").slice(0, 8));
+      } catch { assetHashes.set(p, ""); }
+    }
+    const h = assetHashes.get(p);
+    return h ? `${p}?v=${h}` : p;
+  });
 
   // ---- Collections ----------------------------------------------------
   // Only `published` articles and `open` jobs ever reach a public listing.

@@ -1,0 +1,58 @@
+---
+layout: layouts/base.njk
+ogType: article
+---
+<article class="prose-page">
+  <div class="wrap wrap-narrow">
+    <nav class="crumbs" aria-label="Breadcrumb">
+      <a href="{{ '/insights/' | url }}">Insights &amp; News</a> <span aria-hidden="true">/</span> <span>{{ category }}</span>
+    </nav>
+    <p class="eyebrow">{{ category }}{% if topic %} · {{ topic }}{% endif %}</p>
+    <h1>{{ title }}</h1>
+    <p class="lede">{{ excerpt }}</p>
+    <p class="meta">
+      {# No byline is invented: PPL-01 has no approved author, and the content pack
+         forbids crediting a made-up employee. The field stays empty until approved. #}
+      {% if author %}<span>{{ author }}</span> · {% endif %}
+      {% if status == "published" and datePublished %}<time datetime="{{ datePublished | isoDate }}">{{ datePublished | date }}</time> · {% endif %}
+      <span>{{ content | striptags | readingTime }} min read</span>
+    </p>
+  </div>
+
+  <div class="wrap wrap-narrow article-body">
+    {{ content | safe }}
+  </div>
+
+  <div class="wrap wrap-narrow">
+    <p class="disclaimer">Shipping requirements and regulatory guidance change. Articles are general
+      information and should be checked against the latest rules and shipment-specific professional advice.</p>
+  </div>
+
+  {% set related = collections.articlesPublished | rejectattr("url", "equalto", page.url) | limit(3) %}
+  {% if related.length %}
+  <div class="wrap wrap-narrow">
+    <h2 class="related-h">Related reading</h2>
+    <div class="grid grid-3">
+      {%- for a in related %}
+      <article class="cell reveal">
+        <p class="eyebrow">{{ a.data.category }}</p>
+        <h3><a href="{{ a.url | url }}">{{ a.data.title }}</a></h3>
+        <p>{{ a.data.excerpt }}</p>
+      </article>
+      {%- endfor %}
+    </div>
+  </div>
+  {% endif %}
+</article>
+
+{# Article schema only for genuinely published content — never for a draft. #}
+{% if status == "published" and datePublished %}
+<script type="application/ld+json">{{ {
+  "@context": "https://schema.org", "@type": "Article",
+  "headline": title, "description": excerpt,
+  "datePublished": datePublished, "dateModified": dateUpdated or datePublished,
+  "publisher": { "@type": "Organization", "name": site.name },
+  "mainEntityOfPage": site.productionUrl + page.url
+} | jsonld | safe }}</script>
+{% endif %}
+{% include "partials/cta.njk" %}

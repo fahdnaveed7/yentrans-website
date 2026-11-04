@@ -1,0 +1,54 @@
+---
+layout: layouts/base.njk
+---
+<article class="prose-page">
+  <div class="wrap wrap-narrow">
+    <nav class="crumbs" aria-label="Breadcrumb">
+      <a href="{{ '/careers/' | url }}">Careers</a> <span aria-hidden="true">/</span> <span>{{ title }}</span>
+    </nav>
+    <p class="eyebrow">{{ department }}</p>
+    <h1>{{ title }}</h1>
+    <dl class="job-facts">
+      <div><dt>Location</dt><dd>{{ location }}</dd></div>
+      {# Employment type is itself pending approval, so it is labelled rather than asserted. #}
+      <div><dt>Employment type</dt><dd>{{ employmentType }}{% if not employmentTypeApproved %} <span class="pending">(proposed)</span>{% endif %}</dd></div>
+      <div><dt>Experience</dt><dd>{{ experience }}</dd></div>
+      {# Salary is internal editorial metadata. showSalary ships false and the
+         content pack forbids displaying remuneration before management approval. #}
+      {% if showSalary and salary %}<div><dt>Compensation</dt><dd>{{ salary }}</dd></div>{% endif %}
+    </dl>
+  </div>
+
+  <div class="wrap wrap-narrow article-body">
+    {{ content | safe }}
+  </div>
+
+  <div class="wrap wrap-narrow">
+    {% if status == "open" and applicationEndpointEnabled %}
+      <a class="btn btn-primary" href="{{ '/careers/apply/' | url }}?role={{ id }}">Apply for this role</a>
+    {% elif status == "open" and not applicationEndpointEnabled %}
+      <div class="notice">
+        <strong>Applications are not open yet.</strong>
+        The secure application channel for this role has not been enabled, so we cannot
+        accept or store a submission. Please check back rather than sending documents by
+        another route.
+      </div>
+    {% else %}
+      <div class="notice">
+        <strong>This vacancy is an internal draft.</strong>
+        It has not been approved for publication and is not open for applications.
+        No application channel is available for it.
+      </div>
+    {% endif %}
+  </div>
+</article>
+{# No JobPosting schema for a draft or unapproved role — an explicit brief requirement. #}
+{% if status == "open" and publishedAt %}
+<script type="application/ld+json">{{ {
+  "@context": "https://schema.org", "@type": "JobPosting",
+  "title": title, "description": excerpt,
+  "datePosted": publishedAt, "employmentType": employmentType,
+  "hiringOrganization": { "@type": "Organization", "name": site.name },
+  "jobLocation": { "@type": "Place", "address": { "@type": "PostalAddress", "addressLocality": location } }
+} | jsonld | safe }}</script>
+{% endif %}

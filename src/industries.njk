@@ -1,0 +1,38 @@
+---
+layout: layouts/page.njk
+permalink: /industries/
+title: "Industries We Serve | Yentrans Maritime Logistics"
+heading: "Different cargo. Different decisions."
+eyebrow: "Industries"
+seoDescription: "Freight forwarding, documentation and transport coordination across 18 industry sectors, from perishables and pharmaceuticals to project cargo and general trade."
+intro: "Shipping requirements change with the product. Temperature sensitivity, equipment size, handling risks, regulation, shelf life and delivery windows all shape the movement. Yentrans brings freight forwarding, documentation and transportation coordination to a broad range of industries, with services tailored to the specific cargo and available operating arrangements."
+ctaHeading: "Tell us what you're shipping."
+ctaAction: "Discuss Cargo Requirements"
+---
+<section class="pt-0">
+  <div class="wrap">
+    <div class="notice notice-quiet">
+      These pages describe how we approach the cargo requirements of each sector. They set out
+      capability and the questions we ask — not a record of prior shipments in every sector, and
+      not a claim to any sector-specific certification.
+    </div>
+
+    {%- for group in industries.groups %}
+    <section class="ind-group" id="{{ group.id }}">
+      <h2 class="group-h">{{ group.title }}</h2>
+      <div class="grid grid-3">
+        {%- for item in industries.items %}{% if item.group == group.id %}
+        <article class="cell reveal" id="{{ item.slug }}">
+          <h3>
+            {% if item.flagship %}<a href="{{ ('/industries/' + item.slug + '/') | url }}">{{ item.title }}</a>
+            {% else %}{{ item.title }}{% endif %}
+          </h3>
+          <p>{{ item.summary }}</p>
+          {% if item.flagship %}<p class="cell-more"><a href="{{ ('/industries/' + item.slug + '/') | url }}">How we approach it <span class="arrow">&rarr;</span></a></p>{% endif %}
+        </article>
+        {% endif %}{%- endfor %}
+      </div>
+    </section>
+    {%- endfor %}
+  </div>
+</section>
