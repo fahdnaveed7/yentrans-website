@@ -225,7 +225,10 @@ section{padding:clamp(4rem,7.5vw,6.5rem) 0}
 .site-foot{background:var(--ink);color:rgba(255,255,255,.62);padding:clamp(3.5rem,6vw,5rem) 0 2rem;font-size:.9rem}
 .foot-top{display:grid;grid-template-columns:1.6fr 1fr 1fr 1fr;gap:2.5rem;padding-bottom:3rem;border-bottom:1px solid rgba(255,255,255,.1)}
 .foot-logo{display:inline-flex;align-items:center;gap:.7rem;margin-bottom:1.1rem;text-decoration:none}
-.foot-logo img{height:34px;width:auto;margin:0;filter:none}
+.foot-logo img{height:40px;width:auto;margin:0;filter:none}
+/* The footer mark is the genuine logo artwork with the wordmark removed and the
+   trailing wave tapered, so it needs no colour filter: at rgb(73,176,227) it
+   sits at 7.5:1 against the footer ink. The earlier hand-drawn SVG is gone. */
 .foot-logo span{display:flex;flex-direction:column;line-height:1.12;color:#fff;
   font-family:"Source Serif 4",Georgia,"Times New Roman",serif;font-size:1.12rem;
   font-weight:600;letter-spacing:.005em}
