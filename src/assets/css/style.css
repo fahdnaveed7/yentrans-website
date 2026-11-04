@@ -119,7 +119,11 @@ p{margin:0 0 1.1em}
   content:"";position:absolute;inset:0;
   background:linear-gradient(100deg,rgba(7,34,49,.94) 0%,rgba(9,45,64,.86) 30%,rgba(12,60,86,.60) 62%,rgba(27,127,176,.26) 100%);
 }
-.hero-in{position:relative;z-index:2;color:#fff;max-width:62ch;padding:6rem 0}
+.hero-in{position:relative;z-index:2;color:#fff;max-width:62ch;
+  /* padding-block only: this element also carries .wrap, whose horizontal
+     gutter a `padding: 6rem 0` shorthand would reset to zero, putting the
+     hero text flush against the screen edge on narrow viewports. */
+  padding-top:6rem;padding-bottom:6rem}
 .hero h1{color:#fff;margin-bottom:1.2rem}
 .hero .lede{color:rgba(255,255,255,.88);margin-bottom:2rem}
 .hero .eyebrow{color:var(--blue-light)}
@@ -128,7 +132,9 @@ p{margin:0 0 1.1em}
 
 /* ---- credential strip ---------------------------------------------------- */
 .creds{border-bottom:1px solid var(--line);background:var(--white)}
-.creds-in{display:flex;align-items:center;gap:clamp(1.5rem,4vw,3.5rem);padding:1.5rem 0;flex-wrap:wrap}
+.creds-in{display:flex;align-items:center;gap:clamp(1.5rem,4vw,3.5rem);flex-wrap:wrap;
+  /* padding-block only — also carries .wrap; see the note on .hero-in. */
+  padding-top:1.5rem;padding-bottom:1.5rem}
 .creds-label{font-size:.7rem;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-45);font-weight:600}
 .creds img{height:38px;width:auto;opacity:.75;filter:grayscale(1);transition:.25s}
 .creds img:hover{opacity:1;filter:none}
@@ -264,7 +270,7 @@ section{padding:clamp(4rem,7.5vw,6.5rem) 0}
   .grid-3,.grid-2,.split,.cargo,.steps{grid-template-columns:1fr}
   .split-media{aspect-ratio:16/10}
   .foot-top{grid-template-columns:1fr;gap:2rem}
-  .hero-in{padding:4.5rem 0}
+  .hero-in{padding-top:4.5rem;padding-bottom:4.5rem}
   .hero::after{
     background:linear-gradient(180deg,rgba(7,34,49,.86) 0%,rgba(9,45,64,.80) 55%,rgba(7,34,49,.88) 100%);
   }
@@ -436,3 +442,18 @@ section{padding:clamp(4rem,7.5vw,6.5rem) 0}
 .office-person{font-weight:600;color:var(--ink)}
 .office-entity{margin-top:.6rem;font-size:.82rem;color:var(--ink-55,#6F8190);line-height:1.5}
 .office-coverage{margin-top:.2rem;font-size:.94rem;line-height:1.7;color:var(--ink-70)}
+
+/* ---- skip link ----------------------------------------------------------
+   Present in the markup on every page for keyboard users, but it must not be
+   visible until focused. Without this rule it renders as plain text above the
+   header. Offscreen rather than display:none, so screen readers still reach it. */
+.skip-link{
+  position:absolute;left:-9999px;top:0;z-index:999;
+  background:var(--blue,#38AAE1);color:#fff;
+  padding:.7rem 1.1rem;border-radius:0 0 var(--r,6px) 0;
+  font-family:"Source Sans 3","Segoe UI",Helvetica,Arial,sans-serif;
+  font-size:.9rem;font-weight:600;text-decoration:none;
+}
+.skip-link:focus,.skip-link:focus-visible{
+  left:0;outline:3px solid #fff;outline-offset:-6px;
+}
