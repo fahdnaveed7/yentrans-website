@@ -1,0 +1,6 @@
+[
+  { "from": "/services.html", "to": "/services/" },
+  { "from": "/network.html",  "to": "/network/"  },
+  { "from": "/about.html",    "to": "/about/"    },
+  { "from": "/contact.html",  "to": "/contact/"  }
+]

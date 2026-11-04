@@ -1,0 +1,16 @@
+{
+  "name": "Yentrans Maritime Logistics",
+  "shortName": "Yentrans",
+  "productionUrl": "https://yentransmaritime.com",
+  "previewUrl": "https://fahdnaveed7.github.io/yentrans-website",
+  "enquiryEmail": "cs@yentransmaritime.com",
+  "enquiryPhone": "+91 484 403 8844",
+  "enquiryPhoneDial": "+914844038844",
+  "defaultDescription": "Yentrans Maritime Logistics coordinates ocean freight, customs documentation, inland transportation and specialised cargo movements from India and the Middle East.",
+  "footerSummary": "From freight bookings and documentation to customs coordination and inland movement, Yentrans Maritime Logistics helps businesses move cargo through international supply chains. Headquartered in Kochi, with operations in India, the UAE and Oman.",
+  "tagline": null,
+  "_taglineNote": "TAG-01/TAG-02 are PROPOSED, not approved. The mood board line 'Trade Without Borders.' is explicitly forbidden (LICENSES_AND_USAGE.md). Ship no tagline.",
+  "isPreview": true,
+  "_isPreviewNote": "true adds noindex site-wide. Set false only at approved production cutover.",
+  "_comment_approvals": "Approval gates live in src/_data/approvals.json (single source of truth). Templates read approvals.*, never hardcode a gated claim."
+}

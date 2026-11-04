@@ -1,0 +1,24 @@
+---
+layout: layouts/page.njk
+permalink: /services/
+title: "Freight Forwarding & Logistics Services | Yentrans"
+heading: "Ocean freight, customs and the work between them."
+eyebrow: "Services"
+seoDescription: "FCL and LCL ocean freight, reefer logistics, customs clearance and documentation, inland transportation, project cargo and warehousing coordination."
+ctaHeading: "One shipment. Multiple decisions. One conversation to begin."
+ctaAction: "Request a Rate"
+---
+<section class="pt-0">
+  <div class="wrap">
+    <p class="lede lede-block">{{ services.intro }}</p>
+    <div class="grid grid-3">
+      {%- for s in services.items %}
+      <article class="cell reveal" id="{{ s.slug }}">
+        <h3><a href="{{ ('/services/' + s.slug + '/') | url }}">{{ s.title }}</a></h3>
+        <p>{{ s.summary }}</p>
+        <p class="cell-more"><a href="{{ ('/services/' + s.slug + '/') | url }}">{{ s.cta }} <span class="arrow">&rarr;</span></a></p>
+      </article>
+      {%- endfor %}
+    </div>
+  </div>
+</section>

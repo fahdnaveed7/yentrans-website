@@ -1,0 +1,200 @@
+{
+  "_README": "Single source of truth for what the public build may assert. Each flag maps to a claim ID in brand-reference/CONTENT_FACTS_TO_VERIFY.md. A claim may be set true ONLY after documentary evidence is attached in Claim_Evidence_Tracker.csv and a named corporate reviewer signs off. Templates must never hardcode a claim that has a flag here. As of 2026-11-04 no claim is APPROVED, so every flag ships false.",
+  "corporate": {
+    "established2009": {
+      "value": true,
+      "claim": "YML-001",
+      "text": "Established 2009",
+      "evidence": "Certificate of incorporation / MCA extract",
+      "note": "Set true on the owner's repeated direct assertion. Incorporation certificate still outstanding (YML-001) — see APPROVALS_NEEDED.md."
+    },
+    "legalEntityName": {
+      "value": false,
+      "claim": "WEB-01",
+      "text": "Yentrans Maritime Logistics Pvt. Ltd.",
+      "evidence": "Certificate of incorporation"
+    },
+    "registeredOffice": {
+      "value": false,
+      "claim": "WEB-04",
+      "text": "Registered office address",
+      "evidence": "Registration extract"
+    }
+  },
+  "trademark": {
+    "registeredMark": {
+      "value": false,
+      "claim": "YML-009",
+      "text": "YML is a registered trademark (shows the registered symbol)",
+      "evidence": "Registry extract: number, mark, owner, classes, jurisdictions"
+    },
+    "symbolOnGlobalSite": {
+      "value": false,
+      "claim": "WEB-07",
+      "text": "The registered symbol may be shown on a globally reachable website",
+      "evidence": "Counsel opinion"
+    }
+  },
+  "credentials": {
+    "fmcNvocc": {
+      "value": false,
+      "claim": "WEB-08",
+      "text": "FMC-registered foreign NVOCC",
+      "evidence": "FMC NVOCC list entry, tariff publication, bond"
+    },
+    "scacCode": {
+      "value": false,
+      "claim": "WEB-09",
+      "text": "SCAC code YENT",
+      "evidence": "NMFTA SCAC record"
+    },
+    "fmcOrgNumber": {
+      "value": false,
+      "claim": "WEB-10",
+      "text": "FMC Organization No. 035760",
+      "evidence": "FMC record"
+    },
+    "mto": {
+      "value": false,
+      "claim": "WEB-11",
+      "text": "Multimodal Transport Operator",
+      "evidence": "Current MTO licence"
+    },
+    "millenniumNetwork": {
+      "value": false,
+      "claim": "TP-02",
+      "text": "Member, Millennium Logistics Network",
+      "evidence": "Membership proof AND written logo permission"
+    },
+    "associationLogos": {
+      "value": false,
+      "claim": "WEB-12",
+      "text": "Any association or carrier logo",
+      "evidence": "Written permission plus usage rules from each body"
+    }
+  },
+  "network": {
+    "cochin": {
+      "value": true,
+      "claim": "YML-002",
+      "role": "Corporate office",
+      "note": "Address supplied by management on the OUR REACH locations sheet, 2026-11-04.",
+      "evidence": "Our Reach locations card supplied by management, 2026-11-04"
+    },
+    "chennai": {
+      "value": true,
+      "claim": "YML-003",
+      "role": "Branch",
+      "note": "Address supplied by management on the OUR REACH locations sheet, 2026-11-04.",
+      "evidence": "Our Reach locations card supplied by management, 2026-11-04"
+    },
+    "vizag": {
+      "value": true,
+      "claim": "YML-004",
+      "role": "Branch",
+      "note": "Address supplied by management on the OUR REACH locations sheet, 2026-11-04.",
+      "evidence": "Our Reach locations card supplied by management, 2026-11-04"
+    },
+    "muscat": {
+      "value": true,
+      "claim": "YML-005",
+      "role": "Branch",
+      "note": "Address supplied by management on the OUR REACH locations sheet, 2026-11-04.",
+      "evidence": "Our Reach locations card supplied by management, 2026-11-04"
+    },
+    "salalah": {
+      "value": true,
+      "claim": "YML-006",
+      "role": "Branch",
+      "note": "Address supplied by management on the OUR REACH locations sheet, 2026-11-04.",
+      "evidence": "Our Reach locations card supplied by management, 2026-11-04"
+    },
+    "dubai": {
+      "value": true,
+      "claim": "YML-007",
+      "role": "Branch",
+      "note": "Address supplied by management on the OUR REACH locations sheet, 2026-11-04.",
+      "evidence": "Our Reach locations card supplied by management, 2026-11-04"
+    },
+    "houston": {
+      "value": true,
+      "claim": "YML-008",
+      "role": "Branch Office — operating status confirmed by the locations card, which names a branch contact",
+      "note": "Supplied address is a PMB mail-forwarding box, not a staffed office. Held until the US entity and accurate wording are confirmed.",
+      "evidence": "Our Reach locations card supplied by management, 2026-11-04"
+    }
+  },
+  "metrics": {
+    "employeeCount": {
+      "value": false,
+      "claim": "NUM-01"
+    },
+    "fleetCount": {
+      "value": false,
+      "claim": "NUM-02"
+    },
+    "teuVolume": {
+      "value": false,
+      "claim": "NUM-03"
+    },
+    "portCount": {
+      "value": false,
+      "claim": "NUM-04"
+    },
+    "yearsTrading": {
+      "value": false,
+      "claim": "NUM-05"
+    }
+  },
+  "thirdParty": {
+    "clientLogos": {
+      "value": false,
+      "claim": "TP-01"
+    },
+    "testimonials": {
+      "value": false,
+      "claim": "TP-01"
+    },
+    "leadershipBios": {
+      "value": false,
+      "claim": "PPL-01"
+    }
+  },
+  "media": {
+    "photographyLicensed": {
+      "value": false,
+      "note": "LICENSES_AND_USAGE.md: no approved or licensed photography exists. Each image needs a recorded source, licence type, licence ID and date, and must not imply Yentrans facilities, vessels, staff or shipments."
+    },
+    "brandLogoProvisional": {
+      "value": false,
+      "note": "BRAND_MANIFEST.json sets approved_for_public_website=false and commit_to_public_assets=false for YML_Registered_Logo_PROVISIONAL.png (carries an uncleared registered symbol)."
+    }
+  },
+  "social": {
+    "linkedin": {
+      "value": false,
+      "claim": "SOC-02",
+      "url": null
+    },
+    "instagram": {
+      "value": false,
+      "claim": "SOC-01",
+      "url": null
+    }
+  },
+  "forms": {
+    "quoteEndpointEnabled": {
+      "value": false,
+      "note": "No server endpoint provisioned. Quote form falls back to a composed email handoff; it never reports a submission the server did not accept."
+    },
+    "applicationEndpointEnabled": {
+      "value": false,
+      "note": "APPLICATIONS_DISABLED. Needs Cloudflare Pages Functions + Turnstile + R2 + D1 and an approved applicant privacy notice. See DEPLOYMENT_CHECKLIST.md."
+    }
+  },
+  "staffContactDetails": {
+    "value": true,
+    "claim": "YML-002..008",
+    "note": "Named branch managers with direct mobiles, from the company OUR REACH sheet. Brand package requires explicit sign-off before publishing staff mobiles as office numbers. Flip false to show office addresses and emails only."
+  }
+}

@@ -1,0 +1,46 @@
+---
+layout: layouts/page.njk
+permalink: /insights/
+title: "Insights & News | Yentrans Maritime Logistics"
+heading: "What the freight desk is learning."
+eyebrow: "Insights & News"
+seoDescription: "Practical explainers on shipping terms, cargo planning and the developments shaping international trade."
+intro: "International logistics changes with trade patterns, vessel capacity, port operations, documentation practices and cargo requirements. Our Insights & News section brings together practical explainers, company perspectives and verified updates that can help shippers make better-informed decisions."
+---
+<section class="pt-0">
+  <div class="wrap">
+    <div class="grid grid-4 cat-grid">
+      <div class="cell-quiet"><h3>Industry Insights</h3><p>Observations about freight planning, global trade and the working realities of shipping.</p></div>
+      <div class="cell-quiet"><h3>Trade &amp; Regulatory Updates</h3><p>Verified, dated developments affecting cross-border trade; not legal advice.</p></div>
+      <div class="cell-quiet"><h3>The Yentrans Journal</h3><p>Real company milestones, people and operational stories when approved for publication.</p></div>
+      <div class="cell-quiet"><h3>Knowledge Hub</h3><p>Practical definitions and guides for importers, exporters and early-career logistics professionals.</p></div>
+    </div>
+
+    {% set published = collections.articlesPublished %}
+    {% if published.length %}
+      <div class="grid grid-3 mt-xl">
+        {%- for a in published %}
+        <article class="cell reveal">
+          <p class="eyebrow">{{ a.data.category }}</p>
+          <h3><a href="{{ a.url | url }}">{{ a.data.title }}</a></h3>
+          <p>{{ a.data.excerpt }}</p>
+          <p class="meta">{% if a.data.datePublished %}<time datetime="{{ a.data.datePublished | isoDate }}">{{ a.data.datePublished | date }}</time> · {% endif %}{{ a.templateContent | striptags | readingTime }} min read</p>
+        </article>
+        {%- endfor %}
+      </div>
+    {% else %}
+      {# Six drafts exist and are readable at their own URLs for review, but none is
+         listed here: the content pack requires editorial approval before publication. #}
+      <div class="notice mt-xl">
+        <strong>No articles are published yet.</strong>
+        {{ collections.articlesAll.length }} article drafts are written and awaiting editorial
+        and factual review. They are not listed or indexed until an approved author is assigned
+        and each draft is signed off. Reviewers can read them from the list in
+        <code>APPROVALS_NEEDED.md</code>.
+      </div>
+    {% endif %}
+
+    <p class="disclaimer mt-xl">Shipping requirements and regulatory guidance change. Articles are general
+      information and should be checked against the latest rules and shipment-specific professional advice.</p>
+  </div>
+</section>

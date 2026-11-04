@@ -1,0 +1,462 @@
+@import "brand-tokens.css";
+/* ============================================================================
+   Yentrans Maritime Logistics — design system
+   Palette sampled directly from the registered logo artwork:
+     #38AAE1 primary blue · #A2D9F7 light blue · #7EC5EB mid · #1D1D1B ink
+   White carries the page; blue is used sparingly so it still means something.
+   ========================================================================= */
+:root{
+  /* --- Brand tokens (Standards v1.1, PROPOSED) are the source of truth. ---
+     Existing site colours are mapped ONTO them rather than replaced, so the
+     established design identity is preserved while palette approval becomes a
+     one-file change in brand-tokens.css, exactly as README_HANDOFF.md asks.
+     Note how close the two already were: existing #38AAE1 vs brand #31A9DE. */
+  --blue:var(--yml-cyan);          /* was #38AAE1 — brand cyan #31A9DE */
+  --blue-deep:var(--yml-teal);     /* was #1B7FB0 — Harbor Teal, 4.89:1 on white */
+  --blue-ink:var(--yml-navy);      /* was #0E4A68 — Deep Maritime Navy */
+  --blue-light:var(--yml-wave);    /* was #A2D9F7 — YML Wave Blue */
+  --blue-mid:#7EC5EB;
+  --blue-wash:var(--yml-mist);     /* was #F2F9FE — Coastal Mist */
+  --ink:var(--yml-ink);            /* was #1D1D1B — Ink Charcoal */
+  --ink-70:#54565B;
+  --ink-45:#6B747C;                /* 4.76:1 on white. NOT --yml-steel: that is
+                                      4.02:1 and the manifest marks it
+                                      normal_text_on_light_allowed:false. */
+  --rule-steel:var(--yml-steel);   /* borders and large text only */
+  --line:#E3E8EC;
+  --white:var(--yml-white);
+
+  /* Brand rule: cyan must never be text on a light surface (2.67:1, fails AA).
+     Teal is the link colour on light; cyan is reserved for dark surfaces and
+     non-text decoration. See BRAND_GUIDELINES.md §5 and the contrast table. */
+  --link-on-light:var(--yml-teal);
+  --link-on-dark:var(--yml-cyan);
+
+  --max:1200px;
+  --gut:clamp(20px,5vw,64px);
+  --r:4px;
+  --shadow:0 1px 2px rgba(13,40,59,.05), 0 12px 32px -12px rgba(13,40,59,.14);
+  --ease:cubic-bezier(.22,.61,.36,1);
+}
+*,*::before,*::after{box-sizing:border-box}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+body{
+  margin:0;background:var(--white);color:var(--ink);
+  font-family:"Source Sans 3","Segoe UI",Helvetica,Arial,sans-serif;
+  font-size:17.5px;line-height:1.68;letter-spacing:0;
+  -webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;
+}
+img,video{max-width:100%;display:block}
+a{color:inherit;text-decoration:none}
+.wrap{max-width:var(--max);margin:0 auto;padding:0 var(--gut)}
+
+/* ---- type ---------------------------------------------------------------- */
+h1,h2,h3,h4{
+  margin:0;font-family:"Source Serif 4",Georgia,"Times New Roman",serif;
+  font-weight:600;letter-spacing:-.012em;line-height:1.14;
+}
+h1{font-size:clamp(2.3rem,5.4vw,3.9rem);line-height:1.08}
+h2{font-size:clamp(1.75rem,3.3vw,2.7rem)}
+h3{font-size:1.22rem;letter-spacing:-.006em}
+p{margin:0 0 1.1em}
+.lede{font-size:clamp(1.06rem,1.6vw,1.26rem);line-height:1.62;color:var(--ink-70)}
+.eyebrow{
+  font-family:"Source Sans 3",sans-serif;font-size:.73rem;font-weight:600;letter-spacing:.16em;text-transform:uppercase;
+  color:var(--blue-deep);margin:0 0 .9rem;display:flex;align-items:center;gap:.6rem;
+}
+.eyebrow::before{content:"";width:26px;height:2px;background:var(--blue);flex:none}
+.eyebrow.center{justify-content:center}
+.measure{max-width:64ch}
+
+/* ---- buttons ------------------------------------------------------------- */
+.btn{
+  font-family:"Source Sans 3",sans-serif;
+  display:inline-flex;align-items:center;gap:.55rem;
+  padding:.85rem 1.6rem;border-radius:var(--r);font-size:.94rem;font-weight:550;
+  border:1px solid transparent;cursor:pointer;transition:all .22s var(--ease);
+  white-space:nowrap;
+}
+.btn-primary{background:var(--link-on-light);color:#fff;border-color:var(--link-on-light)} /* white on teal 4.89:1; white on cyan would be 2.67:1 and fail AA */
+.btn-primary:hover{background:var(--blue-deep);border-color:var(--blue-deep);transform:translateY(-1px)}
+.btn-ghost{background:transparent;color:var(--ink);border-color:var(--line)}
+.btn-ghost:hover{border-color:var(--link-on-light);color:var(--link-on-light)}
+.btn-onDark{background:rgba(255,255,255,.1);color:#fff;border-color:rgba(255,255,255,.35);backdrop-filter:blur(6px)}
+.btn-onDark:hover{background:#fff;color:var(--blue-ink);border-color:#fff}
+.arrow{transition:transform .22s var(--ease)}
+.btn:hover .arrow{transform:translateX(3px)}
+
+/* ---- header -------------------------------------------------------------- */
+.site-head{
+  position:sticky;top:0;z-index:60;background:rgba(255,255,255,.93);
+  backdrop-filter:saturate(180%) blur(14px);border-bottom:1px solid var(--line);
+}
+.head-in{display:flex;align-items:center;gap:2.4rem;height:82px}
+.brand img{height:34px;width:auto}
+.nav{display:flex;gap:2rem;margin-left:auto;align-items:center}
+.nav a{
+  font-size:.92rem;font-weight:500;color:var(--ink-70);
+  position:relative;padding:.3rem 0;transition:color .2s;
+}
+.nav a:hover,.nav a[aria-current="page"]{color:var(--ink)}
+.nav a[aria-current="page"]::after{
+  content:"";position:absolute;left:0;right:0;bottom:-2px;height:2px;background:var(--blue);
+}
+/* The header CTA is an <a> inside .nav, so `.nav a` (0,1,1) was beating
+   `.btn-primary` (0,1,0) and painting the label --ink-70 grey on the teal
+   button: 1.50:1, far below AA, on the site's main conversion control.
+   These selectors restore the button's own colours at matching specificity. */
+.nav a.head-cta{color:#fff}
+.nav a.head-cta:hover{color:#fff}
+.nav a.head-cta[aria-current="page"]::after{display:none}
+.head-cta{margin-left:.6rem}
+.burger{display:none;margin-left:auto;background:none;border:0;padding:.5rem;cursor:pointer}
+.burger span{display:block;width:22px;height:2px;background:var(--ink);margin:4px 0;transition:.25s}
+
+/* ---- hero ---------------------------------------------------------------- */
+.hero{position:relative;min-height:clamp(560px,82vh,760px);display:flex;align-items:center;overflow:hidden;background:var(--blue-ink)}
+.hero video,.hero .hero-img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.hero::after{
+  content:"";position:absolute;inset:0;
+  background:linear-gradient(100deg,rgba(7,34,49,.94) 0%,rgba(9,45,64,.86) 30%,rgba(12,60,86,.60) 62%,rgba(27,127,176,.26) 100%);
+}
+.hero-in{position:relative;z-index:2;color:#fff;max-width:62ch;
+  /* padding-block only: this element also carries .wrap, whose horizontal
+     gutter a `padding: 6rem 0` shorthand would reset to zero, putting the
+     hero text flush against the screen edge on narrow viewports. */
+  padding-top:6rem;padding-bottom:6rem}
+.hero h1{color:#fff;margin-bottom:1.2rem}
+.hero .lede{color:rgba(255,255,255,.88);margin-bottom:2rem}
+.hero .eyebrow{color:var(--blue-light)}
+.hero .eyebrow::before{background:var(--blue-light)}
+.hero-actions{display:flex;gap:.8rem;flex-wrap:wrap}
+
+/* ---- credential strip ---------------------------------------------------- */
+.creds{border-bottom:1px solid var(--line);background:var(--white)}
+.creds-in{display:flex;align-items:center;gap:clamp(1.5rem,4vw,3.5rem);flex-wrap:wrap;
+  /* padding-block only — also carries .wrap; see the note on .hero-in. */
+  padding-top:1.5rem;padding-bottom:1.5rem}
+.creds-label{font-size:.7rem;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-45);font-weight:600}
+.creds img{height:38px;width:auto;opacity:.75;filter:grayscale(1);transition:.25s}
+.creds img:hover{opacity:1;filter:none}
+.creds .scac{font-size:.78rem;color:var(--ink-45);letter-spacing:.04em}
+.creds .scac b{color:var(--ink);font-weight:600}
+
+/* ---- sections ------------------------------------------------------------ */
+section{padding:clamp(4rem,7.5vw,6.5rem) 0}
+.sec-wash{background:var(--blue-wash)}
+.sec-ink{background:var(--ink);color:#fff}
+.sec-ink h2{color:#fff}
+.sec-ink .lede{color:rgba(255,255,255,.72)}
+.sec-ink .eyebrow{color:var(--blue-light)}
+.sec-ink .eyebrow::before{background:var(--blue-light)}
+.sec-head{max-width:60ch;margin-bottom:clamp(2.5rem,5vw,3.8rem)}
+.sec-head.center{margin-left:auto;margin-right:auto;text-align:center}
+.sec-head h2+p{margin-top:1.1rem}
+
+/* ---- grids --------------------------------------------------------------- */
+.grid{display:grid;gap:1px;background:var(--line);border:1px solid var(--line);border-radius:var(--r);overflow:hidden}
+.grid-3{grid-template-columns:repeat(3,1fr)}
+.grid-2{grid-template-columns:repeat(2,1fr)}
+.cell{background:var(--white);padding:clamp(1.7rem,3vw,2.4rem);transition:background .25s}
+.cell:hover{background:var(--blue-wash)}
+.cell .num{font-size:.72rem;font-weight:600;letter-spacing:.14em;color:var(--link-on-light);display:block;margin-bottom:.9rem}
+.cell h3{margin-bottom:.6rem}
+.cell p{color:var(--ink-70);font-size:.95rem;margin:0}
+.cell-icon{width:34px;height:34px;margin-bottom:1.1rem;color:var(--link-on-light)} /* icons need 3:1 non-text contrast */
+.cell-icon svg{width:100%;height:100%;stroke:currentColor;fill:none;stroke-width:1.5}
+
+/* ---- split ---------------------------------------------------------------- */
+.split{display:grid;grid-template-columns:1fr 1fr;gap:clamp(2.5rem,6vw,5rem);align-items:center}
+.split-media{position:relative;border-radius:var(--r);overflow:hidden;background:var(--blue-ink);aspect-ratio:4/3}
+.split-media img,.split-media video{width:100%;height:100%;object-fit:cover}
+.proof{list-style:none;margin:1.8rem 0 0;padding:0;display:grid;gap:.85rem}
+.proof li{display:flex;gap:.75rem;align-items:flex-start;font-size:.95rem;color:var(--ink-70)}
+.proof li::before{
+  content:"";flex:none;width:18px;height:18px;margin-top:3px;border-radius:50%;
+  background:var(--blue-light) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%230E4A68' stroke-width='3.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='20 6 9 17 4 12'/%3E%3C/svg%3E") center/11px no-repeat;
+}
+.sec-ink .proof li{color:rgba(255,255,255,.78)}
+
+/* ---- cargo lists --------------------------------------------------------- */
+.cargo{display:grid;grid-template-columns:1fr 1fr;gap:clamp(2rem,5vw,4rem)}
+.cargo h3{margin-bottom:1.1rem;display:flex;align-items:center;gap:.6rem}
+.cargo h3 .dot{width:9px;height:9px;border-radius:50%;background:var(--blue);flex:none}
+.cargo h3 .dot.alt{background:var(--blue-light)}
+.chips{display:flex;flex-wrap:wrap;gap:.5rem;list-style:none;margin:0;padding:0}
+.chips li{
+  font-size:.87rem;padding:.42rem .9rem;border:1px solid var(--line);
+  border-radius:100px;color:var(--ink-70);background:var(--white);
+}
+
+/* ---- stats --------------------------------------------------------------- */
+.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:rgba(255,255,255,.14)}
+.stat{background:var(--ink);padding:clamp(1.6rem,3vw,2.2rem)}
+.stat .n{font-family:"Source Serif 4",Georgia,serif;font-size:clamp(1.9rem,3.4vw,2.7rem);font-weight:600;color:#fff;letter-spacing:-.03em;line-height:1}
+.stat .l{font-size:.82rem;color:rgba(255,255,255,.6);margin-top:.5rem}
+
+/* ---- steps --------------------------------------------------------------- */
+.steps{counter-reset:s;display:grid;grid-template-columns:repeat(4,1fr);gap:clamp(1.5rem,3vw,2.5rem)}
+.step{position:relative;padding-top:2.6rem}
+.step::before{
+  counter-increment:s;content:counter(s,decimal-leading-zero);
+  position:absolute;top:0;left:0;font-size:.8rem;font-weight:600;color:var(--link-on-light);letter-spacing:.1em;
+}
+.step::after{content:"";position:absolute;top:.55rem;left:2.4rem;right:-1.2rem;height:1px;background:var(--line)}
+.step:last-child::after{display:none}
+.step h3{margin-bottom:.5rem}
+.step p{font-size:.93rem;color:var(--ink-70);margin:0}
+
+/* ---- cta ----------------------------------------------------------------- */
+.cta{background:linear-gradient(120deg,var(--blue-ink) 0%,var(--blue-deep) 100%);color:#fff;text-align:center}
+.cta h2{color:#fff;margin-bottom:1rem}
+.cta p{color:rgba(255,255,255,.82);max-width:54ch;margin:0 auto 2rem}
+.cta-actions{display:flex;gap:.8rem;justify-content:center;flex-wrap:wrap}
+
+/* ---- offices / contact --------------------------------------------------- */
+.offices{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--line);border:1px solid var(--line);border-radius:var(--r);overflow:hidden}
+.office{background:var(--white);padding:clamp(1.7rem,3vw,2.3rem)}
+.office .tag{font-size:.7rem;letter-spacing:.14em;text-transform:uppercase;color:var(--blue-deep);font-weight:600}
+.office h3{margin:.7rem 0 .8rem}
+.office address{font-style:normal;color:var(--ink-70);font-size:.94rem;line-height:1.7}
+.office .ph{margin-top:.9rem;font-size:.9rem}
+.office .ph a{color:var(--blue-deep);border-bottom:1px solid var(--blue-light)}
+
+/* ---- footer -------------------------------------------------------------- */
+.site-foot{background:var(--ink);color:rgba(255,255,255,.62);padding:clamp(3.5rem,6vw,5rem) 0 2rem;font-size:.9rem}
+.foot-top{display:grid;grid-template-columns:1.6fr 1fr 1fr 1fr;gap:2.5rem;padding-bottom:3rem;border-bottom:1px solid rgba(255,255,255,.1)}
+.foot-logo{display:inline-flex;align-items:center;gap:.7rem;margin-bottom:1.1rem;text-decoration:none}
+.foot-logo img{height:40px;width:auto;margin:0;filter:none}
+/* The footer mark is the genuine logo artwork with the wordmark removed and the
+   trailing wave tapered, so it needs no colour filter: at rgb(73,176,227) it
+   sits at 7.5:1 against the footer ink. The earlier hand-drawn SVG is gone. */
+.foot-logo span{display:flex;flex-direction:column;line-height:1.12;color:#fff;
+  font-family:"Source Serif 4",Georgia,"Times New Roman",serif;font-size:1.12rem;
+  font-weight:600;letter-spacing:.005em}
+.foot-logo em{font-style:normal;font-family:"Source Sans 3","Segoe UI",Helvetica,Arial,sans-serif;
+  font-size:.63rem;font-weight:500;letter-spacing:.17em;text-transform:uppercase;
+  color:rgba(255,255,255,.62);margin-top:.2rem}
+.foot-brand p{max-width:34ch;font-size:.9rem;line-height:1.6;margin:0}
+.site-foot h4{color:#fff;font-size:.75rem;letter-spacing:.14em;text-transform:uppercase;margin-bottom:1.1rem;font-weight:600}
+.site-foot ul{list-style:none;margin:0;padding:0;display:grid;gap:.6rem}
+.site-foot a:hover{color:#fff}
+.foot-bot{display:flex;justify-content:space-between;gap:1rem;padding-top:1.8rem;flex-wrap:wrap;font-size:.83rem;color:rgba(255,255,255,.45)}
+
+/* ---- scroll reveal ------------------------------------------------------- */
+.js .reveal{opacity:0;transform:translateY(22px);transition:opacity .7s var(--ease),transform .7s var(--ease)}
+.js .reveal.in{opacity:1;transform:none}
+@media (prefers-reduced-motion:reduce){
+  .js .reveal{opacity:1;transform:none;transition:none}
+  html{scroll-behavior:auto}
+}
+
+/* ---- responsive ---------------------------------------------------------- */
+@media(max-width:1000px){
+  .grid-3{grid-template-columns:repeat(2,1fr)}
+  .steps{grid-template-columns:repeat(2,1fr)}
+  .step::after{display:none}
+  .foot-top{grid-template-columns:1fr 1fr}
+  .stats{grid-template-columns:repeat(2,1fr)}
+  .offices{grid-template-columns:1fr}
+}
+@media(max-width:760px){
+  body{font-size:16px}
+  .nav{
+    position:fixed;inset:82px 0 auto;background:#fff;flex-direction:column;
+    align-items:stretch;gap:0;padding:.5rem var(--gut) 1.4rem;
+    border-bottom:1px solid var(--line);transform:translateY(-120%);
+    transition:transform .3s var(--ease);
+  }
+  .nav.open{transform:none}
+  .nav a{padding:.85rem 0;border-bottom:1px solid var(--line);font-size:1rem}
+  .nav .head-cta{margin:1rem 0 0;justify-content:center}
+  .burger{display:block}
+  .grid-3,.grid-2,.split,.cargo,.steps{grid-template-columns:1fr}
+  .split-media{aspect-ratio:16/10}
+  .foot-top{grid-template-columns:1fr;gap:2rem}
+  .hero-in{padding-top:4.5rem;padding-bottom:4.5rem}
+  .hero::after{
+    background:linear-gradient(180deg,rgba(7,34,49,.86) 0%,rgba(9,45,64,.80) 55%,rgba(7,34,49,.88) 100%);
+  }
+}
+
+
+/* ---- accessibility + editorial state ------------------------------------- */
+.skip-link{position:absolute;left:-9999px;top:0;z-index:999;background:var(--yml-navy);
+  color:#fff;padding:.75rem 1.1rem;border-radius:0 0 var(--r) 0;font-size:.9rem;font-weight:600}
+.skip-link:focus{left:0}
+:focus-visible{outline:3px solid var(--yml-teal);outline-offset:2px}
+
+.draft-banner{background:#8A5A00;color:#fff;font-size:.86rem;line-height:1.5;padding:.7rem 0}
+.draft-banner strong{color:#fff;display:block}
+.draft-banner code{background:rgba(255,255,255,.18);padding:.05em .35em;border-radius:3px}
+
+@media (prefers-reduced-motion: reduce){
+  *,*::before,*::after{animation-duration:.01ms !important;animation-iteration-count:1 !important;
+    transition-duration:.01ms !important;scroll-behavior:auto !important}
+  .reveal{opacity:1 !important;transform:none !important}
+}
+
+/* ===========================================================================
+   Corporate expansion — components added for industries, services, insights,
+   careers, forms and long-form pages. Conventions follow the existing system:
+   hairline grids on --line, 4px radius, serif headings, generous vertical
+   rhythm, blue used sparingly.
+   ======================================================================== */
+
+/* ---- layout helpers ----------------------------------------------------- */
+.wrap-narrow{max-width:760px}
+.pt-0{padding-top:0}
+.mt-xl{margin-top:clamp(2.75rem,5vw,4rem)}
+.page-head{padding-bottom:clamp(1.75rem,3vw,2.5rem)}
+.grid-4{grid-template-columns:repeat(4,1fr)}
+.group-h{font-size:clamp(1.25rem,2vw,1.6rem);margin:0 0 1.4rem}
+.related-h{font-size:1.15rem;margin:0 0 1.2rem}
+.sec-more{margin-top:2rem}
+.lede-block{max-width:68ch;margin:0 0 2.5rem}
+.ind-group{margin-bottom:clamp(2.5rem,5vw,4rem)}
+.ind-group:last-child{margin-bottom:0}
+
+/* ---- cards -------------------------------------------------------------- */
+.cell-more{margin:1rem 0 0;font-size:.88rem;font-weight:600}
+.cell-more a{color:var(--link-on-light);border-bottom:1px solid var(--blue-light)}
+.cell h3 a{color:inherit;text-decoration:none}
+.cell h3 a:hover{color:var(--link-on-light)}
+.cell-quiet{background:var(--white);padding:clamp(1.3rem,2.4vw,1.7rem)}
+.cat-grid .cell-quiet h3{font-size:1rem;margin:0 0 .5rem}
+.cat-grid .cell-quiet p{font-size:.88rem;color:var(--ink-70);margin:0}
+.route-grid .cell p{margin-bottom:0}
+
+/* ---- long-form prose ---------------------------------------------------- */
+.prose-page{padding:clamp(3rem,6vw,5rem) 0 0}
+.article-body{font-size:1.02rem;line-height:1.72}
+.article-body h2{font-size:clamp(1.3rem,2.2vw,1.7rem);margin:2.4rem 0 .9rem}
+.article-body h3{font-size:1.12rem;margin:2rem 0 .7rem}
+.article-body p{margin:0 0 1.15rem}
+.article-body strong{font-weight:600;color:var(--ink)}
+.crumbs{font-size:.8rem;color:var(--ink-45);margin-bottom:1.6rem}
+.crumbs a{color:var(--link-on-light)}
+.crumbs span[aria-hidden]{margin:0 .4rem;opacity:.5}
+.meta{font-size:.84rem;color:var(--ink-45);margin:.9rem 0 0}
+.disclaimer{font-size:.84rem;line-height:1.6;color:var(--ink-45);border-top:1px solid var(--line);
+  padding-top:1.1rem;margin-top:2.5rem}
+
+.check-list{list-style:none;padding:0;margin:0 0 1.5rem;display:grid;gap:.6rem}
+.check-list li{position:relative;padding-left:1.6rem;line-height:1.6}
+.check-list li::before{content:"";position:absolute;left:0;top:.62em;width:8px;height:8px;
+  border-radius:50%;background:var(--blue-light);border:2px solid var(--link-on-light)}
+
+.pill-list{list-style:none;padding:0;margin:0;display:flex;flex-wrap:wrap;gap:.5rem}
+.pill-list li{font-size:.86rem;padding:.45rem .85rem;border:1px solid var(--line);
+  border-radius:999px;background:var(--white);color:var(--ink-70)}
+
+.faq{margin:0}
+.faq dt{font-weight:600;font-family:"Source Serif 4",Georgia,serif;font-size:1.05rem;
+  margin-top:1.8rem;padding-top:1.8rem;border-top:1px solid var(--line)}
+.faq dt:first-child{margin-top:0;padding-top:0;border-top:0}
+.faq dd{margin:.6rem 0 0;color:var(--ink-70);line-height:1.68}
+
+/* ---- editorial / governance states -------------------------------------- */
+.notice{border:1px solid var(--line);border-left:3px solid var(--link-on-light);
+  background:var(--blue-wash);padding:1rem 1.2rem;border-radius:var(--r);
+  font-size:.92rem;line-height:1.6;color:var(--ink-70);margin:0 0 1.5rem}
+.notice strong{color:var(--ink);display:block;margin-bottom:.2rem}
+.notice code{background:rgba(13,40,59,.08);padding:.05em .35em;border-radius:3px;font-size:.92em}
+.notice-quiet{border-left-color:var(--ink-45);background:#FAFBFC}
+.pending{color:var(--ink-45);font-weight:400;font-size:.9em}
+.office-coverage{font-size:.94rem;line-height:1.7;color:var(--ink-70);margin:0 0 .9rem}
+
+/* ---- jobs --------------------------------------------------------------- */
+.job-facts{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:1.2rem;
+  margin:1.8rem 0 0;padding:1.3rem 0;border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+.job-facts dt{font-size:.7rem;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-45);font-weight:600}
+.job-facts dd{margin:.35rem 0 0;font-size:.95rem;font-weight:500}
+.job-list{border:1px solid var(--line);border-radius:var(--r);overflow:hidden}
+.job-row{display:flex;align-items:center;justify-content:space-between;gap:1.5rem;flex-wrap:wrap;
+  padding:1.3rem 1.5rem;background:var(--white);border-bottom:1px solid var(--line)}
+.job-row:last-child{border-bottom:0}
+.job-row h3{margin:0;font-size:1.08rem}
+.job-row .meta{margin:.3rem 0 0}
+
+/* ---- stats (render only when approved) ---------------------------------- */
+.stat-row{display:grid;grid-template-columns:repeat(auto-fit,minmax(130px,1fr));gap:1.5rem;
+  margin:2.5rem 0;padding:1.8rem 0;border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+.stat .n{display:block;font-family:"Source Serif 4",Georgia,serif;font-size:2rem;
+  font-weight:600;color:var(--blue-ink);line-height:1}
+.stat span:last-child{font-size:.8rem;color:var(--ink-45);letter-spacing:.06em;text-transform:uppercase}
+
+/* ---- forms -------------------------------------------------------------- */
+.form{margin-top:.5rem}
+.field{margin:0 0 1.15rem}
+.field label{display:block;font-size:.84rem;font-weight:600;margin-bottom:.4rem;color:var(--ink)}
+.field .opt{font-weight:400;color:var(--ink-45)}
+.field input,.field select,.field textarea{
+  width:100%;font:inherit;font-size:.95rem;color:var(--ink);background:var(--white);
+  border:1px solid var(--line);border-radius:var(--r);padding:.65rem .8rem;transition:border-color .15s var(--ease)}
+.field input:focus,.field select:focus,.field textarea:focus{
+  border-color:var(--link-on-light);outline:2px solid transparent;outline-offset:2px}
+.field [aria-invalid="true"]{border-color:#B3261E;background:#FFF8F8}
+.field textarea{resize:vertical;min-height:110px}
+.field-row{display:grid;grid-template-columns:1fr 1fr;gap:0 1.2rem}
+.field-check{display:flex;align-items:flex-start;gap:.65rem;margin-top:1.6rem}
+.field-check input{width:auto;margin-top:.2rem;flex:none}
+.field-check label{font-weight:400;font-size:.9rem;line-height:1.55;color:var(--ink-70)}
+.field-check label a{color:var(--link-on-light);border-bottom:1px solid var(--blue-light)}
+.form-status{margin:1.2rem 0;font-size:.92rem;line-height:1.6}
+.form-status:empty{margin:0}
+.form-status.is-error{color:#8C1D18}
+.form-status.is-ok{color:#0F5132}
+.form-status.is-info{color:var(--ink-70)}
+
+/* ---- responsive --------------------------------------------------------- */
+@media (max-width:1000px){
+  .grid-4{grid-template-columns:repeat(2,1fr)}
+}
+@media (max-width:760px){
+  .grid-4{grid-template-columns:1fr}
+  .field-row{grid-template-columns:1fr;gap:0}
+  .job-row{flex-direction:column;align-items:flex-start;gap:.9rem}
+  .job-facts{grid-template-columns:1fr 1fr}
+}
+
+/* The hairline grid draws its rules from the container background showing
+   through 1px gaps. That works when a row is full, but a trailing incomplete
+   row (4 industries in a 3-up, 7 services in a 3-up) exposed the line colour
+   as grey blocks. Painting the container white and drawing each cell's rule
+   with an outline keeps the hairlines — outlines occupy no space, so adjacent
+   cells meet in the gap — while empty track space stays white. */
+.grid{background:var(--white)}
+.grid > *{outline:1px solid var(--line)}
+
+/* Cards inside the dark section. .cell is white by default, and .sec-ink sets
+   colour:#fff on the section, so dropping .cell cards into it rendered white
+   text on white cards — invisible. The dark section gets its own card
+   treatment: a faint light wash, light hairlines, and explicit text colours. */
+.sec-ink .grid{background:transparent}
+.sec-ink .grid > *{outline-color:rgba(255,255,255,.16)}
+.sec-ink .cell{background:rgba(255,255,255,.04)}
+.sec-ink .cell:hover{background:rgba(255,255,255,.09)}
+.sec-ink .cell h3{color:#fff}
+.sec-ink .cell p{color:rgba(255,255,255,.76)}
+.sec-ink .cell .num{color:var(--blue-light)}
+.sec-ink .cell h3 a{color:#fff}
+.sec-ink .cell h3 a:hover{color:var(--blue-light)}
+
+/* ---- office card additions ---------------------------------------------- */
+.office-person{font-weight:600;color:var(--ink)}
+.office-entity{margin-top:.6rem;font-size:.82rem;color:var(--ink-55,#6F8190);line-height:1.5}
+.office-coverage{margin-top:.2rem;font-size:.94rem;line-height:1.7;color:var(--ink-70)}
+
+/* ---- skip link ----------------------------------------------------------
+   Present in the markup on every page for keyboard users, but it must not be
+   visible until focused. Without this rule it renders as plain text above the
+   header. Offscreen rather than display:none, so screen readers still reach it. */
+.skip-link{
+  position:absolute;left:-9999px;top:0;z-index:999;
+  background:var(--blue,#38AAE1);color:#fff;
+  padding:.7rem 1.1rem;border-radius:0 0 var(--r,6px) 0;
+  font-family:"Source Sans 3","Segoe UI",Helvetica,Arial,sans-serif;
+  font-size:.9rem;font-weight:600;text-decoration:none;
+}
+.skip-link:focus,.skip-link:focus-visible{
+  left:0;outline:3px solid #fff;outline-offset:-6px;
+}

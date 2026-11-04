@@ -1,0 +1,45 @@
+{
+  "_README": "Verbatim from CONTENT_PACK §4. Note the BL wording: the build brief §4 explicitly corrects the earlier 'we issue both HBL and MBL' framing to 'Yentrans may issue House Bills of Lading where properly authorised; Master Bills are normally issued by the ocean carrier, and Yentrans coordinates carrier documentation as required.' That correction is deliberate and is tracked in APPROVALS_NEEDED.md.",
+
+  "intro": "A freight movement is only as strong as the coordination behind it. Yentrans supports international shipments through booking, documentation, specialised handling and inland movement, combining the right services around the cargo and customer requirements.",
+
+  "items": [
+    { "slug": "fcl-ocean-freight", "title": "FCL Ocean Freight", "icon": "container", "featured": true,
+      "summary": "For shipments that require a full container, Yentrans helps coordinate equipment, available routings, booking details, cutoff dates and shipping documentation. Our teams consider transit options and operational requirements rather than treating every sailing on a rate sheet as interchangeable.",
+      "coordinateTitle": "What we coordinate",
+      "coordinate": ["FCL booking requests", "Container and equipment selection", "Origin documentation", "Carrier and port communication", "Inland transport arrangements", "Destination handover through relevant partners"],
+      "cta": "Discuss an FCL Shipment" },
+
+    { "slug": "lcl-consolidation", "title": "LCL Consolidation", "icon": "boxes", "featured": true,
+      "summary": "Not every shipment needs a full container. LCL movements bring additional coordination: receiving windows, consolidation arrangements, handling instructions and document consistency. We help shippers assess whether shared-container movement matches their cargo profile, schedule and destination needs.",
+      "coordinateTitle": "What we coordinate",
+      "coordinate": ["LCL routing and consolidation options", "Cargo handover requirements", "Shipping documentation", "Delivery handover through partners"],
+      "cta": "Request an LCL Rate" },
+
+    { "slug": "reefer-logistics", "title": "Reefer & Temperature-Controlled Logistics", "icon": "reefer", "featured": true,
+      "summary": "Reefer logistics begins before cargo reaches the container. The commodity, temperature instruction, equipment availability and power arrangements all influence the movement. Yentrans's experience with temperature-sensitive exports informs how we approach planning, booking and inland transport coordination.",
+      "coordinateTitle": "What we coordinate",
+      "coordinate": ["Suitable reefer equipment arrangements", "Shipper-provided set-point and handling instructions", "Reefer routing considerations", "Genset-supported inland movement where available", "Documentation and escalation contacts"],
+      "note": "Temperature controls, monitoring availability and contractual liability are shipment-specific. We make no unverified unbroken cold-chain guarantee.",
+      "cta": "Discuss Reefer Requirements" },
+
+    { "slug": "customs-documentation", "title": "Customs Clearance & Documentation", "icon": "document", "featured": true,
+      "summary": "Documents need to tell the same story: commercial invoice, packing list, customs entry, transport document, certificates and consignee instructions. Our teams coordinate the relevant paperwork and clearance processes for supported locations and shipments, helping identify inconsistencies before they cause avoidable delays.",
+      "coordinateTitle": "What we coordinate",
+      "coordinate": ["Import and export documentation", "Applicable filing processes", "Customs-broker coordination where authorised", "BL instructions and shipment document checks"],
+      "note": "Yentrans may issue House Bills of Lading where properly authorised. Master Bills of Lading are normally issued by the ocean carrier; Yentrans coordinates carrier documentation as required.",
+      "cta": "Ask About Documentation" },
+
+    { "slug": "inland-transportation", "title": "Inland Transportation & Door Delivery", "icon": "truck", "featured": true,
+      "summary": "The distance from factory gate to port — or port to final destination — can determine whether an otherwise good sailing works. We coordinate transport requirements, collection and delivery windows, container positioning and special equipment arrangements in supported markets.",
+      "cta": "Plan an Inland Movement" },
+
+    { "slug": "project-cargo-movements", "title": "Project Cargo & Specialised Movements", "icon": "crane", "featured": false,
+      "summary": "Oversized and non-standard shipments call for more planning before a quotation is meaningful. Dimensions, weight, lifting points, road restrictions, packaging and securing plans influence the equipment and routing options. Yentrans can evaluate requirements with the appropriate service partners and carriers, subject to feasibility and necessary approvals.",
+      "cta": "Discuss Project Cargo" },
+
+    { "slug": "warehousing-insurance", "title": "Warehousing & Cargo Insurance Coordination", "icon": "shield", "featured": false,
+      "summary": "Some cargo needs time before loading or after arrival. Where suitable partner solutions are available, we can help discuss warehousing and cargo insurance arrangements as part of the overall movement. Insurance coverage and responsibility depend on the actual policy and shipment terms.",
+      "cta": "Discuss Your Supply Chain" }
+  ]
+}

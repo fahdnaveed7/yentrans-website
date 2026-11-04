@@ -1,67 +1,73 @@
-# Yentrans Maritime Logistics — Website
+# Yentrans Maritime Logistics — corporate website
 
-Corporate website for Yentrans Maritime Logistics (YML), a registered NVOCC and
-Multimodal Transport Operator moving cargo from India and the Middle East to major
-ports worldwide.
+Static site built with [Eleventy](https://www.11ty.dev/). Output is plain HTML,
+CSS and a little progressive-enhancement JavaScript — no client framework.
 
-## Stack
-
-Plain HTML, CSS and vanilla JavaScript. No framework, no build step, no dependencies.
-The repository is the deployable artifact, which keeps the site fast, keeps hosting
-free, and means anyone can edit a page without installing a toolchain.
-
-## Structure
-
-```
-index.html              Home
-services.html           Services in detail
-network.html            Global network, routing and bills of lading
-about.html              Company, mission, vision, registrations
-contact.html            Offices and enquiry routes
-assets/css/style.css    Design system. All brand tokens live in :root
-assets/js/main.js       Mobile nav and scroll reveal
-assets/img/             Logo, accreditation marks, photography
-assets/video/           Hero and cold chain footage
-```
-
-## Brand
-
-Typography is Source Serif 4 for headings and Source Sans 3 for body text.
-
-Colours are sampled from the registered logo artwork, not approximated:
-
-| Token | Hex | Use |
-|---|---|---|
-| `--blue` | `#38AAE1` | Primary. Buttons, accents, rules |
-| `--blue-deep` | `#1B7FB0` | Hover states, eyebrow text |
-| `--blue-ink` | `#0E4A68` | Dark blue grounds |
-| `--blue-light` | `#A2D9F7` | Light accents, tick marks |
-| `--ink` | `#1D1D1B` | Body text, dark sections |
-
-White carries the page. Blue is used sparingly so that it still reads as emphasis.
-
-The logo in `assets/img/logo.png` is the genuine artwork with the "PVT LTD" strapline
-cropped off. The icons are generated from the sail-and-wave device alone, with no
-wordmark, so they stay legible at favicon size.
-
-## Local preview
-
-No build required. Any static server works:
+## Quick start
 
 ```bash
-python3 -m http.server 8080
+npm install
+npm start        # http://localhost:8080
 ```
 
-Then open http://localhost:8080
+```bash
+npm run build          # root paths, for Cloudflare Pages
+npm run build:ghpages  # /yentrans-website/ prefix, for GitHub Pages
+npm run check          # pre-launch gate — run before every push
+```
+
+## Layout
+
+```
+src/
+  _data/           site settings, navigation, approvals, industries, services, offices
+  _includes/       layouts and partials
+  content/         articles and jobs, one file each
+  assets/          css, js, images, video
+  static/          files served from the site root
+  *.njk            page templates
+tools/
+  check-site.mjs   pre-launch checks
+brand-reference/   brand package (source/ is gitignored and never committed)
+project-brief/     build brief and content pack
+```
+
+## The approvals gate
+
+`src/_data/approvals.json` decides what the site is allowed to claim. Each flag
+names its claim ID from `brand-reference/CONTENT_FACTS_TO_VERIFY.md`. **Every
+flag currently ships `false`**, because no company claim has been approved.
+
+This is enforced, not advisory. `npm run check` fails the build if a gated claim
+renders. The FMC and MTO badges, the Millennium Logistics Network logo, the
+founding year, the metrics block and the legal entity name are all absent for
+this reason, and reappear on their own when a flag is flipped.
+
+See `APPROVALS_NEEDED.md` for what is outstanding and who needs to sign it off.
+
+## Editorial state
+
+Articles and jobs carry a `status`. Drafts build a reviewable page with a visible
+banner and `noindex`, but never appear in a public listing or the sitemap. The
+careers page reports no open vacancies because there genuinely are none.
+
+See `CONTENT_EDITING.md` to publish something.
+
+## Forms
+
+Neither form has a backend yet, and neither pretends otherwise.
+
+The quote form composes the enquiry into the visitor's own mail client and says
+so before they start. The careers application is `APPLICATIONS_DISABLED` — no
+apply button is shown, because a form that cannot store a submission should not
+look like one that can.
+
+See `DEPLOYMENT_CHECKLIST.md` for what provisioning each requires.
 
 ## Deployment
 
-Pushing to `main` triggers `.github/workflows/pages.yml`, which publishes to GitHub
-Pages. To use a custom domain, add a `CNAME` file containing the domain and point
-the DNS A records at GitHub Pages.
+Nothing here is deployed. `main` is untouched, no DNS or mail record has been
+modified, and the existing WordPress site is untouched. `site.isPreview` is
+`true`, so the whole site is `noindex` and `robots.txt` disallows crawling.
 
-## Editing content
-
-All copy is written directly into the HTML. Placeholders in square brackets,
-for example `[ADDRESS]` and `[PHONE]`, mark details that still need confirming
-before the site goes live. Search the repo for `[` to find them all.
+Read `DEPLOYMENT_CHECKLIST.md` before changing any of that.

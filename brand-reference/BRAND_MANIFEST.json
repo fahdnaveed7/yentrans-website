@@ -1,0 +1,121 @@
+{
+  "package": "YENTRANS_BRAND_PACKAGE",
+  "brand": "Yentrans Maritime Logistics",
+  "generated": "2026-11-04",
+  "source_system": "Global Brand Standards & Asset Guide v1.1 (Working Master, October 2026)",
+  "overall_status": "WORKING_DRAFT — no asset or value has formal management approval",
+  "status_legend": {
+    "SOURCE": "Yentrans-supplied artwork",
+    "PROVISIONAL": "Usable as a placeholder; must be replaced or approved before launch",
+    "PROPOSED": "Recommended in Brand Standards v1.1, awaiting approval",
+    "REFERENCE_ONLY": "Internal reference; not for public use",
+    "MISSING": "Required but not available in the brand workspace"
+  },
+  "assets": [
+    {
+      "id": "logo-primary-registered-raster",
+      "path": "logos/YML_Registered_Logo_PROVISIONAL.png",
+      "description": "Full-colour horizontal YML lockup with typographic ® at upper-right of YML; wave/hull motif, near-black YML, cyan 'YENTRANS MARITIME LOGISTICS'.",
+      "format": "PNG",
+      "dimensions": { "width": 1065, "height": 530, "artwork_bbox": [15, 86, 1061, 415] },
+      "color_mode": "RGB, opaque white background, no alpha channel",
+      "sha256": "53748f61ccd2373ad677be9cecf5285aedb0e380d1ffcf773d45cfb6d7de17aa",
+      "status": "PROVISIONAL",
+      "preferred_usage": "Header/nav on white backgrounds only, until vector master arrives",
+      "approved_for_public_website": false,
+      "public_website_note": "Placeholder only. ® use not legally cleared (claim YML-009). Raster; not suitable for large/retina hero use. Do not place on mist or navy (opaque white box).",
+      "commit_to_public_assets": false
+    },
+    {
+      "id": "logo-original-no-registered-symbol",
+      "path": null,
+      "description": "Original 'YML Logo.pdf' supplied by Yentrans, cited as the source in Brand Standards §02",
+      "status": "MISSING",
+      "approved_for_public_website": null
+    },
+    { "id": "logo-vector-master", "path": null, "description": "AI/SVG/EPS/PDF vector master", "status": "MISSING", "approved_for_public_website": null },
+    { "id": "logo-reverse", "path": null, "description": "Reverse lockup for navy/dark backgrounds", "status": "MISSING", "approved_for_public_website": null },
+    { "id": "logo-monochrome", "path": null, "description": "One-colour lockup", "status": "MISSING", "approved_for_public_website": null },
+    { "id": "logo-stacked", "path": null, "description": "Stacked lockup", "status": "MISSING", "approved_for_public_website": null },
+    { "id": "logo-compact-mark", "path": null, "description": "Symbol-only / compact mark for small sizes and avatars", "status": "MISSING", "approved_for_public_website": null },
+    { "id": "favicon-set", "path": null, "description": "favicon.ico/svg, apple-touch-icon, PWA icons", "status": "MISSING", "approved_for_public_website": null },
+    { "id": "og-image", "path": null, "description": "Open Graph / social preview image (1200x630)", "status": "MISSING", "approved_for_public_website": null },
+    {
+      "id": "moodboard-v1",
+      "path": "visuals/Moodboard_v1_REFERENCE.png",
+      "description": "Concept mood board: navy panel 'TRADE WITHOUT BORDERS.', 'OUR WORLD' decorative line chart, five palette swatches.",
+      "format": "PNG",
+      "dimensions": { "width": 1500, "height": 970 },
+      "sha256": "c5a904e3a6455273886dd3765366f40082eab0672b709eb91eed96ff245aaad7",
+      "status": "REFERENCE_ONLY",
+      "preferred_usage": "Mood/tone reference for the developer. Do not reproduce on the site.",
+      "approved_for_public_website": false,
+      "commit_to_public_assets": false
+    },
+    { "id": "photography", "path": null, "description": "Approved or licensed photography of any kind", "status": "MISSING", "approved_for_public_website": null },
+    { "id": "icon-set", "path": null, "description": "Icon system", "status": "MISSING", "approved_for_public_website": null },
+    { "id": "maps", "path": null, "description": "Network or trade maps", "status": "MISSING", "approved_for_public_website": null },
+    {
+      "id": "brand-tokens-css",
+      "path": "tokens/brand-tokens.css",
+      "description": "CSS custom properties for palette, semantic colour roles and font stacks, extracted from Standards v1.1",
+      "format": "CSS",
+      "status": "PROPOSED",
+      "preferred_usage": "Import into the site's global stylesheet or map into Tailwind theme",
+      "approved_for_public_website": true,
+      "public_website_note": "Code, not a brand asset; values remain PROPOSED"
+    },
+    {
+      "id": "brand-standards-pdf",
+      "path": "source/brand-standards/Brand_Standards_v1_1_REFERENCE.pdf",
+      "description": "Brand Standards v1.1 reference PDF, 10 pages, US Letter",
+      "format": "PDF",
+      "sha256": "96cd2c4cb390cc40c3b0421746a42143d11262ecda98c6f5a285f76a3e21a916",
+      "status": "REFERENCE_ONLY",
+      "approved_for_public_website": false,
+      "commit_to_public_assets": false
+    },
+    {
+      "id": "claim-evidence-tracker",
+      "path": "source/corporate-facts/Claim_Evidence_Tracker.csv",
+      "description": "Claims YML-001 to YML-010, all PENDING",
+      "format": "CSV",
+      "sha256": "1528c01f698dd0603b8eb8e3c173617af2c987244787ad9b4f3ad06ab038da41",
+      "status": "REFERENCE_ONLY",
+      "approved_for_public_website": false
+    },
+    {
+      "id": "branch-directory",
+      "path": "source/corporate-facts/Verified_Branch_Directory_WORKING.csv",
+      "description": "Seven locations; status, entity, address and services all 'To confirm'",
+      "format": "CSV",
+      "sha256": "c321e3124c28ec0df8ac0863f6e2d4f27dae727da920bb41a798fd8b47f0a10a",
+      "status": "REFERENCE_ONLY",
+      "approved_for_public_website": false
+    }
+  ],
+  "colors": [
+    { "token": "--yml-navy",  "name": "Deep Maritime Navy", "hex": "#0D283B", "rgb": [13, 40, 59],    "tier": "primary",   "status": "PROPOSED" },
+    { "token": "--yml-cyan",  "name": "YML Ocean Cyan",     "hex": "#31A9DE", "rgb": [49, 169, 222],  "tier": "primary",   "status": "APPROX_FROM_LOGO", "text_on_light_allowed": false },
+    { "token": "--yml-wave",  "name": "YML Wave Blue",      "hex": "#97D9F3", "rgb": [151, 217, 243], "tier": "secondary", "status": "APPROX_FROM_LOGO", "text_on_light_allowed": false },
+    { "token": "--yml-teal",  "name": "Harbor Teal",        "hex": "#167B94", "rgb": [22, 123, 148],  "tier": "secondary", "status": "PROPOSED" },
+    { "token": "--yml-mist",  "name": "Coastal Mist",       "hex": "#F3F7F8", "rgb": [243, 247, 248], "tier": "neutral",   "status": "PROPOSED" },
+    { "token": "--yml-ink",   "name": "Ink Charcoal",       "hex": "#18252D", "rgb": [24, 37, 45],    "tier": "neutral",   "status": "PROPOSED" },
+    { "token": "--yml-steel", "name": "Steel Gray",         "hex": "#6F8190", "rgb": [111, 129, 144], "tier": "neutral",   "status": "PROPOSED", "normal_text_on_light_allowed": false },
+    { "token": "--yml-white", "name": "White",              "hex": "#FFFFFF", "rgb": [255, 255, 255], "tier": "neutral",   "status": "STANDARD" }
+  ],
+  "typography": [
+    { "role": "heading", "family": "Manrope",       "weights": [600, 700], "license": "OFL-1.1", "status": "PROPOSED" },
+    { "role": "body",    "family": "Inter",         "weights": [400, 500], "license": "OFL-1.1", "status": "PROPOSED" },
+    { "role": "label",   "family": "IBM Plex Mono", "weights": [500],      "license": "OFL-1.1", "status": "PROPOSED" },
+    { "role": "fallback","family": "Arial / Aptos", "license": "system",  "status": "PROPOSED" }
+  ],
+  "not_available_in_this_environment": [
+    "Brand_Standards_v1_1_EDITABLE.docx (original binary)",
+    "Corporate_Company_Profile_WORKING.docx (original binary)",
+    "Approved_Facts_and_Certifications_REGISTER.docx (original binary)",
+    "Creative_Templates_and_Design_Direction.docx (original binary)",
+    "YML Logo.pdf (original logo source)",
+    "YML_CargoIntel01_slide1-5.png (social; not stored in project)"
+  ]
+}

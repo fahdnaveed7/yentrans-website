@@ -1,0 +1,37 @@
+---
+layout: layouts/base.njk
+pagination:
+  data: industriesFlagship
+  size: 1
+  alias: industry
+permalink: "/industries/{{ industry.slug }}/"
+eleventyComputed:
+  title: "{{ industry.title }} Logistics | Yentrans Maritime Logistics"
+  seoDescription: "{{ industry.summary | truncate(150) }}"
+---
+{% set d = industryDetails[industry.slug] %}
+<section class="page-head">
+  <div class="wrap">
+    <nav class="crumbs" aria-label="Breadcrumb">
+      <a href="{{ '/industries/' | url }}">Industries</a> <span aria-hidden="true">/</span> <span>{{ industry.title }}</span>
+    </nav>
+    <div class="sec-head">
+      <p class="eyebrow">{{ industry.title }}</p>
+      <h1>{{ d.heading }}</h1>
+    </div>
+  </div>
+</section>
+
+<section class="pt-0">
+  <div class="wrap wrap-narrow article-body">
+    {%- for para in d.body %}<p>{{ para }}</p>{%- endfor %}
+
+    <h2>{{ d.questionsTitle }}</h2>
+    <ul class="check-list">
+      {%- for q in d.questions %}<li>{{ q }}</li>{%- endfor %}
+    </ul>
+
+    {% if d.disclaimer %}<div class="notice notice-quiet">{{ d.disclaimer }}</div>{% endif %}
+  </div>
+</section>
+{% include "partials/cta.njk" %}

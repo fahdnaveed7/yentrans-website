@@ -1,0 +1,80 @@
+---
+layout: layouts/page.njk
+permalink: /request-a-quote/
+title: "Request a Freight Rate | Yentrans Maritime Logistics"
+heading: "Tell us the lane. We'll discuss the options."
+eyebrow: "Request a Rate"
+seoDescription: "Share your origin, destination, cargo and target shipment date and the Yentrans team will discuss routings and the information needed for a quotation."
+intro: "Share your origin, destination, cargo and approximate shipment date. We'll help identify the information and routing options needed to move forward."
+hideCta: true
+---
+<section class="pt-0">
+  <div class="wrap wrap-narrow">
+    {% if not approvals.forms.quoteEndpointEnabled.value %}
+    {# No server endpoint is provisioned. Rather than fake a submission, the form
+       composes the enquiry into the visitor's own mail client — which genuinely
+       delivers — and says so plainly before they fill anything in. #}
+    <div class="notice notice-quiet" id="form-mode">
+      <strong>This form opens your email application.</strong>
+      Online submission is not switched on yet, so the details you enter are assembled into a
+      message addressed to our enquiry desk. Nothing is sent until you send it yourself, and
+      nothing is stored on this website. You can also email
+      <a href="mailto:{{ site.enquiryEmail }}">{{ site.enquiryEmail }}</a> or call
+      <a href="tel:{{ site.enquiryPhoneDial }}">{{ site.enquiryPhone }}</a> directly.
+    </div>
+    {% endif %}
+
+    <form class="form" id="quote-form" novalidate
+          data-endpoint="{{ approvals.forms.quoteEndpointEnabled.value | default(false) }}"
+          data-mailto="{{ site.enquiryEmail }}">
+      <div class="field-row">
+        <p class="field"><label for="q-name">Full name <span aria-hidden="true">*</span></label>
+          <input id="q-name" name="name" type="text" required autocomplete="name" maxlength="120"></p>
+        <p class="field"><label for="q-email">Business email <span aria-hidden="true">*</span></label>
+          <input id="q-email" name="email" type="email" required autocomplete="email" maxlength="160"></p>
+      </div>
+      <div class="field-row">
+        <p class="field"><label for="q-company">Company name <span aria-hidden="true">*</span></label>
+          <input id="q-company" name="company" type="text" required autocomplete="organization" maxlength="140"></p>
+        <p class="field"><label for="q-phone">Phone <span class="opt">(optional)</span></label>
+          <input id="q-phone" name="phone" type="tel" autocomplete="tel" maxlength="40"></p>
+      </div>
+      <div class="field-row">
+        <p class="field"><label for="q-origin">Origin city or port <span aria-hidden="true">*</span></label>
+          <input id="q-origin" name="origin" type="text" required maxlength="120"></p>
+        <p class="field"><label for="q-dest">Destination city or port <span aria-hidden="true">*</span></label>
+          <input id="q-dest" name="destination" type="text" required maxlength="120"></p>
+      </div>
+      <p class="field"><label for="q-cargo">Cargo or commodity <span aria-hidden="true">*</span></label>
+        <input id="q-cargo" name="cargo" type="text" required maxlength="200"></p>
+      <div class="field-row">
+        <p class="field"><label for="q-type">Shipment type <span aria-hidden="true">*</span></label>
+          <select id="q-type" name="shipmentType" required>
+            <option value="">Please select</option>
+            <option>FCL</option><option>LCL</option><option>Reefer</option>
+            <option>Project / out of gauge</option><option>Other</option>
+          </select></p>
+        <p class="field"><label for="q-equip">Container type and quantity <span class="opt">(if known)</span></label>
+          <input id="q-equip" name="equipment" type="text" maxlength="120"></p>
+      </div>
+      <div class="field-row">
+        <p class="field"><label for="q-weight">Gross weight or volume <span class="opt">(if known)</span></label>
+          <input id="q-weight" name="weight" type="text" maxlength="120"></p>
+        <p class="field"><label for="q-ready">Estimated ready date</label>
+          <input id="q-ready" name="readyDate" type="date"></p>
+      </div>
+      <p class="field"><label for="q-notes">Handling requirements</label>
+        <textarea id="q-notes" name="notes" rows="4" maxlength="1500"></textarea></p>
+
+      <p class="field field-check">
+        <input id="q-consent" name="consent" type="checkbox" required>
+        <label for="q-consent">I understand the information I provide will be used to respond to this
+          enquiry, as described in the <a href="{{ '/privacy/' | url }}">Privacy Notice</a>.
+          <span aria-hidden="true">*</span></label>
+      </p>
+
+      <div class="form-status" id="quote-status" role="status" aria-live="polite"></div>
+      <button class="btn btn-primary" type="submit">Submit Enquiry</button>
+    </form>
+  </div>
+</section>

@@ -1,0 +1,66 @@
+---
+layout: layouts/page.njk
+permalink: /careers/
+title: "Careers at Yentrans Maritime Logistics | Opportunities in Logistics"
+heading: "Build your career behind the movement of trade."
+eyebrow: "Careers"
+seoDescription: "Opportunities in freight operations, customer service, documentation, transportation, sales and corporate functions at Yentrans Maritime Logistics."
+intro: "Every shipment depends on people who ask questions, solve problems and take responsibility. At Yentrans Maritime Logistics, careers are built through practical work, teamwork and the ability to keep learning as international trade evolves."
+ctaHeading: "Help make trade move."
+ctaBody: "Explore opportunities in freight operations, customer service, documentation, transportation, sales and corporate functions."
+ctaAction: "Explore Careers"
+---
+<section class="pt-0">
+  <div class="wrap">
+    <div class="sec-head"><h2>People make the cargo move.</h2>
+      <p>Yentrans operates across a range of cargo and logistics functions. As our organisation
+         develops, we look for people who value careful execution, clear communication and doing
+         the job properly — from the documentation desk to transport planning and customer relationships.</p>
+    </div>
+
+    <div class="grid grid-4">
+      <article class="cell reveal"><h3>Ownership</h3><p>We value people who follow a task through, not just pass it along.</p></article>
+      <article class="cell reveal"><h3>Learning</h3><p>Every shipment brings new cargo, routing and documentation questions.</p></article>
+      <article class="cell reveal"><h3>Coordination</h3><p>Freight forwarding is a team activity, across departments and locations.</p></article>
+      <article class="cell reveal"><h3>Professionalism</h3><p>Customers trust us with their cargo and information; accuracy and confidentiality matter.</p></article>
+    </div>
+
+    <h2 class="group-h mt-xl">Where people work</h2>
+    <ul class="pill-list">
+      {%- for d in ["Freight Operations","Customer Service","Documentation","Transportation","Sales & Business Development","Finance & Accounts","HR & Administration","Technology & Systems"] %}
+      <li>{{ d }}</li>
+      {%- endfor %}
+    </ul>
+
+    <h2 class="group-h mt-xl" id="openings">Open positions</h2>
+    {% set open = collections.jobsOpen %}
+    {% if open.length %}
+      <div class="job-list">
+        {%- for j in open %}
+        <article class="job-row">
+          <div><h3><a href="{{ j.url | url }}">{{ j.data.title }}</a></h3>
+            <p class="meta">{{ j.data.department }} · {{ j.data.location }} · {{ j.data.employmentType }}</p></div>
+          <a class="btn btn-ghost" href="{{ j.url | url }}">View role</a>
+        </article>
+        {%- endfor %}
+      </div>
+    {% else %}
+      {# jobsOpen is empty by design: the only role is a draft pending HR approval,
+         and the content pack forbids presenting a draft as an available vacancy. #}
+      <p class="notice">There are no published vacancies at the moment. Please check back for new opportunities.</p>
+    {% endif %}
+
+    <h2 class="group-h mt-xl">General applications</h2>
+    <p class="notice notice-quiet">Don't see a role that fits? The general application channel is not
+      enabled yet. When it is, you will be able to share your professional profile for future
+      opportunities, and we will explain how candidate information is handled before you submit it.</p>
+
+    <h2 class="group-h mt-xl">Careers FAQ</h2>
+    <dl class="faq">
+      <dt>Can fresh graduates apply?</dt><dd>Eligibility depends on the role. Some openings are suitable for early-career applicants, while others require specific experience.</dd>
+      <dt>Where are jobs based?</dt><dd>Every vacancy lists its location and employment arrangement. Not all roles are available in every office.</dd>
+      <dt>What happens after I apply?</dt><dd>The recruiting team reviews applications against the published requirements. If your profile is shortlisted, the team may contact you for the next step. A submission does not guarantee an interview or employment.</dd>
+      <dt>How is my information used?</dt><dd>Candidate information is used for recruitment purposes according to the published applicant privacy notice and the applicable retention policy.</dd>
+    </dl>
+  </div>
+</section>

@@ -1,0 +1,14 @@
+---
+layout: layouts/base.njk
+---
+<section class="page-head">
+  <div class="wrap">
+    <div class="sec-head">
+      {% if eyebrow %}<p class="eyebrow">{{ eyebrow }}</p>{% endif %}
+      <h1>{{ heading or title }}</h1>
+      {% if intro %}<p class="lede">{{ intro }}</p>{% endif %}
+    </div>
+  </div>
+</section>
+{{ content | safe }}
+{% if not hideCta %}{% include "partials/cta.njk" %}{% endif %}
