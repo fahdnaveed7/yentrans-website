@@ -87,12 +87,32 @@ for (const f of html) {
   if (!/skip-link/.test(t)) warn.push(`${rel(f)}: no skip link`);
 }
 
-// 6. never a stored-submission confirmation without an endpoint
-if (!approvals.forms.quoteEndpointEnabled.value) {
+// 6. never a stored-submission confirmation without a live endpoint.
+// The build brief is explicit: "Never show 'Application submitted' unless the
+// server has actually accepted and stored it." Both form families are checked,
+// each against its own endpoint flag, and the patterns cover the wording in the
+// content pack plus the obvious paraphrases someone might reach for later.
+const SUBMIT_CONFIRMATIONS = [
+  { flag: "quoteEndpointEnabled", label: "quote",
+    res: [/your enquiry has been received/i, /your enquiry was received/i,
+          /thank you[^.]{0,40}\benquiry\b[^.]{0,40}\breceived\b/i,
+          /enquiry (?:has been )?(?:successfully )?(?:sent|submitted)/i] },
+  { flag: "applicationEndpointEnabled", label: "application",
+    res: [/your application has been received/i, /application (?:has been )?(?:successfully )?(?:submitted|received)/i,
+          /thank you[^.]{0,40}\bapplication\b[^.]{0,40}\breceived\b/i,
+          /we(?:'ve| have) received your (?:application|resume|cv)/i] },
+];
+for (const { flag, label, res } of SUBMIT_CONFIRMATIONS) {
+  const enabled = approvals.forms?.[flag]?.value;
+  if (enabled) continue;
   for (const f of html) {
     const t = readFileSync(f, "utf8");
-    if (/Your enquiry has been received/.test(t))
-      fails.push(`${rel(f)}: renders a stored-submission confirmation with no endpoint configured`);
+    for (const re of res) {
+      if (re.test(t)) {
+        fails.push(`${rel(f)}: renders a ${label} success confirmation while approvals.forms.${flag} is false — no server has accepted anything`);
+        break;
+      }
+    }
   }
 }
 
