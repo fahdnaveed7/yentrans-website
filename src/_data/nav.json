@@ -1,36 +1,105 @@
 {
   "primary": [
-    { "label": "Services",       "url": "/services/" },
-    { "label": "Industries",     "url": "/industries/" },
-    { "label": "Global Network", "url": "/network/" },
-    { "label": "Insights",       "url": "/insights/" },
-    { "label": "Careers",        "url": "/careers/" },
-    { "label": "Company",        "url": "/about/" },
-    { "label": "Contact",        "url": "/contact/" }
+    {
+      "label": "Services",
+      "url": "/services/"
+    },
+    {
+      "label": "Industries",
+      "url": "/industries/"
+    },
+    {
+      "label": "Global Network",
+      "url": "/network/"
+    },
+    {
+      "label": "Contact",
+      "url": "/contact/"
+    }
   ],
-  "cta": { "label": "Request a Rate", "url": "/request-a-quote/" },
+  "cta": {
+    "label": "Request a Rate",
+    "url": "/request-a-quote/"
+  },
   "footer": [
-    { "heading": "Services", "links": [
-      { "label": "FCL ocean freight",            "url": "/services/fcl-ocean-freight/" },
-      { "label": "LCL consolidation",            "url": "/services/lcl-consolidation/" },
-      { "label": "Reefer logistics",             "url": "/services/reefer-logistics/" },
-      { "label": "Customs and documentation",    "url": "/services/customs-documentation/" },
-      { "label": "Inland and door delivery",     "url": "/services/inland-transportation/" },
-      { "label": "All services",                 "url": "/services/" }
-    ]},
-    { "heading": "Company", "links": [
-      { "label": "About Yentrans",   "url": "/about/" },
-      { "label": "Global network",   "url": "/network/" },
-      { "label": "Industries",       "url": "/industries/" },
-      { "label": "Careers",          "url": "/careers/" },
-      { "label": "Contact",          "url": "/contact/" }
-    ]},
-    { "heading": "Resources", "links": [
-      { "label": "Insights and news",  "url": "/insights/" },
-      { "label": "Knowledge hub",      "url": "/resources/" },
-      { "label": "Request a rate",     "url": "/request-a-quote/" },
-      { "label": "Privacy notice",     "url": "/privacy/" },
-      { "label": "Applicant privacy",  "url": "/applicant-privacy/" }
-    ]}
+    {
+      "heading": "Services",
+      "links": [
+        {
+          "label": "FCL ocean freight",
+          "url": "/services/fcl-ocean-freight/"
+        },
+        {
+          "label": "LCL consolidation",
+          "url": "/services/lcl-consolidation/"
+        },
+        {
+          "label": "Reefer logistics",
+          "url": "/services/reefer-logistics/"
+        },
+        {
+          "label": "Customs and documentation",
+          "url": "/services/customs-documentation/"
+        },
+        {
+          "label": "Inland and door delivery",
+          "url": "/services/inland-transportation/"
+        },
+        {
+          "label": "All services",
+          "url": "/services/"
+        }
+      ]
+    },
+    {
+      "heading": "Company",
+      "links": [
+        {
+          "label": "About Yentrans",
+          "url": "/about/"
+        },
+        {
+          "label": "Global network",
+          "url": "/network/"
+        },
+        {
+          "label": "Industries",
+          "url": "/industries/"
+        },
+        {
+          "label": "Careers",
+          "url": "/careers/"
+        },
+        {
+          "label": "Contact",
+          "url": "/contact/"
+        }
+      ]
+    },
+    {
+      "heading": "Resources",
+      "links": [
+        {
+          "label": "Insights and news",
+          "url": "/insights/"
+        },
+        {
+          "label": "Knowledge hub",
+          "url": "/resources/"
+        },
+        {
+          "label": "Request a rate",
+          "url": "/request-a-quote/"
+        },
+        {
+          "label": "Privacy notice",
+          "url": "/privacy/"
+        },
+        {
+          "label": "Applicant privacy",
+          "url": "/applicant-privacy/"
+        }
+      ]
+    }
   ]
 }

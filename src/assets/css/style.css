@@ -108,7 +108,7 @@ p{margin:0 0 1.1em}
 .btn-primary:hover{background:var(--blue-deep);border-color:var(--blue-deep);transform:translateY(-1px)}
 .btn-ghost{background:transparent;color:var(--ink);border-color:var(--line)}
 .btn-ghost:hover{border-color:var(--link-on-light);color:var(--link-on-light)}
-.btn-onDark{background:rgba(255,255,255,.1);color:#fff;border-color:rgba(255,255,255,.35);backdrop-filter:blur(6px)}
+.btn-onDark{background:rgba(0,0,0,.16);color:#fff;border-color:rgba(255,255,255,.45);backdrop-filter:blur(6px)}
 .btn-onDark:hover{background:#fff;color:var(--blue-ink);border-color:#fff}
 .arrow{transition:transform .22s var(--ease)}
 .btn:hover .arrow{transform:translateX(3px)}
@@ -127,7 +127,13 @@ p{margin:0 0 1.1em}
 
 .site-head{position:sticky;top:0;z-index:60;background:#fff;border-bottom:1px solid var(--line)}
 .head-in{display:flex;align-items:center;gap:2.2rem;height:78px}
-.brand img{height:36px;width:auto}
+/* .brand must not shrink. It is a flex item next to a seven-item nav and two
+   buttons; with the default `flex:0 1 auto` the browser squeezed it and the
+   global img{max-width:100%} then clamped the logo's width while its height
+   held, rendering a 3.87:1 logo at 1:1. flex:none plus an explicit width
+   keeps the aspect ratio under any amount of nav pressure. */
+.brand{flex:none;display:flex;align-items:center}
+.brand img{height:36px;width:139px;max-width:none}
 
 .nav-main{display:flex;gap:1.9rem;margin-left:auto;align-items:center}
 .nav-main a{
@@ -331,7 +337,7 @@ section{padding:clamp(4rem,7.5vw,6.5rem) 0}
 .site-foot h4{color:#fff;font-size:.75rem;letter-spacing:.14em;text-transform:uppercase;margin-bottom:1.1rem;font-weight:600}
 .site-foot ul{list-style:none;margin:0;padding:0;display:grid;gap:.6rem}
 .site-foot a:hover{color:#fff}
-.foot-bot{display:flex;justify-content:space-between;gap:1rem;padding-top:1.8rem;flex-wrap:wrap;font-size:.83rem;color:rgba(255,255,255,.45)}
+.foot-bot{display:flex;justify-content:space-between;gap:1rem;padding-top:1.8rem;flex-wrap:wrap;font-size:.83rem;color:rgba(255,255,255,.58)}
 
 /* ---- scroll reveal ------------------------------------------------------- */
 .js .reveal{opacity:0;transform:translateY(22px);transition:opacity .7s var(--ease),transform .7s var(--ease)}
@@ -402,7 +408,13 @@ section{padding:clamp(4rem,7.5vw,6.5rem) 0}
    ======================================================================== */
 
 /* ---- layout helpers ----------------------------------------------------- */
-.wrap-narrow{max-width:760px}
+/* .wrap-narrow used to be a 760px box centred in the viewport, while the page
+   heading above it sat in a 1280px .wrap — so on every one of the eleven
+   templates that use it the reading column started about 260px to the right of
+   its own heading. Keeping the outer box identical to .wrap and constraining
+   the children instead left-aligns the column with the heading at every width. */
+.wrap-narrow{max-width:var(--max)}
+.wrap-narrow > *{max-width:760px}
 .pt-0{padding-top:0}
 .mt-xl{margin-top:clamp(2.75rem,5vw,4rem)}
 .page-head{padding-bottom:clamp(1.75rem,3vw,2.5rem)}
@@ -541,7 +553,10 @@ section{padding:clamp(4rem,7.5vw,6.5rem) 0}
 
 /* ---- office card additions ---------------------------------------------- */
 .office-person{font-weight:600;color:var(--ink)}
-.office-entity{margin-top:.6rem;font-size:.82rem;color:var(--ink-55,#6F8190);line-height:1.5}
+/* Was --ink-55 / Steel Gray, which is 4.02:1 on white — BRAND_MANIFEST.json
+   marks that token normal_text_on_light_allowed:false for exactly this
+   reason. --ink-45 is 4.76:1 and clears AA. */
+.office-entity{margin-top:.6rem;font-size:.82rem;color:var(--ink-45);line-height:1.5}
 .office-coverage{margin-top:.2rem;font-size:.94rem;line-height:1.7;color:var(--ink-70)}
 
 
@@ -624,7 +639,7 @@ section{padding:clamp(4rem,7.5vw,6.5rem) 0}
 .split-cta .a{background:var(--blue-ink);color:#fff}
 .split-cta .b{background:var(--blue-deep);color:#fff}
 .split-cta h2{color:#fff;margin-bottom:.9rem}
-.split-cta p{color:rgba(255,255,255,.82);max-width:46ch;margin:0 auto 1.8rem}
+.split-cta p{color:rgba(255,255,255,.95);max-width:46ch;margin:0 auto 1.8rem}
 @media(max-width:760px){
   .net-regions{grid-template-columns:1fr}
   .split-cta{grid-template-columns:1fr}
@@ -716,7 +731,9 @@ section{padding:clamp(4rem,7.5vw,6.5rem) 0}
 .rm-node.is-hq text{font-size:23px}
 .rm-edge text{fill:rgba(151,217,243,.75);font-family:"Manrope",sans-serif;font-size:15px;
   font-weight:600;letter-spacing:.14em;text-transform:uppercase}
-.routemap figcaption{margin-top:.9rem;font-size:.8rem;color:var(--ink-45);line-height:1.5}
+/* --ink-45 is 4.76:1 on white but only 4.41:1 on the mist panel this figure
+   sits in, which fails AA for body text. --ink-70 gives 6.5:1 there. */
+.routemap figcaption{margin-top:.9rem;font-size:.8rem;color:var(--ink-70);line-height:1.5}
 .sec-ink .routemap figcaption{color:rgba(255,255,255,.55)}
 
 @media (prefers-reduced-motion:reduce){
