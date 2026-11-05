@@ -722,3 +722,28 @@ section{padding:clamp(4rem,7.5vw,6.5rem) 0}
 @media (prefers-reduced-motion:reduce){
   .rm-flow{animation:none;stroke-dasharray:none}
 }
+
+/* A sector with no detail page of its own is informational, so it should not
+   offer hover affordances that lead nowhere. */
+.card--static{cursor:default}
+.card--static:hover{transform:none;border-color:var(--line);box-shadow:none}
+.card--static:hover::after{transform:scaleX(0)}
+
+/* Group heading with its sector icon. Carries the icon once per group rather
+   than repeating it on every card in the row. */
+.group-h--ico{display:flex;align-items:center;gap:.85rem}
+.group-h--ico .ico{width:30px;height:30px;color:var(--blue-deep);flex:none}
+.group-h--ico span{display:block}
+
+/* The schematic scales its whole 1000-unit viewBox down to the viewport, so
+   label text shrinks with it: 19 units renders at about 6px on a 375px screen.
+   Sizes are raised in viewBox units at small widths, and the edge labels drop
+   out because at that scale they crowd the nodes without adding much. */
+@media(max-width:760px){
+  .rm-node text{font-size:36px;stroke-width:7px}
+  .rm-node.is-hq text{font-size:42px}
+  .rm-edge{display:none}
+  .rm-dot{r:9}
+  .rm-node.is-hq .rm-dot{r:12}
+  .routemap svg{min-height:300px}
+}

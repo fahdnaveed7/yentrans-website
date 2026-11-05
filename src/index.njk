@@ -118,13 +118,17 @@ seoDescription: "Yentrans Maritime Logistics coordinates ocean freight, customs 
         industrial equipment do not move under the same constraints. Explore how we approach the cargo
         requirements of different industries.</p>
     </div>
-    <div class="grid grid-3">
+    <div class="cardgrid">
       {%- for slug in ["seafood-fisheries","agriculture-fresh-produce","pharma-healthcare","automotive-components","project-cargo","retail-consumer-goods"] %}
       {%- for i in industries.items %}{% if i.slug == slug %}
-      <article class="cell reveal">
-        <h3>{% if i.flagship %}<a href="{{ ('/industries/' + i.slug + '/') | url }}">{{ i.title }}</a>{% else %}<a href="{{ '/industries/#' + i.slug | url }}">{{ i.title }}</a>{% endif %}</h3>
-        <p>{{ i.summary | truncate(170) }}</p>
+      {%- for g in industries.groups %}{% if g.id == i.group %}
+      <article class="card reveal">
+        <span class="card-ico">{{ icon(g.icon) }}</span>
+        <h3>{% if i.flagship %}<a href="{{ ('/industries/' + i.slug + '/') | url }}">{{ i.title }}</a>{% else %}<a href="{{ '/industries/' | url }}#{{ i.slug }}">{{ i.title }}</a>{% endif %}</h3>
+        <p>{{ i.summary | truncate(140) }}</p>
+        <span class="more">{% if i.flagship %}Sector detail{% else %}Read more{% endif %} {{ icon("arrow") }}</span>
       </article>
+      {%- endif %}{% endfor %}
       {% endif %}{%- endfor %}{%- endfor %}
     </div>
     <p class="sec-more"><a class="btn btn-ghost" href="{{ '/industries/' | url }}">View All Industries</a></p>
