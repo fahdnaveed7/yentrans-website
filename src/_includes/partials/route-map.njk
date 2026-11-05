@@ -1,0 +1,87 @@
+{# Route schematic.
+
+   Node positions are computed from each office's real latitude and longitude
+   on an equirectangular projection spanning 44°–90°E and 5°–30°N, so the
+   spatial relationships are truthful even though no landmasses are drawn.
+   The graticule carries the geography; drawing approximate coastlines would
+   be inventing detail the brand package has not cleared.
+
+   It is explicitly labelled illustrative. CONTENT_FACTS_TO_VERIFY marks trade
+   lanes as CAP-05 UNKNOWN, so the arcs show where the offices are and that
+   cargo moves onward, not a claim about specific serviced lanes. #}
+<figure class="routemap">
+  <svg viewBox="0 0 1000 560" role="img"
+       aria-labelledby="routemap-title routemap-desc" preserveAspectRatio="xMidYMid meet">
+    <title id="routemap-title">Yentrans office locations across India and the Gulf</title>
+    <desc id="routemap-desc">An illustrative schematic plotting the Kochi, Chennai and
+      Visakhapatnam offices in India and the Dubai, Muscat and Salalah offices in the Gulf,
+      with onward routes leaving the frame toward other markets.</desc>
+
+    <defs>
+      <linearGradient id="rm-arc" x1="0" y1="0" x2="1" y2="0">
+        <stop offset="0%"   stop-color="#31A9DE" stop-opacity=".3"/>
+        <stop offset="50%"  stop-color="#31A9DE" stop-opacity=".9"/>
+        <stop offset="100%" stop-color="#97D9F3" stop-opacity=".45"/>
+      </linearGradient>
+      <radialGradient id="rm-glow">
+        <stop offset="0%"   stop-color="#31A9DE" stop-opacity=".55"/>
+        <stop offset="100%" stop-color="#31A9DE" stop-opacity="0"/>
+      </radialGradient>
+    </defs>
+
+    {# graticule — meridians every 10°, parallels every 5° #}
+    <g class="rm-grid">
+      <path d="M130 0V560M348 0V560M565 0V560M783 0V560"/>
+      <path d="M0 560H1000M0 448H1000M0 336H1000M0 224H1000M0 112H1000"/>
+    </g>
+
+    {# onward routes leaving the frame: westbound and eastbound #}
+    <g class="rm-arcs">
+      <path class="rm-flow" d="M219 291 C 120 300, 40 270, -40 250"/>
+      <path class="rm-flow" d="M852 276 C 930 250, 980 210, 1050 180"/>
+      <path class="rm-flow" d="M702 448 C 820 500, 940 505, 1050 470"/>
+      {# Gulf cluster to Indian cluster #}
+      <path class="rm-flow" d="M245 108 C 420 150, 560 300, 702 448"/>
+      <path class="rm-flow" d="M313 144 C 480 190, 640 290, 788 379"/>
+      <path class="rm-flow" d="M219 291 C 400 360, 560 400, 702 448"/>
+    </g>
+
+    {# nodes #}
+    <g class="rm-nodes">
+      <g class="rm-node is-hq" transform="translate(702,448)">
+        <circle class="rm-halo" r="26"/><circle class="rm-dot" r="7"/>
+        <text x="16" y="5">Kochi</text>
+      </g>
+      <g class="rm-node" transform="translate(788,379)">
+        <circle class="rm-halo" r="20"/><circle class="rm-dot" r="5"/>
+        <text x="13" y="4">Chennai</text>
+      </g>
+      <g class="rm-node" transform="translate(852,276)">
+        <circle class="rm-halo" r="20"/><circle class="rm-dot" r="5"/>
+        <text x="13" y="4">Vizag</text>
+      </g>
+      <g class="rm-node" transform="translate(245,108)">
+        <circle class="rm-halo" r="20"/><circle class="rm-dot" r="5"/>
+        <text x="13" y="4">Dubai</text>
+      </g>
+      <g class="rm-node" transform="translate(313,144)">
+        <circle class="rm-halo" r="20"/><circle class="rm-dot" r="5"/>
+        <text x="13" y="4">Muscat</text>
+      </g>
+      <g class="rm-node" transform="translate(219,291)">
+        <circle class="rm-halo" r="20"/><circle class="rm-dot" r="5"/>
+        <text x="13" y="4">Salalah</text>
+      </g>
+    </g>
+
+    {# Two edge labels, not three: the third sat directly on the Kochi outbound
+       arc. West covers Europe, Africa and the Americas together, which is also
+       the more accurate grouping from an Indian or Gulf origin. #}
+    <g class="rm-edge">
+      <text x="14" y="232">Europe &middot; Africa &middot; Americas</text>
+      <text x="986" y="162" text-anchor="end">Far East &middot; Oceania</text>
+    </g>
+  </svg>
+  <figcaption>Illustrative. Office locations are plotted from their actual coordinates;
+    onward routes indicate direction of trade, not specific serviced lanes.</figcaption>
+</figure>

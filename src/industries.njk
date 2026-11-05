@@ -9,6 +9,7 @@ intro: "Shipping requirements change with the product. Temperature sensitivity, 
 ctaHeading: "Tell us what you're shipping."
 ctaAction: "Discuss Cargo Requirements"
 ---
+{% from "partials/icon.njk" import icon %}
 <section class="pt-0">
   <div class="wrap">
     <div class="notice notice-quiet">
@@ -19,16 +20,16 @@ ctaAction: "Discuss Cargo Requirements"
 
     {%- for group in industries.groups %}
     <section class="ind-group" id="{{ group.id }}">
-      <h2 class="group-h">{{ group.title }}</h2>
-      <div class="grid grid-3">
+      <h2 class="group-h group-h--ico">{{ icon(group.icon) }}<span>{{ group.title }}</span></h2>
+      <div class="cardgrid">
         {%- for item in industries.items %}{% if item.group == group.id %}
-        <article class="cell reveal" id="{{ item.slug }}">
+        <article class="card{% if not item.flagship %} card--static{% endif %} reveal" id="{{ item.slug }}">
           <h3>
             {% if item.flagship %}<a href="{{ ('/industries/' + item.slug + '/') | url }}">{{ item.title }}</a>
             {% else %}{{ item.title }}{% endif %}
           </h3>
           <p>{{ item.summary }}</p>
-          {% if item.flagship %}<p class="cell-more"><a href="{{ ('/industries/' + item.slug + '/') | url }}">How we approach it <span class="arrow">&rarr;</span></a></p>{% endif %}
+          {% if item.flagship %}<span class="more">How we approach it {{ icon("arrow") }}</span>{% endif %}
         </article>
         {% endif %}{%- endfor %}
       </div>
