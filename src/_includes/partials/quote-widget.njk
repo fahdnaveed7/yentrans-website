@@ -1,0 +1,45 @@
+{# Rate starter. Sits over the foot of the hero, the way CEVA puts its
+   Track & Trace panel there, because on a forwarder's site the fastest useful
+   action is "price this lane".
+
+   It deliberately does NOT offer shipment tracking. There is no tracking
+   backend behind this site, and a box that looks like a tracker but cannot
+   track is worse than no box. These three fields are real: they carry straight
+   into the full enquiry form and arrive prefilled.
+
+   It is a GET form to /request-a-quote/, so it works with JavaScript off. Only
+   lane details travel in the query string — never a name, email or phone. #}
+<div class="quote-strip">
+  <div class="wrap">
+    <form class="quote-starter" action="{{ '/request-a-quote/' | url }}" method="get">
+      <p class="quote-starter-h">Get a rate</p>
+
+      <div class="qs-field">
+        <label for="qs-origin">Origin</label>
+        <input id="qs-origin" name="origin" type="text" autocomplete="off"
+               placeholder="Cochin, Nhava Sheva…">
+      </div>
+
+      <div class="qs-field">
+        <label for="qs-destination">Destination</label>
+        <input id="qs-destination" name="destination" type="text" autocomplete="off"
+               placeholder="Jebel Ali, Houston…">
+      </div>
+
+      <div class="qs-field">
+        <label for="qs-type">Shipment type</label>
+        <select id="qs-type" name="shipmentType">
+          <option value="">Any</option>
+          <option>FCL</option>
+          <option>LCL</option>
+          <option>Reefer</option>
+          <option>Project / out of gauge</option>
+        </select>
+      </div>
+
+      <button class="btn btn-primary qs-go" type="submit">
+        Continue <span class="arrow">&rarr;</span>
+      </button>
+    </form>
+  </div>
+</div>

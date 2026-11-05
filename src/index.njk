@@ -21,6 +21,7 @@ seoDescription: "Yentrans Maritime Logistics coordinates ocean freight, customs 
     </div>
   </div>
 </section>
+{% include "partials/quote-widget.njk" %}
 
 <section>
   <div class="wrap">
@@ -100,6 +101,24 @@ seoDescription: "Yentrans Maritime Logistics coordinates ocean freight, customs 
         network in India and operations in Dubai and Oman, working with international carriers and
         destination partners when a movement reaches beyond our own offices.</p>
     </div>
+    {# Rendered from the approved branch directory, so the page can never claim
+       a location the data has not cleared. An unapproved one shows as presence
+       without an address rather than being silently dropped. #}
+    <div class="net-regions">
+      {%- for g in offices.groups %}
+      <div class="net-region reveal">
+        <p class="net-region-h">{{ g.title }}</p>
+        <ul>
+          {%- for id in g.ids %}{% for o in offices.locations %}{% if o.id == id %}
+          <li>
+            {%- if o.approved %}<strong>{{ o.city }}</strong>{% if o.isHeadOffice %} — head office{% elif o.role %} — {{ o.role | lower }}{% endif %}
+            {%- else %}<span class="is-pending">{{ o.city }} — pending confirmation</span>{% endif %}
+          </li>
+          {%- endif %}{% endfor %}{%- endfor %}
+        </ul>
+      </div>
+      {%- endfor %}
+    </div>
     <p class="sec-more"><a class="btn btn-ghost" href="{{ '/network/' | url }}">See Our Network</a></p>
   </div>
 </section>
@@ -131,6 +150,21 @@ seoDescription: "Yentrans Maritime Logistics coordinates ocean freight, customs 
 {% set ctaHeading = "Tell us the lane. We'll discuss the options." %}
 {% set ctaBody = "Share your origin, destination, cargo and approximate shipment date. We'll help identify the information and routing options needed to move forward." %}
 {% set ctaAction = "Request a Freight Quote" %}
+<section class="split-cta">
+  <div class="a reveal">
+    <h2>Help make trade move.</h2>
+    <p>Explore opportunities in freight operations, customer service, documentation,
+      transportation, sales and corporate functions.</p>
+    <a class="btn btn-onDark" href="{{ '/careers/' | url }}">Explore Careers <span class="arrow">&rarr;</span></a>
+  </div>
+  <div class="b reveal">
+    <h2>Freight, explained.</h2>
+    <p>Practical guides to containers, documentation, Incoterms and reefer planning,
+      written for importers and exporters rather than for other forwarders.</p>
+    <a class="btn btn-onDark" href="{{ '/resources/' | url }}">Knowledge Hub <span class="arrow">&rarr;</span></a>
+  </div>
+</section>
+
 {% include "partials/cta.njk" %}
 
 <script type="application/ld+json">{{ {
