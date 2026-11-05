@@ -32,7 +32,13 @@
   --link-on-light:var(--yml-teal);
   --link-on-dark:var(--yml-cyan);
 
-  --max:1200px;
+  /* --- Type. Manrope/Inter per BRAND_MANIFEST.json; the heavy uppercase
+     section heading is the structural device that carries the layout where
+     photography is unavailable. --- */
+  --font-head:"Manrope","Segoe UI",Helvetica,Arial,sans-serif;
+  --font-body:"Inter","Segoe UI",Helvetica,Arial,sans-serif;
+
+  --max:1280px;
   --gut:clamp(20px,5vw,64px);
   --r:4px;
   --shadow:0 1px 2px rgba(13,40,59,.05), 0 12px 32px -12px rgba(13,40,59,.14);
@@ -42,8 +48,8 @@
 html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
 body{
   margin:0;background:var(--white);color:var(--ink);
-  font-family:"Source Sans 3","Segoe UI",Helvetica,Arial,sans-serif;
-  font-size:17.5px;line-height:1.68;letter-spacing:0;
+  font-family:var(--font-body);
+  font-size:17px;line-height:1.65;letter-spacing:0;
   -webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;
 }
 img,video{max-width:100%;display:block}
@@ -52,16 +58,33 @@ a{color:inherit;text-decoration:none}
 
 /* ---- type ---------------------------------------------------------------- */
 h1,h2,h3,h4{
-  margin:0;font-family:"Source Serif 4",Georgia,"Times New Roman",serif;
-  font-weight:600;letter-spacing:-.012em;line-height:1.14;
+  margin:0;font-family:var(--font-head);
+  font-weight:800;letter-spacing:-.02em;line-height:1.1;
 }
-h1{font-size:clamp(2.3rem,5.4vw,3.9rem);line-height:1.08}
-h2{font-size:clamp(1.75rem,3.3vw,2.7rem)}
-h3{font-size:1.22rem;letter-spacing:-.006em}
+h1{font-size:clamp(2.4rem,5.6vw,4.2rem);line-height:1.04;letter-spacing:-.03em}
+h2{font-size:clamp(1.8rem,3.4vw,2.8rem);letter-spacing:-.025em}
+h3{font-size:1.2rem;font-weight:700;letter-spacing:-.01em}
+h4{font-size:1rem;font-weight:700}
+
+/* The structural device of this layout: a heavy uppercase section head with a
+   short cyan rule under it. It does the work photography would otherwise do,
+   which is why it is a named class rather than a one-off. */
+.sec-title{
+  font-family:var(--font-head);font-weight:800;text-transform:uppercase;
+  font-size:clamp(1.6rem,3vw,2.4rem);letter-spacing:.01em;line-height:1.08;
+  color:var(--blue-ink);margin:0 0 1rem;
+}
+.sec-title::after{
+  content:"";display:block;width:56px;height:4px;background:var(--blue);
+  margin-top:1rem;border-radius:2px;
+}
+.sec-title.center{text-align:center}
+.sec-title.center::after{margin-left:auto;margin-right:auto}
+.on-dark .sec-title,.sec-ink .sec-title{color:#fff}
 p{margin:0 0 1.1em}
 .lede{font-size:clamp(1.06rem,1.6vw,1.26rem);line-height:1.62;color:var(--ink-70)}
 .eyebrow{
-  font-family:"Source Sans 3",sans-serif;font-size:.73rem;font-weight:600;letter-spacing:.16em;text-transform:uppercase;
+  font-family:var(--font-body);font-size:.7rem;font-weight:700;letter-spacing:.18em;text-transform:uppercase;
   color:var(--blue-deep);margin:0 0 .9rem;display:flex;align-items:center;gap:.6rem;
 }
 .eyebrow::before{content:"";width:26px;height:2px;background:var(--blue);flex:none}
@@ -70,9 +93,10 @@ p{margin:0 0 1.1em}
 
 /* ---- buttons ------------------------------------------------------------- */
 .btn{
-  font-family:"Source Sans 3",sans-serif;
+  font-family:var(--font-body);
   display:inline-flex;align-items:center;gap:.55rem;
-  padding:.85rem 1.6rem;border-radius:var(--r);font-size:.94rem;font-weight:550;
+  padding:.95rem 1.8rem;border-radius:2px;font-size:.84rem;font-weight:700;
+  text-transform:uppercase;letter-spacing:.06em;
   border:1px solid transparent;cursor:pointer;transition:all .22s var(--ease);
   white-space:nowrap;
 }
@@ -85,32 +109,72 @@ p{margin:0 0 1.1em}
 .arrow{transition:transform .22s var(--ease)}
 .btn:hover .arrow{transform:translateX(3px)}
 
-/* ---- header -------------------------------------------------------------- */
-.site-head{
-  position:sticky;top:0;z-index:60;background:rgba(255,255,255,.93);
-  backdrop-filter:saturate(180%) blur(14px);border-bottom:1px solid var(--line);
+/* ---- utility bar + header ------------------------------------------------ */
+.util-bar{background:var(--blue-ink);color:rgba(255,255,255,.72);font-size:.8rem}
+.util-in{display:flex;align-items:center;justify-content:space-between;gap:1.2rem;
+  padding-top:.55rem;padding-bottom:.55rem;flex-wrap:wrap}
+.util-claim{margin:0;letter-spacing:.01em}
+.util-links{display:flex;gap:1.6rem;flex-wrap:wrap}
+.util-links a{display:inline-flex;align-items:center;gap:.45rem;color:rgba(255,255,255,.82);
+  font-weight:500;transition:color .2s}
+.util-links a:hover{color:#fff}
+.util-links svg{width:14px;height:14px;fill:none;stroke:var(--blue);stroke-width:2;
+  stroke-linecap:round;stroke-linejoin:round;flex:none}
+
+.site-head{position:sticky;top:0;z-index:60;background:#fff;border-bottom:1px solid var(--line)}
+.head-in{display:flex;align-items:center;gap:2.2rem;height:78px}
+.brand img{height:36px;width:auto}
+
+.nav-main{display:flex;gap:1.9rem;margin-left:auto;align-items:center}
+.nav-main a{
+  font-family:var(--font-head);font-size:.82rem;font-weight:700;
+  text-transform:uppercase;letter-spacing:.07em;color:var(--blue-ink);
+  position:relative;padding:.4rem 0;transition:color .2s;white-space:nowrap;
 }
-.head-in{display:flex;align-items:center;gap:2.4rem;height:82px}
-.brand img{height:34px;width:auto}
-.nav{display:flex;gap:2rem;margin-left:auto;align-items:center}
-.nav a{
-  font-size:.92rem;font-weight:500;color:var(--ink-70);
-  position:relative;padding:.3rem 0;transition:color .2s;
+.nav-main a:hover{color:var(--blue-deep)}
+.nav-main a[aria-current="page"]::after{
+  content:"";position:absolute;left:0;right:0;bottom:-1px;height:3px;background:var(--blue);
 }
-.nav a:hover,.nav a[aria-current="page"]{color:var(--ink)}
-.nav a[aria-current="page"]::after{
-  content:"";position:absolute;left:0;right:0;bottom:-2px;height:2px;background:var(--blue);
+
+.head-actions{display:flex;align-items:center;gap:.9rem}
+.head-cta{white-space:nowrap}
+
+/* The Menu button is the mega-panel trigger. It reads as a solid block in brand
+   cyan, the role CEVA gives its red button, so the panel is obviously openable. */
+.menu-btn{
+  display:inline-flex;align-items:center;gap:.6rem;cursor:pointer;
+  font-family:var(--font-head);font-size:.8rem;font-weight:800;
+  text-transform:uppercase;letter-spacing:.07em;
+  background:var(--blue-ink);color:#fff;border:0;border-radius:2px;
+  padding:.85rem 1.1rem;transition:background .2s var(--ease);
 }
-/* The header CTA is an <a> inside .nav, so `.nav a` (0,1,1) was beating
-   `.btn-primary` (0,1,0) and painting the label --ink-70 grey on the teal
-   button: 1.50:1, far below AA, on the site's main conversion control.
-   These selectors restore the button's own colours at matching specificity. */
-.nav a.head-cta{color:#fff}
-.nav a.head-cta:hover{color:#fff}
-.nav a.head-cta[aria-current="page"]::after{display:none}
-.head-cta{margin-left:.6rem}
-.burger{display:none;margin-left:auto;background:none;border:0;padding:.5rem;cursor:pointer}
-.burger span{display:block;width:22px;height:2px;background:var(--ink);margin:4px 0;transition:.25s}
+.menu-btn:hover{background:var(--blue-deep)}
+.menu-bars{display:block;width:18px}
+.menu-bars span{display:block;height:2px;background:#fff;margin:3.5px 0;
+  transition:transform .25s var(--ease),opacity .2s}
+.menu-btn[aria-expanded="true"] .menu-bars span:nth-child(1){transform:translateY(5.5px) rotate(45deg)}
+.menu-btn[aria-expanded="true"] .menu-bars span:nth-child(2){opacity:0}
+.menu-btn[aria-expanded="true"] .menu-bars span:nth-child(3){transform:translateY(-5.5px) rotate(-45deg)}
+
+/* ---- mega panel ---------------------------------------------------------- */
+.mega{
+  position:sticky;top:78px;z-index:55;background:#fff;
+  border-bottom:1px solid var(--line);box-shadow:var(--shadow);
+}
+.mega[hidden]{display:none}
+.mega-in{display:grid;grid-template-columns:1fr 2.1fr 1fr;gap:clamp(1.5rem,4vw,3.5rem);
+  padding-top:2.4rem;padding-bottom:2.6rem}
+.mega-h{font-family:var(--font-head);font-size:.76rem;font-weight:800;text-transform:uppercase;
+  letter-spacing:.14em;color:var(--blue-deep);margin:0 0 1rem;padding-bottom:.7rem;
+  border-bottom:2px solid var(--blue)}
+.mega-h--spaced{margin-top:2rem}
+.mega-col ul{list-style:none;margin:0;padding:0;display:grid;gap:.6rem}
+.mega-col li a{font-size:.92rem;color:var(--ink-70);transition:color .18s}
+.mega-col li a:hover{color:var(--blue-deep)}
+.mega-groups{display:grid;grid-template-columns:repeat(2,1fr);gap:1.6rem 2rem}
+.mega-group-h{font-size:.74rem;font-weight:700;text-transform:uppercase;letter-spacing:.1em;
+  color:var(--ink-45);margin:0 0 .6rem}
+.mega-cta{margin-top:1.6rem;width:100%;justify-content:center}
 
 /* ---- hero ---------------------------------------------------------------- */
 .hero{position:relative;min-height:clamp(560px,82vh,760px);display:flex;align-items:center;overflow:hidden;background:var(--blue-ink)}
@@ -191,7 +255,7 @@ section{padding:clamp(4rem,7.5vw,6.5rem) 0}
 /* ---- stats --------------------------------------------------------------- */
 .stats{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:rgba(255,255,255,.14)}
 .stat{background:var(--ink);padding:clamp(1.6rem,3vw,2.2rem)}
-.stat .n{font-family:"Source Serif 4",Georgia,serif;font-size:clamp(1.9rem,3.4vw,2.7rem);font-weight:600;color:#fff;letter-spacing:-.03em;line-height:1}
+.stat .n{font-family:var(--font-head);font-size:clamp(1.9rem,3.4vw,2.7rem);font-weight:600;color:#fff;letter-spacing:-.03em;line-height:1}
 .stat .l{font-size:.82rem;color:rgba(255,255,255,.6);margin-top:.5rem}
 
 /* ---- steps --------------------------------------------------------------- */
@@ -230,9 +294,9 @@ section{padding:clamp(4rem,7.5vw,6.5rem) 0}
    trailing wave tapered, so it needs no colour filter: at rgb(73,176,227) it
    sits at 7.5:1 against the footer ink. The earlier hand-drawn SVG is gone. */
 .foot-logo span{display:flex;flex-direction:column;line-height:1.12;color:#fff;
-  font-family:"Source Serif 4",Georgia,"Times New Roman",serif;font-size:1.12rem;
+  font-family:var(--font-head);font-size:1.12rem;
   font-weight:600;letter-spacing:.005em}
-.foot-logo em{font-style:normal;font-family:"Source Sans 3","Segoe UI",Helvetica,Arial,sans-serif;
+.foot-logo em{font-style:normal;font-family:var(--font-body);
   font-size:.63rem;font-weight:500;letter-spacing:.17em;text-transform:uppercase;
   color:rgba(255,255,255,.62);margin-top:.2rem}
 .foot-brand p{max-width:34ch;font-size:.9rem;line-height:1.6;margin:0}
@@ -251,6 +315,9 @@ section{padding:clamp(4rem,7.5vw,6.5rem) 0}
 
 /* ---- responsive ---------------------------------------------------------- */
 @media(max-width:1000px){
+  .mega-in{grid-template-columns:1fr 1fr}
+  .nav-main{gap:1.2rem}
+  .nav-main a{font-size:.76rem}
   .grid-3{grid-template-columns:repeat(2,1fr)}
   .steps{grid-template-columns:repeat(2,1fr)}
   .step::after{display:none}
@@ -260,16 +327,19 @@ section{padding:clamp(4rem,7.5vw,6.5rem) 0}
 }
 @media(max-width:760px){
   body{font-size:16px}
-  .nav{
-    position:fixed;inset:82px 0 auto;background:#fff;flex-direction:column;
-    align-items:stretch;gap:0;padding:.5rem var(--gut) 1.4rem;
-    border-bottom:1px solid var(--line);transform:translateY(-120%);
-    transition:transform .3s var(--ease);
-  }
-  .nav.open{transform:none}
-  .nav a{padding:.85rem 0;border-bottom:1px solid var(--line);font-size:1rem}
-  .nav .head-cta{margin:1rem 0 0;justify-content:center}
-  .burger{display:block}
+  /* The primary links fold away; the Menu button and its panel become the
+     whole navigation, which is why every destination also lives in the panel. */
+  .nav-main{display:none}
+  .head-in{gap:1rem;height:66px}
+  .head-actions{margin-left:auto}
+  .head-cta{display:none}            /* the panel carries its own prominent CTA */
+  .menu-btn{padding:.7rem .9rem}
+  .util-in{justify-content:center;font-size:.76rem}
+  .util-claim{display:none}          /* keep the strip to the two contact routes */
+  .util-links{gap:1.1rem}
+  .mega{top:66px;max-height:calc(100vh - 66px);overflow-y:auto}
+  .mega-in{grid-template-columns:1fr;gap:1.8rem;padding-top:1.6rem;padding-bottom:2rem}
+  .mega-groups{grid-template-columns:1fr}
   .grid-3,.grid-2,.split,.cargo,.steps{grid-template-columns:1fr}
   .split-media{aspect-ratio:16/10}
   .foot-top{grid-template-columns:1fr;gap:2rem}
@@ -283,7 +353,7 @@ section{padding:clamp(4rem,7.5vw,6.5rem) 0}
 /* ---- accessibility + editorial state ------------------------------------- */
 .skip-link{position:absolute;left:-9999px;top:0;z-index:999;background:var(--yml-navy);
   color:#fff;padding:.75rem 1.1rem;border-radius:0 0 var(--r) 0;font-size:.9rem;font-weight:600}
-.skip-link:focus{left:0}
+.skip-link:focus,.skip-link:focus-visible{left:0;outline:3px solid #fff;outline-offset:-6px}
 :focus-visible{outline:3px solid var(--yml-teal);outline-offset:2px}
 
 .draft-banner{background:#8A5A00;color:#fff;font-size:.86rem;line-height:1.5;padding:.7rem 0}
@@ -350,7 +420,7 @@ section{padding:clamp(4rem,7.5vw,6.5rem) 0}
   border-radius:999px;background:var(--white);color:var(--ink-70)}
 
 .faq{margin:0}
-.faq dt{font-weight:600;font-family:"Source Serif 4",Georgia,serif;font-size:1.05rem;
+.faq dt{font-weight:600;font-family:var(--font-head);font-size:1.05rem;
   margin-top:1.8rem;padding-top:1.8rem;border-top:1px solid var(--line)}
 .faq dt:first-child{margin-top:0;padding-top:0;border-top:0}
 .faq dd{margin:.6rem 0 0;color:var(--ink-70);line-height:1.68}
@@ -380,7 +450,7 @@ section{padding:clamp(4rem,7.5vw,6.5rem) 0}
 /* ---- stats (render only when approved) ---------------------------------- */
 .stat-row{display:grid;grid-template-columns:repeat(auto-fit,minmax(130px,1fr));gap:1.5rem;
   margin:2.5rem 0;padding:1.8rem 0;border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
-.stat .n{display:block;font-family:"Source Serif 4",Georgia,serif;font-size:2rem;
+.stat .n{display:block;font-family:var(--font-head);font-size:2rem;
   font-weight:600;color:var(--blue-ink);line-height:1}
 .stat span:last-child{font-size:.8rem;color:var(--ink-45);letter-spacing:.06em;text-transform:uppercase}
 
@@ -446,17 +516,43 @@ section{padding:clamp(4rem,7.5vw,6.5rem) 0}
 .office-entity{margin-top:.6rem;font-size:.82rem;color:var(--ink-55,#6F8190);line-height:1.5}
 .office-coverage{margin-top:.2rem;font-size:.94rem;line-height:1.7;color:var(--ink-70)}
 
-/* ---- skip link ----------------------------------------------------------
-   Present in the markup on every page for keyboard users, but it must not be
-   visible until focused. Without this rule it renders as plain text above the
-   header. Offscreen rather than display:none, so screen readers still reach it. */
-.skip-link{
-  position:absolute;left:-9999px;top:0;z-index:999;
-  background:var(--blue,#38AAE1);color:#fff;
-  padding:.7rem 1.1rem;border-radius:0 0 var(--r,6px) 0;
-  font-family:"Source Sans 3","Segoe UI",Helvetica,Arial,sans-serif;
-  font-size:.9rem;font-weight:600;text-decoration:none;
+
+/* ---- rate starter (overlaps the hero) ------------------------------------ */
+/* Pulled up over the hero so the first useful action is visible without
+   scrolling — the role CEVA gives its Track & Trace panel. */
+.quote-strip{position:relative;z-index:5;margin-top:-54px;margin-bottom:clamp(2.5rem,5vw,4rem)}
+.quote-starter{
+  display:grid;grid-template-columns:auto 1fr 1fr auto auto;align-items:end;
+  gap:1.1rem 1.4rem;background:#fff;border:1px solid var(--line);
+  border-top:4px solid var(--blue);border-radius:3px;
+  padding:1.5rem clamp(1.2rem,3vw,2rem);box-shadow:var(--shadow);
 }
-.skip-link:focus,.skip-link:focus-visible{
-  left:0;outline:3px solid #fff;outline-offset:-6px;
+.quote-starter-h{
+  margin:0;align-self:center;font-family:var(--font-head);font-weight:800;
+  text-transform:uppercase;letter-spacing:.08em;font-size:.84rem;color:var(--blue-ink);
+  padding-right:1.4rem;border-right:1px solid var(--line);white-space:nowrap;
+}
+.qs-field{display:flex;flex-direction:column;gap:.35rem;min-width:0}
+.qs-field label{
+  font-family:var(--font-head);font-size:.68rem;font-weight:700;text-transform:uppercase;
+  letter-spacing:.11em;color:var(--ink-45);
+}
+.qs-field input,.qs-field select{
+  font-family:var(--font-body);font-size:.95rem;color:var(--ink);
+  border:0;border-bottom:2px solid var(--line);background:none;
+  padding:.45rem 0;width:100%;transition:border-color .2s;
+}
+.qs-field input:focus,.qs-field select:focus{outline:none;border-bottom-color:var(--blue)}
+.qs-field input::placeholder{color:var(--ink-45);opacity:.8}
+.qs-go{white-space:nowrap}
+
+@media(max-width:1000px){
+  .quote-starter{grid-template-columns:1fr 1fr;gap:1.2rem}
+  .quote-starter-h{grid-column:1/-1;border-right:0;border-bottom:1px solid var(--line);
+    padding:0 0 .9rem}
+  .qs-go{grid-column:1/-1;justify-content:center}
+}
+@media(max-width:760px){
+  .quote-strip{margin-top:-28px}
+  .quote-starter{grid-template-columns:1fr;padding:1.3rem}
 }

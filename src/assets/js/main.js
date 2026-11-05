@@ -1,19 +1,48 @@
 /* Yentrans — minimal progressive enhancement. No dependencies.
    Everything here is additive: with JS off the site still reads and navigates. */
 (function () {
-  // Mobile navigation
-  var burger = document.querySelector('.burger');
-  var nav = document.querySelector('.nav');
-  if (burger && nav) {
-    burger.addEventListener('click', function () {
-      var open = nav.classList.toggle('open');
-      burger.setAttribute('aria-expanded', open ? 'true' : 'false');
-    });
-    nav.addEventListener('click', function (e) {
-      if (e.target.tagName === 'A') {
-        nav.classList.remove('open');
-        burger.setAttribute('aria-expanded', 'false');
+  // Mega panel. The markup ships with [hidden], so with JS off the panel simply
+  // never opens and the primary nav plus the footer still reach every page.
+  var menuBtn = document.getElementById('menu-btn');
+  var mega = document.getElementById('mega');
+
+  if (menuBtn && mega) {
+    var setMega = function (open) {
+      mega.hidden = !open;
+      menuBtn.setAttribute('aria-expanded', open ? 'true' : 'false');
+      document.documentElement.classList.toggle('mega-open', open);
+    };
+
+    menuBtn.addEventListener('click', function () {
+      setMega(mega.hidden);
+      if (!mega.hidden) {
+        var first = mega.querySelector('a');
+        if (first) first.focus();
       }
+    });
+
+    // Escape closes and returns focus to the trigger, so keyboard users are not
+    // stranded inside the panel.
+    document.addEventListener('keydown', function (e) {
+      if (e.key === 'Escape' && !mega.hidden) { setMega(false); menuBtn.focus(); }
+    });
+
+    // A click anywhere outside the panel or the trigger closes it.
+    document.addEventListener('click', function (e) {
+      if (mega.hidden) return;
+      if (mega.contains(e.target) || menuBtn.contains(e.target)) return;
+      setMega(false);
+    });
+
+    // Following a link inside the panel should not leave it open behind the
+    // next page in browsers that restore scroll position from bfcache.
+    mega.addEventListener('click', function (e) {
+      if (e.target.closest('a')) setMega(false);
+    });
+
+    // Focus leaving the panel entirely closes it.
+    mega.addEventListener('focusout', function (e) {
+      if (!mega.contains(e.relatedTarget) && e.relatedTarget !== menuBtn) setMega(false);
     });
   }
 
@@ -150,4 +179,46 @@
           "method listed on this page.", "error");
       });
   });
+})();
+
+
+/* ---------------------------------------------------------------------------
+   Rate-starter handoff. The hero widget is a GET form, so a visitor arrives at
+   /request-a-quote/ with ?origin=&destination=&shipmentType= already set. Copy
+   those into the full form so nobody retypes what they just entered, and move
+   focus to the first still-empty field.
+
+   Only lane details are read. Nothing personal is ever put in a URL, so there
+   is nothing personal here to restore.
+--------------------------------------------------------------------------- */
+(function () {
+  var form = document.getElementById("quote-form");
+  if (!form || !window.URLSearchParams) return;
+
+  var params = new URLSearchParams(window.location.search);
+  var carried = ["origin", "destination", "shipmentType"];
+  var filled = 0;
+
+  carried.forEach(function (key) {
+    var value = (params.get(key) || "").trim();
+    if (!value) return;
+    var field = form.elements[key];
+    if (!field) return;
+
+    if (field.tagName === "SELECT") {
+      // Only accept a value the select actually offers, so a hand-edited URL
+      // cannot inject an arbitrary string into the enquiry.
+      var ok = Array.prototype.some.call(field.options, function (o) {
+        return o.value === value || o.text === value;
+      });
+      if (!ok) return;
+    }
+    field.value = value;
+    filled++;
+  });
+
+  if (!filled) return;
+  var next = form.querySelector("input[required]:placeholder-shown, input[required][value='']") ||
+             form.elements.name;
+  if (next && typeof next.focus === "function") next.focus({ preventScroll: true });
 })();
