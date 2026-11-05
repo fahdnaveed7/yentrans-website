@@ -187,11 +187,30 @@ p{margin:0 0 1.1em}
 
 /* ---- hero ---------------------------------------------------------------- */
 .hero{position:relative;min-height:clamp(560px,82vh,760px);display:flex;align-items:center;overflow:hidden;background:var(--blue-ink)}
-.hero video,.hero .hero-img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
-.hero::after{
-  content:"";position:absolute;inset:0;
-  background:linear-gradient(100deg,rgba(7,34,49,.94) 0%,rgba(9,45,64,.86) 30%,rgba(12,60,86,.60) 62%,rgba(27,127,176,.26) 100%);
+/* Duotone. The footage is desaturated, then tinted with the brand navy through
+   a colour blend, so the hero reads as Yentrans rather than as stock footage of
+   a port. A second gradient handles text legibility — one layer cannot do both
+   without either burying the image or washing out the type. */
+.hero video,.hero .hero-img{
+  position:absolute;inset:0;width:100%;height:100%;object-fit:cover;
+  filter:grayscale(1) contrast(1.18) brightness(.62);
 }
+.hero::before{
+  content:"";position:absolute;inset:0;z-index:1;
+  background:var(--blue-ink);mix-blend-mode:color;opacity:.92;
+}
+.hero::after{
+  content:"";position:absolute;inset:0;z-index:1;
+  background:
+    radial-gradient(120% 90% at 8% 50%, rgba(5,26,38,.92) 0%, rgba(5,26,38,.55) 42%, rgba(5,26,38,0) 72%),
+    linear-gradient(180deg, rgba(5,26,38,.55) 0%, rgba(5,26,38,0) 30%, rgba(5,26,38,.75) 100%);
+}
+/* Thin cyan rule anchoring the hero to the quote bar below it. */
+.hero .hero-in::before{
+  content:"";position:absolute;left:0;top:0;width:64px;height:4px;
+  background:var(--blue);border-radius:2px;
+}
+.hero-in{padding-top:7.5rem}
 .hero-in{position:relative;z-index:2;color:#fff;max-width:62ch;
   /* padding-block only: this element also carries .wrap, whose horizontal
      gutter a `padding: 6rem 0` shorthand would reset to zero, putting the
@@ -617,3 +636,89 @@ section{padding:clamp(4rem,7.5vw,6.5rem) 0}
    /industries/#slug, so this is load-bearing, not cosmetic. */
 :target,[id]{scroll-margin-top:calc(78px + 1.5rem)}
 @media(max-width:760px){ :target,[id]{scroll-margin-top:calc(66px + 1rem)} }
+
+
+/* ---- icons --------------------------------------------------------------- */
+.ico{width:28px;height:28px;flex:none;color:var(--blue-deep)}
+.sec-ink .ico,.on-dark .ico{color:var(--blue)}
+
+/* ---- stat band ----------------------------------------------------------- */
+/* Counts of things this site actually renders — services, sectors, offices.
+   Deliberately not TEU, fleet or staff numbers: those are gated (NUM-01..04)
+   and unevidenced. */
+.statband{background:var(--blue-ink);color:#fff;position:relative;overflow:hidden}
+.statband::before{
+  content:"";position:absolute;inset:0;opacity:.5;
+  background-image:
+    linear-gradient(90deg, rgba(49,169,222,.16) 1px, transparent 1px),
+    linear-gradient(0deg,  rgba(49,169,222,.10) 1px, transparent 1px);
+  background-size:44px 44px;
+  -webkit-mask-image:radial-gradient(70% 120% at 80% 50%, #000 0%, transparent 72%);
+  mask-image:radial-gradient(70% 120% at 80% 50%, #000 0%, transparent 72%);
+}
+.statband-in{position:relative;display:grid;grid-template-columns:repeat(4,1fr);
+  gap:2rem;padding-top:clamp(2.4rem,5vw,3.6rem);padding-bottom:clamp(2.4rem,5vw,3.6rem)}
+.stat-i .n{display:block;font-family:var(--font-head);font-weight:800;line-height:.95;
+  font-size:clamp(2.6rem,5.5vw,4rem);letter-spacing:-.045em;color:#fff}
+.stat-i .n span{color:var(--blue)}
+.stat-i .l{display:block;margin-top:.6rem;font-family:var(--font-head);font-size:.74rem;
+  font-weight:700;text-transform:uppercase;letter-spacing:.14em;color:var(--blue-light)}
+.stat-i .s{display:block;margin-top:.35rem;font-size:.86rem;color:rgba(255,255,255,.6);line-height:1.5}
+
+/* ---- service / feature cards -------------------------------------------- */
+.cardgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.4rem}
+.card{
+  position:relative;display:flex;flex-direction:column;gap:.9rem;
+  background:#fff;border:1px solid var(--line);border-radius:4px;
+  padding:clamp(1.5rem,3vw,2.1rem);overflow:hidden;
+  transition:border-color .22s var(--ease),transform .22s var(--ease),box-shadow .22s var(--ease);
+}
+.card::after{
+  content:"";position:absolute;left:0;top:0;width:100%;height:3px;
+  background:linear-gradient(90deg,var(--blue),var(--blue-deep));
+  transform:scaleX(0);transform-origin:left;transition:transform .3s var(--ease);
+}
+.card:hover{border-color:var(--blue-light);transform:translateY(-3px);box-shadow:var(--shadow)}
+.card:hover::after{transform:scaleX(1)}
+.card-ico{display:grid;place-items:center;width:52px;height:52px;border-radius:3px;
+  background:var(--blue-wash);color:var(--blue-deep)}
+.card h3{font-size:1.08rem}
+.card h3 a::after{content:"";position:absolute;inset:0}   /* whole card clickable */
+.card p{margin:0;font-size:.95rem;line-height:1.62;color:var(--ink-70)}
+.card .more{margin-top:auto;padding-top:.4rem;font-family:var(--font-head);font-size:.76rem;
+  font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:var(--blue-deep);
+  display:inline-flex;align-items:center;gap:.4rem}
+.card .more .ico{width:16px;height:16px}
+
+@media(max-width:1000px){ .cardgrid{grid-template-columns:repeat(2,1fr)} .statband-in{grid-template-columns:repeat(2,1fr)} }
+@media(max-width:760px){ .cardgrid{grid-template-columns:1fr} .statband-in{grid-template-columns:1fr;gap:1.8rem} }
+@media (prefers-reduced-motion:reduce){ .card:hover{transform:none} }
+
+/* ---- route schematic ----------------------------------------------------- */
+.routemap{margin:0 0 2.4rem;padding:0}
+.routemap svg{width:100%;height:auto;display:block;background:var(--blue-ink);border-radius:4px}
+.rm-grid path{stroke:rgba(151,217,243,.14);stroke-width:1;fill:none}
+.rm-arcs path{fill:none;stroke:url(#rm-arc);stroke-width:2.6;stroke-linecap:round}
+/* A slow dash crawl reads as cargo moving without demanding attention. */
+.rm-flow{stroke-dasharray:10 16;animation:rm-crawl 7s linear infinite}
+.rm-arcs path:nth-child(2){animation-delay:-1.2s}
+.rm-arcs path:nth-child(3){animation-delay:-2.4s}
+.rm-arcs path:nth-child(4){animation-delay:-3.1s}
+.rm-arcs path:nth-child(5){animation-delay:-4.3s}
+.rm-arcs path:nth-child(6){animation-delay:-5.5s}
+@keyframes rm-crawl{to{stroke-dashoffset:-104}}
+
+.rm-halo{fill:url(#rm-glow)}
+.rm-dot{fill:#fff;stroke:var(--blue);stroke-width:3}
+.rm-node.is-hq .rm-dot{fill:var(--blue);stroke:#fff}
+.rm-node text{fill:#fff;font-family:"Manrope",sans-serif;font-size:19px;font-weight:700;
+  letter-spacing:.01em;paint-order:stroke;stroke:rgba(5,26,38,.65);stroke-width:4px}
+.rm-node.is-hq text{font-size:23px}
+.rm-edge text{fill:rgba(151,217,243,.75);font-family:"Manrope",sans-serif;font-size:15px;
+  font-weight:600;letter-spacing:.14em;text-transform:uppercase}
+.routemap figcaption{margin-top:.9rem;font-size:.8rem;color:var(--ink-45);line-height:1.5}
+.sec-ink .routemap figcaption{color:rgba(255,255,255,.55)}
+
+@media (prefers-reduced-motion:reduce){
+  .rm-flow{animation:none;stroke-dasharray:none}
+}

@@ -4,6 +4,7 @@ permalink: /
 title: "Yentrans Maritime Logistics | Freight Forwarding, Customs & Transport"
 seoDescription: "Yentrans Maritime Logistics coordinates ocean freight, customs documentation, inland transportation and specialised cargo movements from India and the Middle East."
 ---
+{% from "partials/icon.njk" import icon %}
 <section class="hero">
   <video autoplay muted loop playsinline preload="none" poster="{{ '/assets/video/hero-port-poster.jpg' | url }}"
          aria-hidden="true"><source src="{{ '/assets/video/hero-port.mp4' | url }}" type="video/mp4"></video>
@@ -23,6 +24,40 @@ seoDescription: "Yentrans Maritime Logistics coordinates ocean freight, customs 
 </section>
 {% include "partials/quote-widget.njk" %}
 
+{# Counts derived from the data this site actually renders, so they cannot go
+   stale or overstate. Deliberately not TEU, fleet or headcount: those are
+   gated as unevidenced (NUM-01..04) and would be invention. #}
+<section class="statband">
+  <div class="wrap statband-in">
+    <div class="stat-i reveal">
+      <span class="n">{{ services.items | length }}</span>
+      <span class="l">Service lines</span>
+      <span class="s">Ocean freight, customs, inland and specialised movements.</span>
+    </div>
+    <div class="stat-i reveal">
+      <span class="n">{{ industries.items | length }}</span>
+      <span class="l">Sectors served</span>
+      <span class="s">From reefer perishables to out-of-gauge project cargo.</span>
+    </div>
+    <div class="stat-i reveal">
+      <span class="n">{{ offices.locations | selectattr("approved") | list | length }}</span>
+      <span class="l">Offices</span>
+      <span class="s">Across India, the UAE and Oman, with partners beyond.</span>
+    </div>
+    <div class="stat-i reveal">
+      {%- if approvals.corporate.established2009.value %}
+      <span class="n">2009</span>
+      <span class="l">Operating since</span>
+      <span class="s">Headquartered in Ernakulam, Kerala.</span>
+      {%- else %}
+      <span class="n">{{ offices.groups | length }}</span>
+      <span class="l">Regions</span>
+      <span class="s">India, the Gulf and North America.</span>
+      {%- endif %}
+    </div>
+  </div>
+</section>
+
 <section>
   <div class="wrap">
     <div class="sec-head">
@@ -33,16 +68,20 @@ seoDescription: "Yentrans Maritime Logistics coordinates ocean freight, customs 
         work behind every shipment — connecting cargo, carriers and customers across markets.</p>
     </div>
 
-    <div class="grid grid-3">
+    <div class="cardgrid">
       {%- for s in services.items %}{% if s.featured %}
-      <article class="cell reveal">
+      <article class="card reveal">
+        <span class="card-ico">{{ icon(s.icon) }}</span>
         <h3><a href="{{ ('/services/' + s.slug + '/') | url }}">{{ s.title }}</a></h3>
-        <p>{{ s.summary | truncate(185) }}</p>
+        <p>{{ s.summary | truncate(150) }}</p>
+        <span class="more">Read more {{ icon("arrow") }}</span>
       </article>
       {% endif %}{%- endfor %}
-      <article class="cell reveal">
+      <article class="card reveal">
+        <span class="card-ico">{{ icon("globe") }}</span>
         <h3><a href="{{ '/industries/' | url }}">Industry Solutions</a></h3>
         <p>Logistics designed around the realities of different products and supply chains.</p>
+        <span class="more">All {{ industries.items | length }} sectors {{ icon("arrow") }}</span>
       </article>
     </div>
   </div>
@@ -101,6 +140,8 @@ seoDescription: "Yentrans Maritime Logistics coordinates ocean freight, customs 
         network in India and operations in Dubai and Oman, working with international carriers and
         destination partners when a movement reaches beyond our own offices.</p>
     </div>
+    {% include "partials/route-map.njk" %}
+
     {# Rendered from the approved branch directory, so the page can never claim
        a location the data has not cleared. An unapproved one shows as presence
        without an address rather than being silently dropped. #}
