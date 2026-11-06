@@ -58,6 +58,11 @@ layout: layouts/base.njk
 </article>
 {# No JobPosting schema for a draft or unapproved role — an explicit brief requirement. #}
 {% if status == "open" and publishedAt %}
+{# Mind the space in "} }" where the nested address object closes. Two closing
+   braces together terminate this {{ }} output expression early, truncating the
+   object and failing the build with "parseAggregate: expected comma after
+   expression". A Nunjucks comment cannot sit inside the expression either —
+   that produces "unexpected token: #" — which is why this note is out here. #}
 <script type="application/ld+json">{{ {
   "@context": "https://schema.org", "@type": "JobPosting",
   "title": title,
@@ -73,7 +78,7 @@ layout: layouts/base.njk
     "addressLocality": addressLocality,
     "addressRegion": addressRegion,
     "addressCountry": addressCountry
-  }},
+  } },
   "directApply": false
 } | jsonld | safe }}</script>
 {% endif %}
