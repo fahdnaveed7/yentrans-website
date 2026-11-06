@@ -22,7 +22,8 @@
       "contactName": "Mr. Niyas K A",
       "phone": "+91 484 4038844",
       "phoneDial": "+914844038844",
-      "email": "niyas@yentransmaritime.com"
+      "_personalEmail": "niyas@yentransmaritime.com",
+      "email": "cs@yentransmaritime.com"
     },
     {
       "id": "cochin",
@@ -43,7 +44,8 @@
       "contactName": "Mr Faizal M A",
       "phone": "+91 95399 94177",
       "phoneDial": "+919539994177",
-      "email": "faizal@yentransmaritime.com"
+      "_personalEmail": "faizal@yentransmaritime.com",
+      "email": "cs@yentransmaritime.com"
     },
     {
       "id": "chennai",
@@ -66,7 +68,8 @@
       "contactName": "Mr Yogaraj K",
       "phone": "+91 99401 01848",
       "phoneDial": "+919940101848",
-      "email": "yogaraj@yentransmaritime.com"
+      "_personalEmail": "yogaraj@yentransmaritime.com",
+      "email": "cs@yentransmaritime.com"
     },
     {
       "id": "vizag",
@@ -90,7 +93,8 @@
       "contactName": "Mr Anaz",
       "phone": "+91 99463 72763",
       "phoneDial": "+919946372763",
-      "email": "opsvtz@yentransmaritime.com"
+      "_personalEmail": "opsvtz@yentransmaritime.com",
+      "email": "cs@yentransmaritime.com"
     },
     {
       "id": "dubai",
@@ -111,7 +115,8 @@
       "contactName": "Mr Omar Naveed",
       "phone": "+971 58 537 9877",
       "phoneDial": "+971585379877",
-      "email": "omar@yentransmaritime.com"
+      "_personalEmail": "omar@yentransmaritime.com",
+      "email": "cs@yentransmaritime.com"
     },
     {
       "id": "muscat",
@@ -132,7 +137,8 @@
       "contactName": "Ms Lakshmi Kiran",
       "phone": "+968 9604 2345",
       "phoneDial": "+96896042345",
-      "email": "lakshmi@yentransmaritime.com"
+      "_personalEmail": "lakshmi@yentransmaritime.com",
+      "email": "cs@yentransmaritime.com"
     },
     {
       "id": "salalah",
@@ -153,7 +159,8 @@
       "contactName": "Mr Shameer R M",
       "phone": "+968 9901 4500",
       "phoneDial": "+96899014500",
-      "email": "shameer@yentransmaritime.com"
+      "_personalEmail": "shameer@yentransmaritime.com",
+      "email": "cs@yentransmaritime.com"
     },
     {
       "id": "houston",
@@ -179,7 +186,8 @@
         "email": "fahd@yentransmaritime.com"
       },
       "coverage": "North America contact point for US destination coordination. Operating status and entity pending confirmation.",
-      "_holdReason": "YML-008. The supplied address is a PMB (private mailbox) in a mail-forwarding suite, not a staffed office, and the number is a +1 631 (New York) line rather than a Houston one. Brand Standards forbid the India/Oman/UAE/United States short form until operating status is confirmed, and presenting a mailbox as a Branch Office on a public site risks misrepresentation. Confirm the active US entity and the accurate wording, then set approved:true and promote _heldAddress back to address."
+      "_holdReason": "YML-008. The supplied address is a PMB (private mailbox) in a mail-forwarding suite, not a staffed office, and the number is a +1 631 (New York) line rather than a Houston one. Brand Standards forbid the India/Oman/UAE/United States short form until operating status is confirmed, and presenting a mailbox as a Branch Office on a public site risks misrepresentation. Confirm the active US entity and the accurate wording, then set approved:true and promote _heldAddress back to address.",
+      "email": "cs@yentransmaritime.com"
     }
   ],
   "groups": [

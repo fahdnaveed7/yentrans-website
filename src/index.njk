@@ -212,6 +212,13 @@ seoDescription: "Yentrans Maritime Logistics coordinates ocean freight, customs 
 
 {% include "partials/cta.njk" %}
 
+{# Address is locality level only, for two reasons. The street line here used to
+   be the OLD Willingdon Island address that the company's own locations sheet
+   superseded, so it was stale. And structured data should describe what the page
+   actually shows: the office cards no longer carry street addresses, and a schema
+   address with no on-page counterpart is the kind of mismatch search engines
+   discount. Restore the full address here at the same time as
+   approvals.officeStreetAddresses. #}
 <script type="application/ld+json">{{ {
   "@context": "https://schema.org",
   "@type": ["Organization","LocalBusiness"],
@@ -219,9 +226,8 @@ seoDescription: "Yentrans Maritime Logistics coordinates ocean freight, customs 
   "url": site.productionUrl,
   "description": site.defaultDescription,
   "address": { "@type": "PostalAddress",
-    "streetAddress": "Old Rubber Board Building, Indira Gandhi Road, Willingdon Island",
-    "addressLocality": "Kochi", "addressRegion": "Kerala",
-    "postalCode": "682003", "addressCountry": "IN" },
+    "addressLocality": "Ernakulam", "addressRegion": "Kerala",
+    "addressCountry": "IN" },
   "telephone": site.enquiryPhone, "email": site.enquiryEmail,
   "areaServed": { "@type": "Place", "name": "Worldwide" }
 } | jsonld | safe }}</script>
