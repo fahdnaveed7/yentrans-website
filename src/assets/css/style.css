@@ -721,60 +721,51 @@ section{padding:clamp(4rem,7.5vw,6.5rem) 0}
 @media(max-width:760px){ .cardgrid{grid-template-columns:1fr} .statband-in{grid-template-columns:1fr;gap:1.8rem} }
 @media (prefers-reduced-motion:reduce){ .card:hover{transform:none} }
 
-/* ---- route schematic ----------------------------------------------------- */
+/* ---- world route map ----------------------------------------------------- */
 .routemap{margin:0 0 2.4rem;padding:0}
 .routemap svg{width:100%;height:auto;display:block;background:var(--blue-ink);border-radius:4px}
-.rm-grid path{stroke:rgba(151,217,243,.14);stroke-width:1;fill:none}
-.rm-arcs path{fill:none;stroke:url(#rm-arc);stroke-width:2.6;stroke-linecap:round}
-/* A slow dash crawl reads as cargo moving without demanding attention. */
-.rm-flow{stroke-dasharray:10 16;animation:rm-crawl 7s linear infinite}
-.rm-arcs path:nth-child(2){animation-delay:-1.2s}
-.rm-arcs path:nth-child(3){animation-delay:-2.4s}
-.rm-arcs path:nth-child(4){animation-delay:-3.1s}
-.rm-arcs path:nth-child(5){animation-delay:-4.3s}
-.rm-arcs path:nth-child(6){animation-delay:-5.5s}
-@keyframes rm-crawl{to{stroke-dashoffset:-104}}
+
+/* Land sits just above the sea colour — enough to read the continents without
+   competing with the routes, which are what the figure is actually about. */
+.rm-land path{fill:#16384F;stroke:#1E4A66;stroke-width:.5;vector-effect:non-scaling-stroke}
+.rm-grat path{stroke:rgba(151,217,243,.09);stroke-width:1;fill:none;vector-effect:non-scaling-stroke}
+
+.rm-arcs path{fill:none;stroke:url(#rm-arc);stroke-width:2.2;stroke-linecap:round;
+  vector-effect:non-scaling-stroke}
+.rm-flow{stroke-dasharray:9 14;animation:rm-crawl 7s linear infinite}
+.rm-arcs path:nth-child(2){animation-delay:-1.4s}
+.rm-arcs path:nth-child(3){animation-delay:-2.8s}
+.rm-arcs path:nth-child(4){animation-delay:-4.2s}
+.rm-arcs path:nth-child(5){animation-delay:-5.6s}
+.rm-link{stroke:rgba(151,217,243,.55);stroke-dasharray:none;stroke-width:1.6}
+@keyframes rm-crawl{to{stroke-dashoffset:-92}}
+
+/* Destination markers are hollow; offices are solid. The difference carries a
+   claim, so it is not decorative. */
+.rm-dest circle{fill:none;stroke:var(--blue-light);stroke-width:2;vector-effect:non-scaling-stroke}
+.rm-dest text{fill:rgba(151,217,243,.9);font-family:"Manrope",sans-serif;font-size:13px;
+  font-weight:600;letter-spacing:.09em;text-transform:uppercase;text-anchor:middle;
+  paint-order:stroke;stroke:rgba(9,32,46,.75);stroke-width:3px}
 
 .rm-halo{fill:url(#rm-glow)}
-.rm-dot{fill:#fff;stroke:var(--blue);stroke-width:3}
-.rm-node.is-hq .rm-dot{fill:var(--blue);stroke:#fff}
-.rm-node text{fill:#fff;font-family:"Manrope",sans-serif;font-size:19px;font-weight:700;
-  letter-spacing:.01em;paint-order:stroke;stroke:rgba(5,26,38,.65);stroke-width:4px}
-.rm-node.is-hq text{font-size:23px}
-.rm-edge text{fill:rgba(151,217,243,.75);font-family:"Manrope",sans-serif;font-size:15px;
-  font-weight:600;letter-spacing:.14em;text-transform:uppercase}
-/* --ink-45 is 4.76:1 on white but only 4.41:1 on the mist panel this figure
-   sits in, which fails AA for body text. --ink-70 gives 6.5:1 there. */
-.routemap figcaption{margin-top:.9rem;font-size:.8rem;color:var(--ink-70);line-height:1.5}
-.sec-ink .routemap figcaption{color:rgba(255,255,255,.55)}
+.rm-dot{fill:var(--blue);stroke:#fff;stroke-width:2.5;vector-effect:non-scaling-stroke}
+.rm-hubs text{fill:#fff;font-family:"Manrope",sans-serif;font-size:17px;font-weight:800;
+  paint-order:stroke;stroke:rgba(9,32,46,.8);stroke-width:4px}
+.rm-hubs text.sub{font-size:12px;font-weight:600;fill:var(--blue-light);stroke-width:3px}
 
-@media (prefers-reduced-motion:reduce){
-  .rm-flow{animation:none;stroke-dasharray:none}
-}
+.routemap figcaption{margin-top:.9rem;font-size:.8rem;color:var(--ink-70);line-height:1.55}
+.sec-ink .routemap figcaption{color:rgba(255,255,255,.62)}
 
-/* A sector with no detail page of its own is informational, so it should not
-   offer hover affordances that lead nowhere. */
-.card--static{cursor:default}
-.card--static:hover{transform:none;border-color:var(--line);box-shadow:none}
-.card--static:hover::after{transform:scaleX(0)}
+@media (prefers-reduced-motion:reduce){ .rm-flow{animation:none;stroke-dasharray:none} }
 
-/* Group heading with its sector icon. Carries the icon once per group rather
-   than repeating it on every card in the row. */
-.group-h--ico{display:flex;align-items:center;gap:.85rem}
-.group-h--ico .ico{width:30px;height:30px;color:var(--blue-deep);flex:none}
-.group-h--ico span{display:block}
-
-/* The schematic scales its whole 1000-unit viewBox down to the viewport, so
-   label text shrinks with it: 19 units renders at about 6px on a 375px screen.
-   Sizes are raised in viewBox units at small widths, and the edge labels drop
-   out because at that scale they crowd the nodes without adding much. */
+/* The whole viewBox scales to the viewport, so label text shrinks with it.
+   Sizes are raised in viewBox units on small screens and the secondary counts
+   drop out, since at that scale they crowd the hub labels. */
 @media(max-width:760px){
-  .rm-node text{font-size:36px;stroke-width:7px}
-  .rm-node.is-hq text{font-size:42px}
-  .rm-edge{display:none}
-  .rm-dot{r:9}
-  .rm-node.is-hq .rm-dot{r:12}
-  .routemap svg{min-height:300px}
+  .rm-hubs text{font-size:30px;stroke-width:7px}
+  .rm-hubs text.sub{display:none}
+  .rm-dest text{font-size:22px;stroke-width:5px}
+  .rm-dot{r:11}
 }
 
 /* ---- grouped capabilities ------------------------------------------------ */
@@ -808,3 +799,11 @@ section{padding:clamp(4rem,7.5vw,6.5rem) 0}
 .office{padding:1.3rem 1.5rem}
 .office h4{margin:.45rem 0 0;font-size:1.05rem}
 .office .tag{font-size:.66rem;letter-spacing:.13em}
+
+/* A warning notice, distinct from the neutral one: it marks something the
+   visitor needs to act on differently, not just background information. */
+.notice-warn{border-left-color:#8A5A00;background:#FFFBF2}
+.field-hint{display:block;margin-top:.4rem;font-size:.82rem;color:var(--ink-70);line-height:1.5}
+.field input[type=file]{padding:.6rem;background:var(--blue-wash);cursor:pointer}
+.form button[disabled]{opacity:.5;cursor:not-allowed}
+.form button[disabled]:hover{transform:none;background:var(--blue)}

@@ -1,0 +1,95 @@
+---
+layout: layouts/page.njk
+permalink: /careers/apply/
+title: "Apply | Careers at Yentrans Maritime Logistics"
+heading: "Apply for a role."
+eyebrow: "Careers"
+seoDescription: "Submit an application for an open role at Yentrans Maritime Logistics."
+intro: "Tell us who you are and attach your CV. We review every application against the published requirements and come back to you if your experience matches."
+---
+{% set liveRoles = collections.jobsOpen %}
+
+<section class="pt-0">
+  <div class="wrap wrap-narrow">
+
+    {%- if not approvals.forms.applicationEndpointEnabled.value %}
+    {# APPLICATIONS_DISABLED. The form still renders and validates so it can be
+       reviewed, but submit is disabled and the page says plainly that nothing
+       is sent. A form that looks live and quietly discards a CV is worse than
+       no form: the candidate believes they have applied. #}
+    <div class="notice notice-warn">
+      <strong>The online application channel is not switched on yet.</strong>
+      We cannot receive or store a CV through this website at the moment, so the form
+      below cannot be submitted and nothing you type is sent anywhere. Please reach us
+      through the <a href="{{ '/contact/' | url }}">contact page</a> in the meantime.
+    </div>
+    {%- elif not liveRoles.length %}
+    <div class="notice">
+      <strong>No vacancies are currently published.</strong>
+      Applications reopen when a role is advertised.
+    </div>
+    {%- endif %}
+
+    <form class="form" id="apply-form" novalidate
+          data-enabled="{{ 'true' if approvals.forms.applicationEndpointEnabled.value else 'false' }}"
+          data-endpoint="{{ '/api/apply' | url }}">
+
+      <p class="field">
+        <label for="ap-role">Role applied for <span aria-hidden="true">*</span></label>
+        <select id="ap-role" name="roleId" required>
+          <option value="">Please select</option>
+          {%- for j in liveRoles %}
+          <option value="{{ j.data.id }}">{{ j.data.title }} — {{ j.data.location }}</option>
+          {%- endfor %}
+        </select>
+      </p>
+
+      <div class="field-row">
+        <p class="field"><label for="ap-name">Full name <span aria-hidden="true">*</span></label>
+          <input id="ap-name" name="fullName" type="text" autocomplete="name" required maxlength="120"></p>
+        <p class="field"><label for="ap-email">Email <span aria-hidden="true">*</span></label>
+          <input id="ap-email" name="email" type="email" autocomplete="email" required maxlength="200"></p>
+      </div>
+      <div class="field-row">
+        <p class="field"><label for="ap-phone">Phone <span aria-hidden="true">*</span></label>
+          <input id="ap-phone" name="phone" type="tel" autocomplete="tel" required maxlength="40"></p>
+        <p class="field"><label for="ap-location">Current location <span aria-hidden="true">*</span></label>
+          <input id="ap-location" name="location" type="text" required maxlength="120"></p>
+      </div>
+      <div class="field-row">
+        <p class="field"><label for="ap-exp">Years of experience <span aria-hidden="true">*</span></label>
+          <input id="ap-exp" name="experience" type="text" required maxlength="40" placeholder="e.g. 2"></p>
+        <p class="field"><label for="ap-linkedin">LinkedIn <span class="opt">(optional)</span></label>
+          <input id="ap-linkedin" name="linkedin" type="url" maxlength="300" placeholder="https://"></p>
+      </div>
+
+      <p class="field">
+        <label for="ap-cv">CV <span aria-hidden="true">*</span></label>
+        <input id="ap-cv" name="resume" type="file" required
+               accept=".pdf,.docx,application/pdf,application/vnd.openxmlformats-officedocument.wordprocessingml.document">
+        <span class="field-hint">PDF or DOCX, up to 5&nbsp;MB. Please do not attach identity documents at this stage.</span>
+      </p>
+
+      <p class="field"><label for="ap-note">Short note <span class="opt">(optional)</span></label>
+        <textarea id="ap-note" name="note" rows="4" maxlength="4000"></textarea></p>
+
+      {%- if site.forms and site.forms.turnstileSiteKey %}
+      <div class="cf-turnstile" data-sitekey="{{ site.forms.turnstileSiteKey }}"></div>
+      {%- endif %}
+
+      <div class="field-check">
+        <input id="ap-consent" type="checkbox" name="consent" value="yes" required>
+        <label for="ap-consent">I have read the
+          <a href="{{ '/applicant-privacy/' | url }}">applicant privacy notice</a>
+          and agree to my information being used for recruitment. <span aria-hidden="true">*</span></label>
+      </div>
+
+      <p class="form-status" id="apply-status" role="status" aria-live="polite"></p>
+
+      <button class="btn btn-primary" type="submit"
+        {% if not approvals.forms.applicationEndpointEnabled.value %}disabled aria-disabled="true"{% endif %}>
+        Submit application
+      </button>
+    </form>
+  </div>
+</section>
