@@ -193,9 +193,9 @@
     }
   },
   "staffContactDetails": {
-    "value": true,
+    "value": false,
     "claim": "YML-002..008",
-    "note": "Named branch managers with direct mobiles, from the company OUR REACH sheet. Brand package requires explicit sign-off before publishing staff mobiles as office numbers. Flip false to show office addresses and emails only."
+    "note": "Turned off on instruction 2026-11-05: office cards show place, role and an email only. Named branch managers and their personal mobiles remain in offices.json but do not render. The brand package wanted sign-off before publishing staff mobiles anyway, so this resolves that item by not publishing them."
   },
   "defence": {
     "_README": "Claims taken from the Defence Logistic Services page currently live on yentransmaritime.com. The capability list itself is published as service scope, which is a description of what the division does. These three are different in kind and are held.",
@@ -217,5 +217,17 @@
       "text": "\"one of the most extensive track records in the Indian Ports and Sri Lanka and Malaysia sea areas\"",
       "evidence": "A comparative ranking claim. NUM-06 marks market share, rankings and 'leading' PROHIBITED without a signed-off source. Not used; the page describes the scope instead."
     }
+  },
+  "officeStreetAddresses": {
+    "value": false,
+    "claim": "YML-002..008",
+    "text": "Full street addresses on office cards",
+    "evidence": "Withheld on instruction 2026-11-05 for a cleaner corporate presentation, not for lack of evidence — the addresses come from the company's own OUR REACH sheet and are intact in offices.json. Flip to true to show them again."
+  },
+  "roleMailboxes": {
+    "value": false,
+    "claim": "WEB-05",
+    "text": "Per-region role mailboxes such as info@ and oman@yentransmaritime.com",
+    "evidence": "Suggested 2026-11-05 as examples, not confirmed as live. Every card currently routes to cs@yentransmaritime.com, which is verified — it is published on the company's own live site. Confirm which role mailboxes actually receive mail, then set each office's email in offices.json. Publishing an address that does not route loses enquiries silently."
   }
 }
