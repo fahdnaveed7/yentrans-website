@@ -217,13 +217,19 @@ p{margin:0 0 1.1em}
   background:var(--blue);border-radius:2px;
 }
 .hero-in{padding-top:7.5rem}
-.hero-in{position:relative;z-index:2;color:#fff;max-width:62ch;
+/* Headline and body copy want different measures. 62ch suited the lede but
+   clipped the display line at 665px when it needs 703px, orphaning the last
+   word; the container is now sized for the headline and the lede is held to
+   its own reading width. The calc is deliberate: this element also carries
+   .wrap, so a bare max-width would include its two gutters and leave the
+   measure short by exactly that much. */
+.hero-in{position:relative;z-index:2;color:#fff;max-width:calc(72ch + 2 * var(--gut));
   /* padding-block only: this element also carries .wrap, whose horizontal
      gutter a `padding: 6rem 0` shorthand would reset to zero, putting the
      hero text flush against the screen edge on narrow viewports. */
   padding-top:6rem;padding-bottom:6rem}
 .hero h1{color:#fff;margin-bottom:1.2rem}
-.hero .lede{color:rgba(255,255,255,.88);margin-bottom:2rem}
+.hero .lede{color:rgba(255,255,255,.88);margin-bottom:2rem;max-width:50ch}
 .hero .eyebrow{color:var(--blue-light)}
 .hero .eyebrow::before{background:var(--blue-light)}
 .hero-actions{display:flex;gap:.8rem;flex-wrap:wrap}

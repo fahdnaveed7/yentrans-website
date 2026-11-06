@@ -12,10 +12,9 @@ seoDescription: "Yentrans Maritime Logistics coordinates ocean freight, customs 
     {# "Registered NVOCC" is gated (WEB-08 PENDING) and the founding year is gated
        (YML-001 PENDING). Both reappear automatically once approved. #}
     <p class="eyebrow">Kochi{% if approvals.corporate.established2009.value %} &nbsp;·&nbsp; Established 2009{% endif %} &nbsp;·&nbsp; India, UAE &amp; Oman</p>
-    <h1>Freight is a people business with steel around it.</h1>
-    <p class="lede">Yentrans Maritime Logistics coordinates ocean freight, customs documentation,
-      inland transportation and specialised cargo movements. From Indian ports to the Middle East
-      and international destinations, our teams focus on the details that keep cargo moving.</p>
+    <h1>Handled on the ground.</h1>
+    <p class="lede">Containers, customs, inland transport and naval port calls — coordinated by our own
+      teams across India, the UAE and Oman, and delivered worldwide through partners.</p>
     <div class="hero-actions">
       <a class="btn btn-primary" href="{{ '/request-a-quote/' | url }}">Request a Rate <span class="arrow">&rarr;</span></a>
       <a class="btn btn-onDark" href="{{ '/services/' | url }}">Explore Our Services</a>
@@ -63,9 +62,8 @@ seoDescription: "Yentrans Maritime Logistics coordinates ocean freight, customs 
     <div class="sec-head">
       <p class="eyebrow">Who we are</p>
       <h2>Freight doesn't move on a promise alone.</h2>
-      <p class="lede">It moves when equipment is available, paperwork is right, the routing makes sense,
-        and the right people stay accountable. Yentrans has built its business around the practical
-        work behind every shipment — connecting cargo, carriers and customers across markets.</p>
+      <p class="lede">It moves when the equipment is there, the paperwork is right, and someone stays
+        accountable for the gap between the two.</p>
     </div>
 
     <div class="cardgrid">
@@ -77,13 +75,8 @@ seoDescription: "Yentrans Maritime Logistics coordinates ocean freight, customs 
         <span class="more">Read more {{ icon("arrow") }}</span>
       </article>
       {% endif %}{%- endfor %}
-      <article class="card reveal">
-        <span class="card-ico">{{ icon("globe") }}</span>
-        <h3><a href="{{ '/industries/' | url }}">Industry Solutions</a></h3>
-        <p>Logistics designed around the realities of different products and supply chains.</p>
-        <span class="more">All {{ industries.items | length }} sectors {{ icon("arrow") }}</span>
-      </article>
     </div>
+    <p class="sec-more"><a class="btn btn-ghost" href="{{ '/services/' | url }}">All {{ services.items | length }} services</a></p>
   </div>
 </section>
 
@@ -92,9 +85,8 @@ seoDescription: "Yentrans Maritime Logistics coordinates ocean freight, customs 
     <div class="sec-head">
       <p class="eyebrow">Operational principles</p>
       <h2>The useful detail is usually in the next question.</h2>
-      <p class="lede">What happens if the first sailing fills? Who checks the temperature instruction?
-        Which document needs to agree with the invoice? When does inland transport need to be ready?
-        We ask these questions early, because the smallest overlooked detail can become the largest delay.</p>
+      <p class="lede">What if the first sailing fills? Who checks the temperature instruction? We ask early,
+        because the smallest overlooked detail becomes the largest delay.</p>
     </div>
     <div class="grid grid-4">
       <article class="cell reveal"><span class="num">01</span><h3>Experienced Coordination</h3>
@@ -114,12 +106,12 @@ seoDescription: "Yentrans Maritime Logistics coordinates ocean freight, customs 
     <div class="sec-head">
       <p class="eyebrow">Industries</p>
       <h2>Every cargo has its own operating logic.</h2>
-      <p class="lede">Fresh produce, healthcare goods, automotive components, construction materials and
-        industrial equipment do not move under the same constraints. Explore how we approach the cargo
-        requirements of different industries.</p>
+      <p class="lede">Produce, healthcare goods, components and heavy equipment do not move under the same
+        constraints.</p>
     </div>
     <div class="cardgrid">
-      {%- for slug in ["seafood-fisheries","agriculture-fresh-produce","pharma-healthcare","automotive-components","project-cargo","retail-consumer-goods"] %}
+      {#- The four sectors with their own detail pages. All 18 live on /industries/. -#}
+      {%- for slug in ["seafood-fisheries","pharma-healthcare","automotive-components","project-cargo"] %}
       {%- for i in industries.items %}{% if i.slug == slug %}
       {%- for g in industries.groups %}{% if g.id == i.group %}
       <article class="card reveal">
@@ -140,9 +132,8 @@ seoDescription: "Yentrans Maritime Logistics coordinates ocean freight, customs 
     <div class="sec-head">
       <p class="eyebrow">Network</p>
       <h2>Strong at origin. Connected at destination.</h2>
-      <p class="lede">Kochi is where our story began. Today, Yentrans supports cargo movements through its
-        network in India and operations in Dubai and Oman, working with international carriers and
-        destination partners when a movement reaches beyond our own offices.</p>
+      <p class="lede">Our own offices across India and the Gulf, with carrier and destination partners
+        wherever a movement reaches beyond them.</p>
     </div>
     {% include "partials/route-map.njk" %}
 
