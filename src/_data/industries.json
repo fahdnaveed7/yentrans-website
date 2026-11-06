@@ -1,5 +1,5 @@
 {
-  "_README": "Copy transcribed verbatim from project-brief/03_WEBSITE_CONTENT_PACK.md \u00a75. These describe capability, not a customer portfolio: the pack states they are 'proposed industry capability pages, not proof of prior shipments in all 18 sectors'. Do not add client names, volumes or certifications here \u2014 those are gated in approvals.json.",
+  "_README": "Copy transcribed verbatim from project-brief/03_WEBSITE_CONTENT_PACK.md §5. These describe capability, not a customer portfolio: the pack states they are 'proposed industry capability pages, not proof of prior shipments in all 18 sectors'. Do not add client names, volumes or certifications here — those are gated in approvals.json.",
   "groups": [
     {
       "id": "perishables-healthcare",
@@ -28,126 +28,126 @@
       "group": "perishables-healthcare",
       "title": "Seafood & Fisheries",
       "flagship": true,
-      "summary": "Frozen and chilled seafood shipments depend on equipment readiness, temperature instructions, port timing and careful handovers. Our reefer experience helps frame the questions that matter before a container is loaded, from transport planning to routing and export documentation."
+      "summary": "Frozen and chilled seafood, where equipment readiness and handover discipline decide the condition it lands in."
     },
     {
       "slug": "agriculture-fresh-produce",
       "group": "perishables-healthcare",
       "title": "Agriculture & Fresh Produce",
       "flagship": false,
-      "summary": "Fresh produce moves against maturity, shelf-life and buyer receiving windows. Logistics planning must account for packing, temperature and ventilation requirements, inspection procedures, routing choices and the time cargo spends between controlled environments."
+      "summary": "Produce moving against shelf life and buyer receiving windows, with packing, ventilation and inspection planned in."
     },
     {
       "slug": "food-beverage",
       "group": "perishables-healthcare",
       "title": "Food & Beverage",
       "flagship": false,
-      "summary": "Food ingredients, processed products, frozen foods and shelf-stable packaged goods have different handling needs. We coordinate shipment options around packaging, condition, documentation and the delivery schedule required by the buyer."
+      "summary": "Ingredients, frozen goods and shelf-stable products, each with its own packaging and delivery schedule."
     },
     {
       "slug": "pharma-healthcare",
       "group": "perishables-healthcare",
       "title": "Pharmaceuticals & Healthcare",
       "flagship": true,
-      "summary": "Healthcare shipments place exceptional importance on product classification, documentation, handling instructions and shipment visibility. Where suitable specialist arrangements are available, logistics can be planned around validated shipper requirements, handling controls and applicable regulations."
+      "summary": "Classification, documentation and handling discipline carry equal weight. Specialist controls are confirmed per shipment, never assumed."
     },
     {
       "slug": "automotive-components",
       "group": "manufacturing-industrial",
       "title": "Automotive & Auto Components",
       "flagship": true,
-      "summary": "Vehicle parts and manufacturing components often serve production schedules that cannot tolerate avoidable uncertainty. We help coordinate container options, packing requirements, import/export documents and departure timing around the customer's supply plan."
+      "summary": "Parts planned around the production calendar, where a delay costs considerably more than the freight."
     },
     {
       "slug": "industrial-machinery",
       "group": "manufacturing-industrial",
       "title": "Industrial Machinery & Equipment",
       "flagship": false,
-      "summary": "Machinery shipments require accurate weights, dimensions, lifting and packing information before a transport plan can be finalised. Standard container options may work for some cargo; others need specialised equipment and partner assessment."
+      "summary": "Accurate weights, dimensions and lifting data, before a transport plan can mean anything."
     },
     {
       "slug": "chemicals-petrochemicals",
       "group": "manufacturing-industrial",
       "title": "Chemicals & Petrochemicals",
       "flagship": false,
-      "summary": "Chemical movements begin with correct product identification and regulatory classification. Documentation, packaging, carrier acceptance and permitted equipment must be established before a shipment is confirmed. Hazardous shipments are subject to licensed, carrier-approved handling arrangements."
+      "summary": "Correct identification and classification first; packaging, carrier acceptance and permitted equipment follow."
     },
     {
       "slug": "electronics-technology",
       "group": "manufacturing-industrial",
       "title": "Electronics & Technology",
       "flagship": false,
-      "summary": "Electronic and electrical cargo can be sensitive to shock, moisture, theft and delivery schedules. Freight planning should reflect packaging, value, handling instructions, transit options and the customer's destination requirements."
+      "summary": "Shock, moisture, value and theft risk shape the packing and the routing as much as the price does."
     },
     {
       "slug": "textiles-apparel",
       "group": "manufacturing-industrial",
       "title": "Textiles & Apparel",
       "flagship": false,
-      "summary": "Apparel and fabric supply chains balance seasonal deadlines, multiple suppliers and buyer-specific documentation. FCL and LCL options can be planned around origin consolidation, cutoffs and consignee receiving arrangements."
+      "summary": "Seasonal deadlines across many suppliers, consolidated around buyer cut-offs and receiving arrangements."
     },
     {
       "slug": "metals-minerals-steel",
       "group": "manufacturing-industrial",
       "title": "Metals, Minerals & Steel",
       "flagship": false,
-      "summary": "Weight, loading limits, packaging and cargo securing often determine transport feasibility for metal products and industrial raw materials. The right container and inland equipment matter as much as the ocean route."
+      "summary": "Weight, loading limits and cargo securing decide feasibility well before the ocean route does."
     },
     {
       "slug": "plastics-polymers-packaging",
       "group": "manufacturing-industrial",
       "title": "Plastics, Polymers & Packaging",
       "flagship": false,
-      "summary": "Packaging materials, resins and finished plastic products move across industrial supply chains with varying volume and protection needs. We evaluate equipment, packing declarations, documentation and delivery timing for the specific product."
+      "summary": "Resins, films and finished products matched to equipment, packing declarations and delivery timing."
     },
     {
       "slug": "paper-pulp-forest-products",
       "group": "manufacturing-industrial",
       "title": "Paper, Pulp & Forest Products",
       "flagship": false,
-      "summary": "Moisture protection, weight distribution, product condition and destination documentation matter for paper and forest-derived goods. Appropriate packing and routing decisions help protect the shipment through each leg."
+      "summary": "Moisture protection and weight distribution, with packing and routing chosen to protect condition."
     },
     {
       "slug": "project-cargo",
       "group": "infrastructure-energy",
       "title": "Project Cargo & Heavy Engineering",
       "flagship": true,
-      "summary": "The first requirement of project cargo is a workable movement plan. Out-of-gauge dimensions, weights, lifting, lashing, survey needs, route restrictions and site readiness influence options long before a vessel is booked. Specialist service delivery is arranged subject to feasibility and approvals."
+      "summary": "Out-of-gauge pieces: dimensions, lifting points, route restrictions and site access, assessed first."
     },
     {
       "slug": "construction-infrastructure",
       "group": "infrastructure-energy",
       "title": "Construction & Infrastructure",
       "flagship": false,
-      "summary": "Building materials, fabricated components and site equipment must arrive in step with construction programmes. We coordinate the transportation and documentation elements appropriate to the cargo, equipment and delivery location."
+      "summary": "Materials, fabricated components and site equipment arriving in step with the construction programme."
     },
     {
       "slug": "renewable-energy-power",
       "group": "infrastructure-energy",
       "title": "Renewable Energy & Power",
       "flagship": false,
-      "summary": "Power equipment and renewable-energy components may combine delicate handling with oversized dimensions. Shipping plans need to evaluate packaging, securing, multimodal requirements and the project timeline."
+      "summary": "Delicate handling and oversized dimensions in the same shipment, planned around the project timeline."
     },
     {
       "slug": "oil-gas-energy",
       "group": "infrastructure-energy",
       "title": "Oil, Gas & Energy Equipment",
       "flagship": false,
-      "summary": "Equipment for energy operations often has demanding specifications, special handling constraints and tightly planned receiving windows. We can assess shipment requirements and coordinate suitable logistics arrangements where available and authorised."
+      "summary": "Demanding specifications and tightly planned receiving windows for energy equipment."
     },
     {
       "slug": "retail-consumer-goods",
       "group": "consumer-general-trade",
       "title": "Retail & Consumer Goods",
       "flagship": false,
-      "summary": "Retail supply chains can bring together many SKUs, suppliers, purchase orders and delivery dates. Our role is to help align cargo booking and documents with the receiving requirements of the business."
+      "summary": "Many SKUs, suppliers and purchase orders aligned to a single receiving requirement."
     },
     {
       "slug": "general-cargo",
       "group": "consumer-general-trade",
       "title": "General Cargo & Multisector Trade",
       "flagship": false,
-      "summary": "Standard containerised shipments still require the same operational discipline as specialised cargo. From booking and paperwork to port handover and inland movement, we coordinate the elements that make a cargo movement workable."
+      "summary": "Standard containers still need the same discipline: booking, paperwork, handover, inland movement."
     }
   ]
 }

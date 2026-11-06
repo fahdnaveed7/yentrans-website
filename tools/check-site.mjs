@@ -39,6 +39,12 @@ const CLAIMS = [
   [approvals.credentials.millenniumNetwork, /Millennium Logistics Network/i],
   [approvals.credentials.fmcOrgNumber,      /035760/],
   [approvals.corporate.established2009,     /since 2009|Established 2009|Founded in 2009/i],
+  // Defence page claims. The named navies matter most: a port-visit support
+  // relationship may be non-public for the customer, and TP-01 requires written
+  // permission that nobody has produced.
+  [approvals.defence.namedNavyClients,      /\b(Algeria|Bangladesh|Egypt|Thailand|Indonesia)\b/],
+  [approvals.defence.additionalOffices,     /\b(Colombo|Malaysia|Lebanon)\b/],
+  [approvals.defence.trackRecordSuperlative,/most extensive track record/i],
 ];
 for (const f of html) {
   const t = readFileSync(f, "utf8");

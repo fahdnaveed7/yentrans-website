@@ -28,6 +28,19 @@ eleventyComputed:
       <h2>{{ service.coordinateTitle }}</h2>
       <ul class="check-list">{%- for c in service.coordinate %}<li>{{ c }}</li>{%- endfor %}</ul>
     {% endif %}
+    {# Grouped form, for a service whose scope is long enough that a single flat
+       list stops being readable. Defence husbanding is thirty line items. #}
+    {% if service.coordinateGroups %}
+      <h2>{{ service.coordinateTitle }}</h2>
+      <div class="cap-groups">
+        {%- for g in service.coordinateGroups %}
+        <div class="cap-group">
+          <h3>{{ g.title }}</h3>
+          <ul class="check-list">{%- for c in g.items %}<li>{{ c }}</li>{%- endfor %}</ul>
+        </div>
+        {%- endfor %}
+      </div>
+    {% endif %}
     {% if service.note %}<div class="notice notice-quiet">{{ service.note }}</div>{% endif %}
   </div>
 </section>
