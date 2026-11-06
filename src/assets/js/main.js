@@ -222,3 +222,99 @@
              form.elements.name;
   if (next && typeof next.focus === "function") next.focus({ preventScroll: true });
 })();
+
+/* ---------------------------------------------------------------------------
+   Careers application form.
+
+   The single rule here: a success message appears only when the server has
+   replied ok:true, meaning the CV is in storage and the row is committed. Every
+   other outcome — network failure, 4xx, 5xx, a malformed reply — is reported as
+   a failure that explicitly says the application was not received. A candidate
+   who believes they have applied when they have not is the worst outcome this
+   form can produce, worse than an obvious error.
+
+   With data-enabled="false" the form never posts at all.
+--------------------------------------------------------------------------- */
+(function () {
+  var form = document.getElementById("apply-form");
+  if (!form) return;
+  var statusEl = document.getElementById("apply-status");
+  var button = form.querySelector('button[type="submit"]');
+  var MAX_BYTES = 5 * 1024 * 1024;
+
+  function setStatus(msg, kind) {
+    statusEl.textContent = msg;
+    statusEl.className = "form-status is-" + kind;
+  }
+
+  function firstInvalid() {
+    var fields = form.querySelectorAll("[required]");
+    for (var i = 0; i < fields.length; i++) {
+      var f = fields[i];
+      var bad = f.type === "checkbox" ? !f.checked
+              : f.type === "file" ? !(f.files && f.files.length)
+              : !String(f.value).trim();
+      if (!bad && f.type === "email") bad = !/^[^@\s]+@[^@\s]+\.[^@\s]{2,}$/.test(f.value.trim());
+      if (bad) return f;
+    }
+    return null;
+  }
+
+  form.addEventListener("submit", function (e) {
+    e.preventDefault();
+
+    if (form.dataset.enabled !== "true") {
+      setStatus("The application channel is not switched on, so this form cannot be " +
+                "submitted. Nothing was sent.", "error");
+      return;
+    }
+
+    form.querySelectorAll("[aria-invalid]").forEach(function (f) { f.removeAttribute("aria-invalid"); });
+    var bad = firstInvalid();
+    if (bad) {
+      setStatus("Please complete the highlighted field before submitting.", "error");
+      bad.setAttribute("aria-invalid", "true");
+      bad.focus();
+      return;
+    }
+
+    // Check size here too. The server re-checks — this is only to save the
+    // candidate a slow upload that was always going to be rejected.
+    var cv = form.elements.resume.files[0];
+    if (cv && cv.size > MAX_BYTES) {
+      setStatus("That file is over 5 MB. Please attach a smaller PDF or DOCX.", "error");
+      form.elements.resume.setAttribute("aria-invalid", "true");
+      form.elements.resume.focus();
+      return;
+    }
+
+    button.disabled = true;
+    setStatus("Uploading your application…", "info");
+
+    fetch(form.dataset.endpoint, { method: "POST", body: new FormData(form) })
+      .then(function (res) {
+        return res.json().catch(function () { return {}; })
+          .then(function (body) { return { res: res, body: body }; });
+      })
+      .then(function (r) {
+        // Trust ok:true and nothing else. A 200 with an unexpected body is
+        // treated as a failure, not as success.
+        if (r.res.ok && r.body && r.body.ok === true) {
+          form.reset();
+          setStatus("Your application has been received" +
+            (r.body.reference ? " (reference " + r.body.reference + ")" : "") +
+            ". If your experience matches the role requirements, our team may contact you.", "ok");
+          return;
+        }
+        setStatus((r.body && r.body.message) ||
+          "We could not submit your application. Your information was not confirmed as received.",
+          "error");
+        button.disabled = false;
+      })
+      .catch(function () {
+        setStatus("We could not reach the server, so your application was not submitted. " +
+                  "Please try again.", "error");
+        button.disabled = false;
+      });
+  });
+})();

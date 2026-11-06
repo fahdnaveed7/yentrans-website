@@ -56,28 +56,80 @@ out of scope for this work.
 
 ## Careers application intake — currently APPLICATIONS_DISABLED
 
-The application UI is intentionally not built as a decorative form. No endpoint
-exists, `forms.applicationEndpointEnabled` is `false`, and the job page states
-plainly that applications cannot be accepted. **Nothing ever reports a
-submission that was not stored.**
+The backend is **written and in the repo**; it is not provisioned. Nothing can be
+submitted until the five steps below are done and the kill switch is flipped.
 
-To enable it, all of the following are required:
+| Piece | Where | State |
+|---|---|---|
+| Intake endpoint | `functions/api/apply.js` | written |
+| Database schema | `infra/schema.sql` | written |
+| Bindings config | `infra/wrangler.toml` | written, placeholder IDs |
+| Application form | `/careers/apply/` | renders, submit disabled |
+| Client handling | `src/assets/js/main.js` | written |
 
-| Requirement | Why |
-|---|---|
-| Cloudflare Pages Functions endpoint | Server-side validation and storage |
-| Cloudflare Turnstile keys | Spam mitigation before accepting uploads |
-| R2 bucket, private | Resume storage with random object keys, no public read, no directory listing |
-| D1 database | Application metadata, separate from the files |
-| Secrets set in the Pages dashboard | Never committed to this repository |
-| Approved applicant privacy notice | Legal prerequisite to collecting candidate data |
-| Retention and deletion workflow | Who can read a resume, for how long, and how it is deleted |
-| Access control on any staff view | Cloudflare Access or equivalent. **No open `/admin` route.** |
+### 1. Create the resources
 
-Server-side validation must check file signature as well as extension, cap size
-(5 MB suggested), generate random private object keys, and rate-limit by IP.
+```bash
+wrangler d1 create yentrans-applications
+wrangler r2 bucket create yentrans-applications-cv
+```
 
-Until every row above is satisfied, leave the flag `false`.
+Copy the returned D1 `database_id` into `wrangler.toml`, then move that file to
+the repository root (it lives in `infra/` precisely so a half-finished config
+cannot be picked up by a build).
+
+### 2. Apply the schema
+
+```bash
+wrangler d1 execute yentrans-applications --remote --file=infra/schema.sql
+```
+
+### 3. Turnstile
+
+Create a widget in the Cloudflare dashboard for the site's hostname. Then:
+
+```bash
+wrangler pages secret put TURNSTILE_SECRET --project-name yentrans-website
+```
+
+Put the **site key** (not the secret) into `src/_data/site.json` under
+`forms.turnstileSiteKey`, and add the Turnstile script to the apply page. The
+secret key must never appear in the repository.
+
+### 4. Lock the bucket down
+
+The R2 bucket must have **no public access and no custom domain**. Verify in the
+dashboard. The only read path is a short-lived signed URL issued behind
+Cloudflare Access. A CV is personal data; a public bucket here is a breach, not
+a misconfiguration.
+
+### 5. Test end to end, then switch on
+
+With `APPLICATIONS_ENABLED = "false"` still set, confirm the endpoint refuses
+with 503. Then set it to `"true"`, submit a real test application and verify:
+
+- a row exists in D1 (`wrangler d1 execute yentrans-applications --remote --command "SELECT id, role_id, email, cv_key FROM applications"`)
+- the object exists in R2 at that `cv_key`
+- the object is **not** reachable over the public internet
+- the browser showed the success message only after both of the above
+- a second submission with a `.pdf` extension on a non-PDF file is rejected
+- six submissions in an hour from one address trip the rate limit
+
+Only then change `status: draft` to `status: open` on the live roles.
+
+### What is deliberately not built
+
+- **No read endpoint.** `functions/api/apply.js` has no GET. Retrieval is a
+  separate surface behind Cloudflare Access; the brief rules out an open
+  `/admin`, and an unauthenticated read here would be exactly that.
+- **No malware scanning.** The brief asks it to be considered. It is not in
+  place, so treat every CV as untrusted: open in a sandboxed viewer, not on a
+  machine with access to company systems.
+- **No automated retention purge.** `applications.purge_after` exists and the
+  schema is indexed for it, but the scheduled Worker that deletes expired rows
+  and their R2 objects is not written. Until it is, retention is manual, and the
+  applicant privacy notice must not promise an automatic deletion window the
+  system does not enforce.
 
 ## Quote enquiry form
 

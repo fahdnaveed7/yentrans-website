@@ -1,0 +1,28 @@
+# Cloudflare Pages configuration for the careers intake.
+#
+# Copy to the repository root as wrangler.toml when the Pages project exists —
+# it is kept in infra/ so an incomplete config cannot be picked up by accident.
+#
+# NOTHING SECRET GOES IN THIS FILE. TURNSTILE_SECRET is set out of band:
+#   wrangler pages secret put TURNSTILE_SECRET --project-name yentrans-website
+
+name = "yentrans-website"
+compatibility_date = "2026-01-01"
+pages_build_output_dir = "_site"
+
+[vars]
+# The kill switch. Leave "false" until D1, R2 and Turnstile are all in place and
+# an end-to-end test has stored a real row. The function refuses everything
+# while this is anything other than "true".
+APPLICATIONS_ENABLED = "false"
+
+[[d1_databases]]
+binding = "DB"
+database_name = "yentrans-applications"
+database_id = "REPLACE_WITH_D1_ID"
+
+[[r2_buckets]]
+binding = "CV_BUCKET"
+bucket_name = "yentrans-applications-cv"
+# This bucket must have NO public access and NO custom domain. The only read
+# path is a short-lived signed URL issued behind Cloudflare Access.
