@@ -71,7 +71,7 @@
       "slug": "inland-transportation",
       "title": "Inland Transportation & Door Delivery",
       "icon": "truck",
-      "featured": true,
+      "featured": false,
       "summary": "Factory gate to port, or port to final destination — equipment, collection windows and container positioning in supported markets.",
       "cta": "Plan an Inland Movement"
     },
@@ -87,7 +87,7 @@
       "slug": "warehousing-insurance",
       "title": "Warehousing & Cargo Insurance Coordination",
       "icon": "shield",
-      "featured": true,
+      "featured": false,
       "summary": "Storage before loading or after arrival, with cover coordinated to match the Incoterm rather than the assumption.",
       "cta": "Discuss Your Supply Chain"
     },
