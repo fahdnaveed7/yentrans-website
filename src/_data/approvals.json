@@ -190,6 +190,12 @@
     "applicationEndpointEnabled": {
       "value": false,
       "note": "APPLICATIONS_DISABLED. Needs Cloudflare Pages Functions + Turnstile + R2 + D1 and an approved applicant privacy notice. See DEPLOYMENT_CHECKLIST.md."
+    },
+    "hiringInbox": {
+      "value": true,
+      "claim": "HR",
+      "text": "careers@yentransmaritime.com",
+      "note": "Confirmed by the owner 2026-11-06. The content pack required a confirmed hiring inbox before any apply route could name an address. Until the Cloudflare intake is provisioned, open roles apply by email to this address; the secure form takes over automatically when applicationEndpointEnabled flips."
     }
   },
   "staffContactDetails": {

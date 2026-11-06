@@ -7,14 +7,18 @@ seoDescription: "HR Executive role based in Kochi supporting recruitment, employ
 department: "HR & Administration"
 location: "Kochi, Kerala, India"
 employmentType: "Full-time, on-site"
-employmentTypeApproved: false
+employmentTypeApproved: true
 experience: "0–2 years preferred"
-status: draft
-publishedAt: null
+employmentTypeSchema: "FULL_TIME"
+addressLocality: "Ernakulam"
+addressRegion: "Kerala"
+addressCountry: "IN"
+status: open
+publishedAt: "2026-11-06"
 applicationDeadline: null
 salary: "₹20,000 per month"
 showSalary: false
-applicationEmail: null
+applicationEmail: "careers@yentransmaritime.com"
 applicationEndpointEnabled: false
 excerpt: "Support recruitment, employee administration and the development of consistent HR processes in a growing logistics organisation."
 ---

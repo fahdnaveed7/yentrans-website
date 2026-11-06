@@ -24,14 +24,28 @@ layout: layouts/base.njk
   </div>
 
   <div class="wrap wrap-narrow">
-    {% if status == "open" and applicationEndpointEnabled %}
+    {#- Three live routes, in order of preference. The secure form takes over the
+        moment the Cloudflare intake is provisioned; until then an open role
+        applies by email, which actually works. A role is never left advertised
+        with no way to apply. -#}
+    {% if status == "open" and approvals.forms.applicationEndpointEnabled.value %}
       <a class="btn btn-primary" href="{{ '/careers/apply/' | url }}?role={{ id }}">Apply for this role</a>
-    {% elif status == "open" and not applicationEndpointEnabled %}
+    {% elif status == "open" and applicationEmail %}
+      {%- set subject = "Application: " + title + " (" + id + ")" %}
+      {%- set body = "Please attach your CV as a PDF or DOCX before sending.%0D%0A%0D%0AName:%0D%0APhone:%0D%0ACurrent location:%0D%0AYears of experience:%0D%0ALinkedIn (optional):%0D%0A%0D%0ABriefly, why this role:%0D%0A" %}
+      <a class="btn btn-primary"
+         href="mailto:{{ applicationEmail }}?subject={{ subject | urlencode }}&amp;body={{ body }}">
+        Apply by email <span class="arrow">&rarr;</span></a>
+      <p class="apply-note">Send your CV as a PDF or DOCX to
+        <a href="mailto:{{ applicationEmail }}">{{ applicationEmail }}</a>, quoting
+        <strong>{{ title }}</strong>. Please don't attach identity documents at this stage.
+        A submission doesn't guarantee an interview; we reply if your experience matches
+        what the role needs.</p>
+    {% elif status == "open" %}
       <div class="notice">
         <strong>Applications are not open yet.</strong>
-        The secure application channel for this role has not been enabled, so we cannot
-        accept or store a submission. Please check back rather than sending documents by
-        another route.
+        No application channel has been enabled for this role, so we cannot accept or
+        store a submission. Please check back rather than sending documents by another route.
       </div>
     {% else %}
       <div class="notice">
@@ -46,9 +60,20 @@ layout: layouts/base.njk
 {% if status == "open" and publishedAt %}
 <script type="application/ld+json">{{ {
   "@context": "https://schema.org", "@type": "JobPosting",
-  "title": title, "description": excerpt,
-  "datePosted": publishedAt, "employmentType": employmentType,
-  "hiringOrganization": { "@type": "Organization", "name": site.name },
-  "jobLocation": { "@type": "Place", "address": { "@type": "PostalAddress", "addressLocality": location } }
+  "title": title,
+  "description": excerpt,
+  "datePosted": publishedAt,
+  "validThrough": applicationDeadline,
+  "employmentType": employmentTypeSchema,
+  "hiringOrganization": {
+    "@type": "Organization", "name": site.name, "url": site.productionUrl
+  },
+  "jobLocation": { "@type": "Place", "address": {
+    "@type": "PostalAddress",
+    "addressLocality": addressLocality,
+    "addressRegion": addressRegion,
+    "addressCountry": addressCountry
+  }},
+  "directApply": false
 } | jsonld | safe }}</script>
 {% endif %}

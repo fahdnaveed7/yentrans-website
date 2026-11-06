@@ -807,3 +807,6 @@ section{padding:clamp(4rem,7.5vw,6.5rem) 0}
 .field input[type=file]{padding:.6rem;background:var(--blue-wash);cursor:pointer}
 .form button[disabled]{opacity:.5;cursor:not-allowed}
 .form button[disabled]:hover{transform:none;background:var(--blue)}
+
+.apply-note{margin-top:1rem;font-size:.9rem;line-height:1.65;color:var(--ink-70);max-width:62ch}
+.apply-note a{color:var(--link-on-light);border-bottom:1px solid var(--blue-light)}
