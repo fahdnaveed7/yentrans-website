@@ -12,11 +12,20 @@ intro: "Tell us who you are and attach your CV. We review every application agai
 <section class="pt-0">
   <div class="wrap wrap-narrow">
 
-    {%- if not approvals.forms.applicationEndpointEnabled.value %}
-    {# APPLICATIONS_DISABLED. The form still renders and validates so it can be
-       reviewed, but submit is disabled and the page says plainly that nothing
-       is sent. A form that looks live and quietly discards a CV is worse than
-       no form: the candidate believes they have applied. #}
+    {%- if not approvals.forms.applicationEndpointEnabled.value and approvals.forms.hiringInbox.value %}
+    {# Upload intake is not provisioned, but a confirmed hiring inbox is, so the
+       page sends people to the route that actually works rather than leaving a
+       dead form as the only visible option. The form below stays rendered and
+       disabled for review; a form that looks live and quietly discards a CV is
+       worse than no form, because the candidate believes they applied. #}
+    <div class="notice">
+      <strong>Applications are by email at the moment.</strong>
+      Send your CV as a PDF or DOCX to
+      <a href="mailto:{{ approvals.forms.hiringInbox.text }}">{{ approvals.forms.hiringInbox.text }}</a>,
+      quoting the role you want. Upload through this page is being set up; the form below
+      is shown for reference and cannot be submitted.
+    </div>
+    {%- elif not approvals.forms.applicationEndpointEnabled.value %}
     <div class="notice notice-warn">
       <strong>The online application channel is not switched on yet.</strong>
       We cannot receive or store a CV through this website at the moment, so the form

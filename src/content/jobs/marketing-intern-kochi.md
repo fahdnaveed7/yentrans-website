@@ -8,14 +8,18 @@ department: "Marketing"
 location: "Ernakulam, Kerala, India"
 locationApproved: true
 employmentType: "Internship, on-site"
-employmentTypeApproved: false
+employmentTypeApproved: true
 experience: "Student or recent graduate"
-status: draft
-publishedAt: null
+employmentTypeSchema: "INTERN"
+addressLocality: "Ernakulam"
+addressRegion: "Kerala"
+addressCountry: "IN"
+status: open
+publishedAt: "2026-11-06"
 applicationDeadline: null
 salary: null
 showSalary: false
-applicationEmail: null
+applicationEmail: "careers@yentransmaritime.com"
 applicationEndpointEnabled: false
 excerpt: "Support content, campaigns and the company website at a freight forwarding business, with real work rather than observation."
 ---

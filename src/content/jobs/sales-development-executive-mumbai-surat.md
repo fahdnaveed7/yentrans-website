@@ -9,14 +9,18 @@ location: "Mumbai / Surat, India"
 locationApproved: false
 locationNote: "Field-based territory role. Yentrans has no office in either city; the position is described as territory coverage rather than an office posting."
 employmentType: "Full-time, field-based"
-employmentTypeApproved: false
+employmentTypeApproved: true
 experience: "1–3 years in freight forwarding, shipping or logistics sales"
-status: draft
-publishedAt: null
+employmentTypeSchema: "FULL_TIME"
+addressLocality: "Mumbai"
+addressRegion: "Maharashtra"
+addressCountry: "IN"
+status: open
+publishedAt: "2026-11-06"
 applicationDeadline: null
 salary: null
 showSalary: false
-applicationEmail: null
+applicationEmail: "careers@yentransmaritime.com"
 applicationEndpointEnabled: false
 excerpt: "Develop exporter and importer accounts across the Mumbai and Surat territory for an international freight forwarder."
 ---
