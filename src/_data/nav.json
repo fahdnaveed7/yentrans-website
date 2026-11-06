@@ -26,30 +26,11 @@
       "heading": "Services",
       "links": [
         {
-          "label": "FCL ocean freight",
-          "url": "/services/fcl-ocean-freight/"
-        },
-        {
-          "label": "LCL consolidation",
-          "url": "/services/lcl-consolidation/"
-        },
-        {
-          "label": "Reefer logistics",
-          "url": "/services/reefer-logistics/"
-        },
-        {
-          "label": "Customs and documentation",
-          "url": "/services/customs-documentation/"
-        },
-        {
-          "label": "Inland and door delivery",
-          "url": "/services/inland-transportation/"
-        },
-        {
           "label": "All services",
           "url": "/services/"
         }
-      ]
+      ],
+      "fromServices": true
     },
     {
       "heading": "Company",

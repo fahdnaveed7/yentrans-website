@@ -764,3 +764,14 @@ section{padding:clamp(4rem,7.5vw,6.5rem) 0}
   .rm-node.is-hq .rm-dot{r:12}
   .routemap svg{min-height:300px}
 }
+
+/* ---- grouped capabilities ------------------------------------------------ */
+/* Two columns inside the reading measure, so a thirty-item scope reads as five
+   short lists rather than one long scroll. */
+.cap-groups{display:grid;grid-template-columns:repeat(2,1fr);gap:1.6rem 2.4rem;margin:1.4rem 0 0}
+.cap-group h3{font-family:var(--font-head);font-size:.78rem;font-weight:800;text-transform:uppercase;
+  letter-spacing:.12em;color:var(--blue-deep);margin:0 0 .7rem;padding-bottom:.55rem;
+  border-bottom:2px solid var(--blue-light)}
+.cap-group .check-list{margin:0}
+.cap-group .check-list li{font-size:.93rem}
+@media(max-width:760px){ .cap-groups{grid-template-columns:1fr;gap:1.4rem} }

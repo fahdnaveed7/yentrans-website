@@ -28,6 +28,14 @@
       <div>
         <h4>{{ col.heading }}</h4>
         <ul>
+          {#- A column marked fromServices is generated from services.json, so a
+              new service reaches the footer without anyone editing nav.json.
+              The hardcoded list silently omitted Defence Logistics. -#}
+          {%- if col.fromServices %}
+            {%- for s in services.items %}
+            <li><a href="{{ ('/services/' + s.slug + '/') | url }}">{{ s.title }}</a></li>
+            {%- endfor %}
+          {%- endif %}
           {%- for link in col.links %}
           <li><a href="{{ link.url | url }}">{{ link.label }}</a></li>
           {%- endfor %}

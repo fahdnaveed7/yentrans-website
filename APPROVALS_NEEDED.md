@@ -114,6 +114,32 @@ numbers.
 **Needed per location:** operating status, legal entity, confirmation that each
 address is current, and whether each named contact consents to publication.
 
+## 3d. Defence Logistics — three claims held
+
+The Defence Logistic Services page on the live WordPress site was added as a
+service. Its **capability list is published in full** — all thirty line items,
+grouped into five — because describing what a division does is service scope,
+not a claim about a customer or a credential.
+
+Three statements on that page are different in kind and are **not published**.
+The site checker now fails the build if any of them reappears.
+
+| Held | Flag | Why |
+|---|---|---|
+| Algeria, Bangladesh, Egypt, Thailand and Indonesia named as navies served | `defence.namedNavyClients` | TP-01 marks client names PROHIBITED without written permission. Defence customers are the sharpest case: several of these states may treat a port-visit support relationship as non-public, and naming them could create a problem for *them*, not just for us. Already being on the old site is not consent — it may simply be an exposure nobody has reviewed. |
+| Owned or network offices in Colombo, Malaysia and Lebanon | `defence.additionalOffices` | None of the three appear on the OUR REACH sheet supplied on 2026-11-04, which listed India, the UAE, Oman and Houston only. The two documents contradict each other. |
+| "one of the most extensive track records in the Indian Ports and Sri Lanka and Malaysia sea areas" | `defence.trackRecordSuperlative` | A comparative ranking. NUM-06 marks rankings and "leading" PROHIBITED without a signed-off source. |
+
+**What the page says instead:** that the naval division is newer than the
+freight business and growing, and that where a port sits outside our own
+offices, attendance is delivered with established agency partners. That is
+accurate, and it is the substance of the original paragraph minus the three
+unevidenced parts.
+
+**To publish any of them:** attach evidence in `Claim_Evidence_Tracker.csv`,
+flip the flag in `src/_data/approvals.json`, and for the offices also add each
+location to `offices.json` with its correct role.
+
 ## 4. Brand assets
 
 | Item | Decision needed |
